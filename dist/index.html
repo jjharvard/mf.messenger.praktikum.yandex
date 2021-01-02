@@ -5,6 +5,17 @@
     <title>Yandex Praktikum Messenger Project</title>
 </head>
 <body>
-    <span>First Deploy from deploy branch</span>
+<form id="formElem">
+    <input type="text" name="name" value="John">
+    <input type="text" name="surname" value="Smith">
+    <input type="submit">
+</form>
+<script>
+    formElem.onsubmit = async (e) => {
+        e.preventDefault()
+
+        let response = await fetch
+    }
+</script>
 </body>
 </html>
