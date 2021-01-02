@@ -4,4 +4,8 @@
   color: $color;
   border-radius: $app__radiusBorder;
   @content;
+  &:focus {
+    outline: none;
+    border-radius: $app__radiusBorder;
+  }
 }

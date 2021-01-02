@@ -8,7 +8,7 @@
     padding: $app__marginMedium;
     width: 300px;
     box-shadow: $app__shadowCommon;
-    border: 1px solid $app__colorPrimary;
+    border: $app__thicknessBorder solid $app__colorPrimaryLight;
     border-radius: $app__radiusBorder;
 
     &__title {
@@ -24,10 +24,11 @@
       flex-flow: column wrap;
       justify-content: center;
       align-items: stretch;
-
-      & > input {
-        margin-bottom: $app__marginMedium;
-        height: 1.5rem;
+    }
+    &__input {
+      @include input-field($app__inputHeight);
+      &.#{$action}_error {
+        @include input-field($app__inputHeight, $app__colorError, $app__colorError);
       }
     }
 

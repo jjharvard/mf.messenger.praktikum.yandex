@@ -4,12 +4,14 @@ $app__colorSecondary: #dfe3ee;
 $app__colorSecondaryLight: #f7f7f7;
 $app__colorWhite: 	#ffffff;
 $app__colorDark: #333333;
+$app__colorError:  #fa3e3e;
 
 $app__radiusBorder: 8px;
 $app__marginSmall: 8px;
 $app__marginMedium: 16px;
 $app__marginLarge: 32px;
 
-$app__btnHeight: 2em;
-$app__inputHeight: 2em;
+$app__btnHeight: 2rem;
+$app__inputHeight: 2rem;
 $app__shadowCommon: 0 8px 6px -6px $app__colorDark;
+$app__thicknessBorder: 2px;
