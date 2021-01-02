@@ -1,6 +1,5 @@
 @mixin reg-action($action, $height) {
   .#{$action} {
-    margin: 100px auto;
     display: flex;
     flex-flow: column wrap;
     align-items: stretch;

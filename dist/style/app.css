@@ -2,8 +2,14 @@ body {
   background: #f7f7f7;
 }
 
+.container {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .auth {
-  margin: 100px auto;
   display: flex;
   flex-flow: column wrap;
   align-items: stretch;
@@ -80,7 +86,6 @@ body {
 }
 
 .sign {
-  margin: 100px auto;
   display: flex;
   flex-flow: column wrap;
   align-items: stretch;
@@ -154,4 +159,10 @@ body {
 .sign__btn_secondary:focus {
   outline: none;
   border-radius: 8px;
+}
+
+.error {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
 }
