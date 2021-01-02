@@ -1,0 +1,18 @@
+@mixin container($action) {
+  .#{$action}-container {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @content;
+  }
+}
+
+@mixin astext() {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  @content;
+}

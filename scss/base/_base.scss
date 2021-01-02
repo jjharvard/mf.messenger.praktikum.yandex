@@ -2,9 +2,10 @@ body {
   background: $app__colorSecondaryLight;
 }
 
-.container {
-  height: 90vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+a {
+  text-decoration: none;
 }
+
+
+
+@include container('');
