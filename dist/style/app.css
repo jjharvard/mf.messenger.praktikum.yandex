@@ -2,10 +2,6 @@ body {
   background: #f7f7f7;
 }
 
-a {
-  text-decoration: none;
-}
-
 .-container {
   height: 90vh;
   display: flex;
@@ -206,16 +202,36 @@ a {
   justify-content: center;
   align-items: center;
   flex-flow: column wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
+.profile {
+  margin: 64px 0;
+}
 .profile__field {
   border-bottom: 1px solid #8b9dc3;
   width: 25vw;
   display: flex;
   justify-content: space-between;
   padding: 4px;
+}
+
+.profile-title {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+.profile-title__icon {
+  margin: 0px auto 40px auto;
+  border-radius: 50%;
+  width: 92px;
+  height: 92px;
+  border: 2px solid #f1f1f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .change {
@@ -230,14 +246,6 @@ a {
   display: flex;
   justify-content: space-between;
   padding: 4px;
-}
-.change__field_alert {
-  border-bottom: 1px solid #8b9dc3;
-  width: 25vw;
-  display: flex;
-  justify-content: space-between;
-  padding: 4px;
-  text-co: #fa3e3e;
 }
 .change__ref {
   background: none;

@@ -2,10 +2,4 @@ body {
   background: $app__colorSecondaryLight;
 }
 
-a {
-  text-decoration: none;
-}
-
-
-
 @include container('');

@@ -1,22 +1,29 @@
 @include container('profile') {
   flex-flow: column wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
+
 .profile {
   &__field {
     @include field(25vw);
+  }
+  margin: $app__marginExtraLarge 0;
+}
+
+.profile-title {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  &__icon {
+    @include rounded(92px);
   }
 }
 
 .change {
   &__field {
     @include field(25vw);
-    &_alert {
-      @include field(25vw) {
-        text-co: $app__colorError;
-      }
-    }
   }
   &__ref {
     @include astext() {

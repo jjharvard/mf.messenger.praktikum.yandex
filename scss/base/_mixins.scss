@@ -16,3 +16,15 @@
   cursor: pointer;
   @content;
 }
+
+@mixin rounded($diameter) {
+  margin: 0px auto 40px auto;
+  border-radius: 50%;
+  width: $diameter;
+  height: $diameter;
+  border: 2px solid #f1f1f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @content;
+}
