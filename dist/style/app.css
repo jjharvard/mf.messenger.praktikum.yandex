@@ -245,7 +245,7 @@ body {
 }
 .profile-title:hover .profile-title__hover-message {
   visibility: visible;
-  cursor: default;
+  cursor: pointer;
 }
 .profile-title__label {
   margin-top: 8px;

@@ -33,7 +33,7 @@ $imgSize: 92px;
   }
   &:hover .profile-title__hover-message {
     visibility: visible;
-    cursor: default;
+    cursor: pointer;
   }
   &__label {
     margin-top: $app__marginSmall;
