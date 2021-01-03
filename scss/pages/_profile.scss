@@ -1,14 +1,11 @@
+$fieldWidth: 25vw;
+$btnWidth: 15vw;
+$imgSize: 92px;
+
 @include container('profile') {
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-}
-
-.profile {
-  &__field {
-    @include field(25vw);
-  }
-  margin: $app__marginExtraLarge 0;
 }
 
 .profile-title {
@@ -16,14 +13,53 @@
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
+  position: relative;
   &__icon {
-    @include rounded(92px);
+    @include rounded($imgSize);
+  }
+  &__hover-message {
+    @include rounded($imgSize) {
+      visibility: hidden;
+      color: $app__colorWhite;
+      position: absolute;
+      text-align: center;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(29, 106, 154, 0.72);
+      font-weight: bold;
+    }
+  }
+  &:hover .profile-title__hover-message {
+    visibility: visible;
+    cursor: default;
+  }
+  &__label {
+    margin-top: $app__marginSmall;
+    font-weight: bold;
+  }
+}
+
+.profile {
+  &__field {
+    @include field($fieldWidth);
+  }
+  margin: $app__marginExtraLarge 0;
+  &__label {
+    font-weight: bold;
+  }
+  &__input {
+    outline: none;
+    border: 0;
+    background: $app__colorSecondaryLight;
+    text-align: right;
   }
 }
 
 .change {
   &__field {
-    @include field(25vw);
+    @include field($fieldWidth);
   }
   &__ref {
     @include astext() {
@@ -39,4 +75,12 @@
   flex-flow: column wrap;
   align-items: stretch;
   justify-content: flex-end;
+}
+
+.profile-save {
+  &__btn {
+    @include btn-submit($app__colorPrimary, $app__colorWhite) {
+      width: $btnWidth;
+    }
+  }
 }
