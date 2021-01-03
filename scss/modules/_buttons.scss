@@ -1,4 +1,4 @@
-@mixin btn-submit($background, $color) {
+@mixin btn-submit($background: $app__colorPrimary, $color: $app__colorWhite) {
   height: $app__btnHeight;
   background: $background;
   color: $color;

@@ -313,3 +313,44 @@ body {
   outline: none;
   border-radius: 8px;
 }
+
+.upload-modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.upload-modal__content {
+  padding: 16px;
+  background-color: #fefefe;
+  margin: auto;
+  border: 1px solid #888;
+  width: 200px;
+  border-radius: 8px;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+.upload-modal__btn_submit {
+  height: 2rem;
+  background: #3b5998;
+  color: #ffffff;
+  border-radius: 8px;
+  width: 100%;
+}
+.upload-modal__btn_submit:focus {
+  outline: none;
+  border-radius: 8px;
+}
+.upload-modal__action {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 16px 0;
+}
