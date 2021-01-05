@@ -409,9 +409,6 @@ body {
   border-radius: 8px;
   border: 2px solid #8b9dc3; }
 
-.chat {
-  grid-area: 1 / 2 / 9 / 3; }
-
 .input {
   grid-area: 8 / 2 / 9 / 3;
   display: flex;
@@ -466,3 +463,27 @@ body {
   padding: 3px;
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg); }
+
+.chat {
+  grid-area: 1 / 2 / 8 / 3; }
+.chat__title {
+  border-bottom: 1px solid #dfe3ee;
+  margin-left: 100px;
+  margin-right: 100px;
+  height: 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  align-items: flex-end; }
+.chat__name {
+  flex-grow: 1;
+  font-size: x-large;
+  font-weight: bold; }
+.chat__remove {
+  background: url(../img/remove.svg) no-repeat;
+  margin: 0px auto 0px auto;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: none;
+  outline: none;
+  margin-bottom: 0.2rem; }

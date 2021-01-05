@@ -107,10 +107,6 @@ $chat__borderLight: 1px solid $app__colorSecondaryLight;
   }
 }
 
-.chat {
-  grid-area: 1 / 2 / 9 / 3;
-}
-
 .input {
   grid-area: 8 / 2 / 9 / 3;
   display: flex;
@@ -156,4 +152,30 @@ $chat__borderLight: 1px solid $app__colorSecondaryLight;
   padding: 3px;
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
+}
+
+.chat {
+  grid-area: 1 / 2 / 8 / 3;
+  &__title {
+    border-bottom: $chat__border;
+    margin-left: 100px;
+    margin-right: 100px;
+    height: 4rem;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: flex-end;
+  }
+  &__name {
+    flex-grow: 1;
+    font-size: x-large;
+    font-weight: bold;
+  }
+  &__remove {
+    background: url(../img/remove.svg) no-repeat;
+    @include asimage(1.5rem) {
+      outline: none;
+      margin-bottom: 0.2rem;
+    }
+  }
 }
