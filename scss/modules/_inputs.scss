@@ -1,5 +1,5 @@
-@mixin input-field($height, $colorBorder: $app__colorSecondary, $colorBorderFocused: $app__colorPrimaryLight) {
-  margin-bottom: $app__marginMedium;
+@mixin input-field($height, $colorBorder: $app__colorSecondary, $colorBorderFocused: $app__colorPrimaryLight, $marginBottom: $app__marginMedium) {
+  margin-bottom: $marginBottom;
   height: $height;
   border-radius: $app__radiusBorder;
   border: $app__thicknessBorder solid $colorBorder;
