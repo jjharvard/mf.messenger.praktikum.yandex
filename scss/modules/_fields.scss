@@ -1,8 +1,0 @@
-@mixin field($width) {
-  border-bottom: 1px solid $app__colorPrimaryLight;
-  width: $width;
-  display: flex;
-  justify-content: space-between;
-  padding: 4px;
-  @content;
-}

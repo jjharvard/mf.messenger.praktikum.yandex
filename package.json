@@ -13,6 +13,6 @@
     "node": ">=12.0.0"
   },
   "scripts": {
-    "serve": "nodemon app.js --watch"
+    "serve": "nodemon server.js --watch"
   }
 }
