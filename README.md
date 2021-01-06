@@ -1,6 +1,6 @@
 Учебный проект. I спринт Yandex Практикума.
 
-[https://angry-darwin-d47765.netlify.server](https://angry-darwin-d47765.netlify.server)
+[https://angry-darwin-d47765.netlify.app](https://angry-darwin-d47765.netlify.app)
 <br/>
 Для запуска локального сервера выполните команды:
 <br/>
