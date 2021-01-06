@@ -3,51 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <title>Chat</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style/app.css">
 </head>
 <body>
-<div class="container">
+<div class="chat-container">
     <div class="sidebar">
-        <div class="__divider --list"></div>
-        <div class="__topic">
-            <div class="__author">
-                Angelica
-            </div>
-            <div class="__teaser">
-                Hello you. Today I'm glad to introduce you a new team member Ivan Urgant...
-            </div>
-        </div>
-        <div class="__divider --list"></div>
-        <div class="__topic">
-            <div class="__author">
-                Stepan
-            </div>
-            <div class="__teaser">
-                No, I won't do it. I won't tell your wife that you're spiderman...
-            </div>
-        </div>
-        <div class="__divider --list"></div>
+        <ul class="sidebar__list">
+            <li class="sidebar__item topic">
+                <img class="topic__icon" src="img/bear.png" alt=""/>
+                <div class="topic__author">Gudkov</div>
+                <div class="topic__time">11.01.21</div>
+                <div class="topic__teaser">
+                    Hello you. Today I'm glad to introduce you a new team member Ivan Urgant. I'm looking forward to
+                </div>
+                <div class="topic__unread-wrapper"><p class="topic__unread-count">2</p></div>
+            </li>
+            <li class="sidebar__item topic">
+                <img class="topic__icon" src="img/cat_eyes.png" alt=""/>
+                <div class="topic__author">Eagles</div>
+                <div class="topic__time">08.01.21</div>
+                <div class="topic__teaser">
+                    On a dark desert highway cool wind in my hair warm smell of colitas rising up through the air up
+                    ahead in the distance I saw a shimmering light
+                </div>
+                <div class="topic__unread-wrapper"><p class="topic__unread-count">1</p></div>
+            </li>
+            <li class="sidebar__item topic highlighted">
+                <img class="topic__icon" src="img/husky.png" alt=""/>
+                <div class="topic__author">Mick</div>
+                <div class="topic__time">11.01.21</div>
+                <div class="topic__teaser">
+                    I can't get no satisfaction, I can't get no satisfaction 'cause I try and I try and I try and I try
+                    I can't get no, I can't get no
+                </div>
+                <div class="topic__unread-wrapper hidden"><p class="topic__unread-count">0</p></div>
+            </li>
+            <li class="sidebar__item topic">
+                <img class="topic__icon" src="img/smile.png" alt=""/>
+                <div class="topic__author">Ace</div>
+                <div class="topic__time">09.01.21</div>
+                <div class="topic__teaser">
+                    You can do what you want just seize the day what you're doing tomorrow's gonna come your way don't
+                    you ever consider giving up
+                </div>
+                <div class="topic__unread-wrapper hidden"><p class="topic__unread-count">0</p></div>
+            </li>
+        </ul>
+
     </div>
     <div class="user">
-        <button class="__profile">
-            Profile
-            <i class="arrow --right"></i>
+        <button class="user__add">
+            Add
+            <i class="arrow"></i>
         </button>
-        <input class="__search" type="text">
+        <button class="user__profile" onclick="location.href='/profile.html'">
+            Profile
+            <i class="arrow"></i>
+        </button>
+        <input id="user__search_id" class="user__search" type="text" placeholder="Search">
     </div>
     <div class="chat">
-        <div class="__title">
-            <span class="__name">Stepan</span>
-            <div class="__divider --decor"></div>
-            </span>
+        <div class="chat__title">
+            <div class="chat__name">Mick</div>
+            <button class="chat__remove"></button>
         </div>
+
+        <ul class="chat__list">
+            <li class="message">
+                <div class="message__outgoing">
+                    I can't get no satisfaction, I can't get no satisfaction 'cause I try and I try and I try and I try
+                    I can't get no, I can't get no
+                    <div class="timer__outgoing">11:30</div>
+                </div>
+            </li>
+            <li class="message">
+                <div class="message__incoming">
+                    I can't get no satisfaction, I can't get no satisfaction 'cause I try and I try and I try and I try
+                    I can't get no, I can't get no
+                    <div class="timer__incoming">11:30</div>
+                </div>
+            </li>
+            <li class="message">
+                <div class="message__incoming">
+                    <img class="message__img" src="/img/mick_jagger.jpg" />
+                    <div class="timer__incoming">11:30</div>
+                </div>
+            </li>
+            <li class="message">
+                <div class="message__outgoing">
+                    Hello
+                    <div class="timer__outgoing">11:29</div>
+                </div>
+            </li>
+        </ul>
     </div>
     <div class="input">
-        <button class="__attach"></button>
-        <input class="__edit" type="text">
-        <input class="__send"></div>
+        <label class="input__attach" for="input__attach_id"></label>
+        <form class="input__attach-form" method="post" enctype="multipart/form-data">
+            <input name="file" id="input__attach_id" type="file" hidden/>
+        </form>
+        <input id="input__edit_id" name="message" class="input__edit" type="text" placeholder="Message">
+        <button id="input__send_id" class="input__send"></button>
     </div>
 </div>
-
+<script src="js/controllers/chat.js"></script>
 </body>
 </html>
