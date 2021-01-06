@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 
 const PORT = 3000
-const STATIC_FILES_DIR = path.join(__dirname, '../dist')
+const STATIC_FILES_DIR = path.join(__dirname, './dist')
 
 app
     .use(express.static(STATIC_FILES_DIR))
