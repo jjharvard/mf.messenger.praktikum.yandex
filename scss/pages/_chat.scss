@@ -91,13 +91,14 @@ $chat__borderLight: 1px solid $app__colorSecondaryLight;
   background: $app__colorSecondary;
 
   &__profile {
-    background-color: transparent;
-    background-repeat: no-repeat;
-    border: none;
-    cursor: pointer;
-    overflow: hidden;
-    outline: none;
+    @include transparent();
     float: right;
+    margin-bottom: 3%;
+  }
+
+  &__add {
+    @include transparent();
+    float: left;
     margin-bottom: 3%;
   }
 
