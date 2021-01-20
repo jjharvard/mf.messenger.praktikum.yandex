@@ -1,16 +1,14 @@
 import {View} from "./View";
 
-class Button {
+export class Button extends View {
 
-    getTemplate(): View {
-        return undefined;
+    getTemplate(): string {
+        return `
+                    <button id="input__send_id" onclick="{{hello}}" class="input__send"></button>
+               `;
     }
 
-    render() {
-
-    }
-
-    getStyle() {
-
+    getProps(): Props {
+        return {}
     }
 }

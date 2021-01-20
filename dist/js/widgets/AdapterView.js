@@ -1,10 +1,9 @@
 import { ViewGroup } from "./ViewGroup";
 export class AdapterView extends ViewGroup {
-    constructor() {
+    constructor(adapter) {
         super();
-    }
-    setAdapter(adapter) {
         this.adapter = adapter;
+        this.adapter.notifyDataSetChanged();
     }
     getAdapter() {
         return this.adapter;

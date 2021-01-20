@@ -20,7 +20,7 @@ export class ChatListAdapter extends ArrayAdapter {
         return template;
     }
     bindData(index) {
-        let message = Templator.compile(this.getItemTemplate())({ 'message': this.messages[index] });
+        let message = Templator.getInstance().withTemplate(this.getItemTemplate()).compile({ 'message': this.messages[index] });
         return message;
     }
     getCount() {

@@ -2,9 +2,10 @@ import { View } from "./View";
 import { Templator } from "../common/Templator";
 import { AdapterView } from "./AdapterView";
 export class ViewGroup extends View {
-    constructor() {
-        super(...arguments);
+    constructor(views = []) {
+        super();
         this.children = [];
+        this.children = views;
     }
     addView(child) {
         this.children.push(child);
@@ -12,7 +13,7 @@ export class ViewGroup extends View {
     getChildren() {
         return this.children;
     }
-    render(view) {
+    render(view = this) {
         if (view instanceof ViewGroup) {
             let result = '';
             if (view instanceof AdapterView) {
@@ -20,10 +21,10 @@ export class ViewGroup extends View {
             }
             else {
                 for (let c of this.children) {
-                    result += view.render(c);
+                    result += c.render(c);
                 }
             }
-            result = Templator.compile(view.getTemplate())({ 'group': result });
+            result = Templator.getInstance().withTemplate(view.getTemplate()).compile({ 'group': result });
             return result;
         }
         else {

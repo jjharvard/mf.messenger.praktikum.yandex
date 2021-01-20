@@ -1,20 +1,27 @@
 export class Templator {
-    static getData(obj, path) {
-        return obj[path];
+    constructor() {
+        this.template = '';
     }
-    static compile(template) {
-        let re = /\{\{(.*?)\}\}/g;
-        return (ctx) => {
-            let key = null;
-            while ((key = Templator.REGEXP.exec(template))) {
-                if (key[1]) {
-                    const tmplValue = key[1].trim();
-                    const data = this.getData(ctx, tmplValue);
-                    template = template.replace(new RegExp(key[0], "gi"), data);
-                }
+    static getInstance() {
+        if (!Templator.instance) {
+            Templator.instance = new Templator();
+        }
+        return Templator.instance;
+    }
+    withTemplate(template) {
+        this.template = template;
+        return this;
+    }
+    compile(ctx) {
+        let key = null;
+        while ((key = Templator.REGEXP.exec(this.template))) {
+            if (key[1]) {
+                const tmplValue = key[1].trim();
+                const data = ctx[tmplValue];
+                this.template = this.template.replace(new RegExp(key[0], "gi"), data);
             }
-            return template;
-        };
+        }
+        return this.template;
     }
 }
 Templator.REGEXP = /\{\{(.*?)\}\}/gi;

@@ -7,8 +7,8 @@ class LoginActivity extends View {
         return "";
     }
 
-    getProps(): Object {
-        return undefined;
+    getProps(): Props {
+        return {};
     }
 
 }

@@ -1,6 +1,6 @@
-import {View} from "./View";
+import {ViewGroup} from "./ViewGroup";
 
-class EditText extends View {
+export class EditText extends ViewGroup {
 
     getTemplate(): string {
         return `
@@ -9,14 +9,14 @@ class EditText extends View {
                     <form class="input__attach-form" method="post" enctype="multipart/form-data">
                         <input name="file" id="input__attach_id" type="file" hidden/>
                     </form>
-                    
-                    <button id="input__send_id" class="input__send"></button>
+                    <input id="input__edit_id" name="message" class="input__edit" type="text" placeholder="Message">
+                   {{group}}
                 </div>
             `;
     }
 
-    getProps(): Object {
-        return undefined;
+    getProps(): Props {
+        return {};
     }
 
 }

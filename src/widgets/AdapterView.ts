@@ -1,16 +1,14 @@
 import {ArrayAdapter} from '../model/ArrayAdapter';
 import {ViewGroup} from "./ViewGroup";
 
-export abstract class AdapterView<T extends ArrayAdapter<any>> extends ViewGroup {
+export abstract class AdapterView<T extends ArrayAdapter<unknown>> extends ViewGroup {
 
     adapter: T;
 
-    constructor() {
+    constructor(adapter: T) {
         super();
-    }
-
-    setAdapter(adapter: T) {
-        this.adapter = adapter;
+        this.adapter = adapter
+        this.adapter.notifyDataSetChanged()
     }
 
     getAdapter(): T {

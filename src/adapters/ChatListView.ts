@@ -11,7 +11,7 @@ export class ChatListView extends AdapterView<ChatListAdapter> {
             `;
     }
 
-    getProps(): Object {
+    getProps(): Props {
         return {};
     }
 

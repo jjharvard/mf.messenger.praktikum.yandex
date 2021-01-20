@@ -4,6 +4,6 @@ class LoginActivity extends View {
         return "";
     }
     getProps() {
-        return undefined;
+        return {};
     }
 }
