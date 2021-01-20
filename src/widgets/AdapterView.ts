@@ -7,8 +7,8 @@ export abstract class AdapterView<T extends ArrayAdapter<unknown>> extends ViewG
 
     constructor(adapter: T) {
         super();
-        this.adapter = adapter
-        this.adapter.notifyDataSetChanged()
+        this.adapter = adapter;
+        this.adapter.notifyDataSetChanged();
     }
 
     getAdapter(): T {

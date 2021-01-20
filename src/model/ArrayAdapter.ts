@@ -9,8 +9,6 @@ export abstract class ArrayAdapter<T> {
         }
     }
 
-    protected abstract getItemTemplate(): string
-
     getItemsTemplate(): string {
         return this.template;
     }
@@ -18,4 +16,6 @@ export abstract class ArrayAdapter<T> {
     abstract getCount(): number
 
     abstract bindData(index: number): string
+
+    protected abstract getItemTemplate(): string
 }

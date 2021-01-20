@@ -22,7 +22,7 @@ export class Templator {
         while ((key = Templator.REGEXP.exec(this.template))) {
             if (key[1]) {
                 const tmplValue = key[1].trim();
-                const data = ctx[tmplValue]
+                const data = ctx[tmplValue];
                 this.template = this.template.replace(new RegExp(key[0], "gi"), data);
             }
         }

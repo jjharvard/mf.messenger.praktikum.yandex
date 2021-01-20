@@ -10,7 +10,7 @@ export class EditText extends ViewGroup {
                         <input name="file" id="input__attach_id" type="file" hidden/>
                     </form>
                     <input id="input__edit_id" name="message" class="input__edit" type="text" placeholder="Message">
-                   {{group}}
+                   {{Button}}
                 </div>
             `;
     }

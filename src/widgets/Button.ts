@@ -9,6 +9,6 @@ export class Button extends View {
     }
 
     getProps(): Props {
-        return {}
+        return {};
     }
 }

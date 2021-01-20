@@ -8,7 +8,7 @@ export abstract class ViewGroup extends View {
 
     constructor(views: View[] = []) {
         super();
-        this.children = views
+        this.children = views;
     }
 
     addView(child: View) {
@@ -22,14 +22,20 @@ export abstract class ViewGroup extends View {
     render(view: View = this): string {
         if (view instanceof ViewGroup) {
             let result = '';
-            if (view instanceof AdapterView) {
-                result = view.getAdapter().getItemsTemplate();
-            } else {
+            // if (view instanceof AdapterView) {
+            //     let adapter = view.getAdapter()
+            //     result = adapter.getItemsTemplate();
+            //     result = Templator.getInstance().withTemplate(view.getTemplate()).compile({[adapter.constructor.name]: result});
+            // } else {
+                let childProps = {};
                 for (let c of this.children) {
+                    console.log(c.constructor.name);
                     result += c.render(c);
+                    childProps = Object.assign(childProps, {[c.constructor.name]: c.render(c)});
                 }
-            }
-            result = Templator.getInstance().withTemplate(view.getTemplate()).compile({'group': result});
+                console.log(childProps);
+                result = Templator.getInstance().withTemplate(view.getTemplate()).compile(childProps);
+            // }
             return result;
         } else {
             return view.render();

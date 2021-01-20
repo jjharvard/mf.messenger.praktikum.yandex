@@ -1,1 +1,0 @@
-type Props = {[prop: string]: string}

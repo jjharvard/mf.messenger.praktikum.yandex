@@ -1,12 +1,11 @@
-import { ChatListAdapter } from "./adapters/ChatListAdapter";
-import { ChatListView } from "./adapters/ChatListView";
 import { ViewGroup } from "./widgets/ViewGroup";
 import { EditText } from "./widgets/EditText";
 import { Button } from "./widgets/Button";
 class IndexPage extends ViewGroup {
     getTemplate() {
         return `<div>
-                    {{group}}
+<!--                    {{ChatListView}}-->
+                    {{EditText}}
                 </div>`;
     }
     getProps() {
@@ -14,10 +13,9 @@ class IndexPage extends ViewGroup {
     }
 }
 let indexPage = new IndexPage([
-    new ChatListView(new ChatListAdapter()),
+    // new ChatListView(new ChatListAdapter()),
     new EditText([
         new Button()
     ])
 ]);
 let inner = indexPage.render(indexPage);
-console.log(inner);
