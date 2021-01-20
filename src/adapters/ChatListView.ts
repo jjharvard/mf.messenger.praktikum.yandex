@@ -1,18 +1,18 @@
-import {AdapterView} from "./AdapterView";
-import {ChatListAdapter} from "./ChatListAdapter";
+import {ViewGroup} from "../widgets/ViewGroup";
 
-export class ChatListView extends AdapterView<ChatListAdapter> {
+export class ChatListView extends ViewGroup {
 
     getTemplate(): string {
         return `
                 <ul class="chat__list">
-                    {{group}}
+                    {{ChatListAdapter}}
                 </ul>
             `;
     }
 
     getProps(): Props {
-        return {};
+        return {
+        };
     }
 
 }

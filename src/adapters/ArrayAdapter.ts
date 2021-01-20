@@ -1,6 +1,13 @@
-export abstract class ArrayAdapter<T> {
+import {View} from "../widgets/View";
+
+export abstract class ArrayAdapter extends View {
 
     private template: string = '';
+
+    constructor() {
+        super();
+        this.notifyDataSetChanged()
+    }
 
     notifyDataSetChanged() {
         this.template = '';
@@ -9,13 +16,15 @@ export abstract class ArrayAdapter<T> {
         }
     }
 
-    getItemsTemplate(): string {
-        return this.template;
-    }
-
     abstract getCount(): number
 
     abstract bindData(index: number): string
 
-    protected abstract getItemTemplate(): string
+    getTemplate(): string {
+        return this.template;
+    }
+
+    render(view: View = this): string {
+        return this.template;
+    }
 }

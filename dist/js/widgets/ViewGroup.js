@@ -15,20 +15,12 @@ export class ViewGroup extends View {
     render(view = this) {
         if (view instanceof ViewGroup) {
             let result = '';
-            // if (view instanceof AdapterView) {
-            //     let adapter = view.getAdapter()
-            //     result = adapter.getItemsTemplate();
-            //     result = Templator.getInstance().withTemplate(view.getTemplate()).compile({[adapter.constructor.name]: result});
-            // } else {
             let childProps = {};
             for (let c of this.children) {
-                console.log(c.constructor.name);
                 result += c.render(c);
                 childProps = Object.assign(childProps, { [c.constructor.name]: c.render(c) });
             }
-            console.log(childProps);
             result = Templator.getInstance().withTemplate(view.getTemplate()).compile(childProps);
-            // }
             return result;
         }
         else {

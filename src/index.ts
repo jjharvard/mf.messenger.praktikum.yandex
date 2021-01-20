@@ -11,7 +11,7 @@ class IndexPage extends ViewGroup {
 
     getTemplate(): string {
         return `<div>
-<!--                    {{ChatListView}}-->
+                    {{ChatListView}}
                     {{EditText}}
                 </div>`;
     }
@@ -23,7 +23,7 @@ class IndexPage extends ViewGroup {
 }
 
 let indexPage = new IndexPage([
-    // new ChatListView(new ChatListAdapter()),
+    new ChatListView([new ChatListAdapter()]),
     new EditText([
         new UploadButton(),
         new Button()
