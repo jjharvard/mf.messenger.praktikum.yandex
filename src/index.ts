@@ -3,6 +3,7 @@ import {EditText} from "./widgets/EditText";
 import {Button} from "./widgets/Button";
 import {ChatListAdapter} from "./adapters/ChatListAdapter";
 import {ChatListView} from "./adapters/ChatListView";
+import {UploadButton} from "./widgets/UploadButton";
 
 let root = document.getElementById('root');
 
@@ -24,6 +25,7 @@ class IndexPage extends ViewGroup {
 let indexPage = new IndexPage([
     // new ChatListView(new ChatListAdapter()),
     new EditText([
+        new UploadButton(),
         new Button()
     ])
 ]);

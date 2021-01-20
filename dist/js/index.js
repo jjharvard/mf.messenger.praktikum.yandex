@@ -1,6 +1,7 @@
 import { ViewGroup } from "./widgets/ViewGroup";
 import { EditText } from "./widgets/EditText";
 import { Button } from "./widgets/Button";
+import { UploadButton } from "./widgets/UploadButton";
 let root = document.getElementById('root');
 class IndexPage extends ViewGroup {
     getTemplate() {
@@ -16,6 +17,7 @@ class IndexPage extends ViewGroup {
 let indexPage = new IndexPage([
     // new ChatListView(new ChatListAdapter()),
     new EditText([
+        new UploadButton(),
         new Button()
     ])
 ]);
