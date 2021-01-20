@@ -1,6 +1,6 @@
 import {View} from "./View";
 import {Templator} from "../common/Templator";
-import {AdapterView} from "./AdapterView";
+import {AdapterView} from "../adapters/AdapterView";
 
 export abstract class ViewGroup extends View {
 

@@ -1,4 +1,4 @@
-import {ArrayAdapter} from "../model/ArrayAdapter";
+import {ArrayAdapter} from "./ArrayAdapter";
 import {Templator} from "../common/Templator";
 
 export class ChatListAdapter extends ArrayAdapter<string> {

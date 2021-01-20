@@ -1,5 +1,5 @@
-import {ArrayAdapter} from '../model/ArrayAdapter';
-import {ViewGroup} from "./ViewGroup";
+import {ArrayAdapter} from './ArrayAdapter';
+import {ViewGroup} from "../widgets/ViewGroup";
 
 export abstract class AdapterView<T extends ArrayAdapter<unknown>> extends ViewGroup {
 

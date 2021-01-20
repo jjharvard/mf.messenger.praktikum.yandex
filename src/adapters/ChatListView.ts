@@ -1,4 +1,4 @@
-import {AdapterView} from "../widgets/AdapterView";
+import {AdapterView} from "./AdapterView";
 import {ChatListAdapter} from "./ChatListAdapter";
 
 export class ChatListView extends AdapterView<ChatListAdapter> {
