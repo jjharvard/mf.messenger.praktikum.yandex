@@ -5,11 +5,12 @@ import { ChatListView } from "./adapters/ChatListView";
 import { UploadButton } from "./widgets/UploadButton";
 import { InputMessage } from "./widgets/InputMessage";
 import { EventBus } from "./common/EventBus";
+import { Chat } from "./adapters/Chat";
 let root = document.getElementById('root');
 class IndexPage extends ViewGroup {
     getTemplate() {
         return `<div>
-                    {{ChatListView}}
+                    {{Chat}}
                     {{EditText}}
                 </div>`;
     }
@@ -18,7 +19,7 @@ class IndexPage extends ViewGroup {
     }
 }
 let indexPage = new IndexPage([
-    new ChatListView(),
+    new Chat([new ChatListView()]),
     new EditText([
         new UploadButton(),
         new InputMessage(),

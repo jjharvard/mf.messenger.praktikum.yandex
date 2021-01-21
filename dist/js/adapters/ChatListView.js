@@ -1,6 +1,5 @@
 import { ChatItemView } from "./ChatItemView";
 import { View } from "../widgets/View";
-import { EventBus } from "../common/EventBus";
 export class ChatListView extends View {
     constructor() {
         super();
@@ -12,10 +11,13 @@ export class ChatListView extends View {
                 'How are you'
             ]
         };
-        EventBus.getInstance().register('onMessage', this);
+        // EventBus.getInstance().register('onMessage', this)
     }
     onMessage(payload) {
-        console.log('onMessage ' + payload['hello']);
+        // console.log('onMessage ' + payload['hello'])
+        // this.data['messages'].unshift(payload['hello'])
+        // let element = document.getElementById(this.id)
+        // element.innerHTML = this.render()
     }
     getTemplate() {
         let result = '';

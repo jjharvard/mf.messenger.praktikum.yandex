@@ -9,7 +9,7 @@ export class Button extends View {
     onViewCreated(payload) {
         setTimeout(() => {
             EventBus.getInstance().emit('onMessage', { 'hello': 'World!' });
-        }, 3000);
+        }, 1000);
     }
     getProps() {
         return {

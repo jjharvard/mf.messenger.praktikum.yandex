@@ -19,6 +19,7 @@ export class View {
         return result;
     }
     render(view = this) {
+        console.log(view.constructor.name);
         return Templator.getInstance().withTemplate(view.getTemplate()).compile(this.convertProps(view.getProps()));
     }
     onMessage(payload) {

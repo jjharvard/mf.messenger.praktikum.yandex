@@ -1,3 +1,4 @@
+"use strict";
 class Vehicle {
     run() { console.log('Vehicle.run'); }
 }

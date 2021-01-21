@@ -14,11 +14,11 @@ export class EventBus {
     listeners: { [k: string]: EventsListener[] } = {};
 
     emit(event: string, payload = {}) {
-        for (let listener of this.listeners[event]) {
-            if (typeof listener[event] === 'function') {
-                listener[event](payload)
-            }
-        }
+        // for (let listener of this.listeners[event]) {
+        //     if (typeof listener[event] === 'function') {
+        //         listener[event](payload)
+        //     }
+        // }
     }
 
     register(event: string, view: View) {

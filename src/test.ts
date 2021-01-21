@@ -4,12 +4,13 @@ import {Button} from "./widgets/Button";
 import {ChatListView} from "./adapters/ChatListView";
 import {UploadButton} from "./widgets/UploadButton";
 import {InputMessage} from "./widgets/InputMessage";
+import {Chat} from "./adapters/Chat";
 
 class IndexPage extends ViewGroup {
 
     getTemplate(): string {
         return `<div>
-                    {{ChatListView}}
+                    {{Chat}}
                     {{EditText}}
                 </div>`;
     }
@@ -17,11 +18,10 @@ class IndexPage extends ViewGroup {
     getProps(): Props {
         return {};
     }
-
 }
 
 let indexPage = new IndexPage([
-    new ChatListView(),
+    new Chat([new ChatListView()]),
     new EditText([
         new UploadButton(),
         new InputMessage(),

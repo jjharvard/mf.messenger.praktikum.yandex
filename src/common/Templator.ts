@@ -29,7 +29,7 @@ export class Templator {
             }
         }
 
-        let re = /(<[a-z]+)/g // if element has id no need to match
+        let re = /(<[a-z]+)/g
         key = re.exec(this.template)
         // while(key = re.exec(this.template)) {
         if(key)

@@ -9,11 +9,11 @@ export class EventBus {
         return EventBus.instance;
     }
     emit(event, payload = {}) {
-        for (let listener of this.listeners[event]) {
-            if (typeof listener[event] === 'function') {
-                listener[event](payload);
-            }
-        }
+        // for (let listener of this.listeners[event]) {
+        //     if (typeof listener[event] === 'function') {
+        //         listener[event](payload)
+        //     }
+        // }
     }
     register(event, view) {
         if (!(event in this.listeners)) {

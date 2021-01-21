@@ -23,7 +23,7 @@ export class Templator {
                 // this.template = this.replateAt(this.template, key['index'], key[0].length, data)
             }
         }
-        let re = /(<[a-z]+)/g; // if element has id no need to match
+        let re = /(<[a-z]+)/g;
         key = re.exec(this.template);
         // while(key = re.exec(this.template)) {
         if (key)
