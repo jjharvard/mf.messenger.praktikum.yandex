@@ -4,6 +4,7 @@ import { Button } from "./widgets/Button";
 import { ChatListView } from "./adapters/ChatListView";
 import { UploadButton } from "./widgets/UploadButton";
 import { InputMessage } from "./widgets/InputMessage";
+import { EventBus } from "./common/EventBus";
 let root = document.getElementById('root');
 class IndexPage extends ViewGroup {
     getTemplate() {
@@ -27,3 +28,6 @@ let indexPage = new IndexPage([
 let inner = indexPage.render(indexPage);
 console.log(inner);
 root.innerHTML = inner;
+window.onload = function () {
+    EventBus.getInstance().emit('onViewCreated');
+};

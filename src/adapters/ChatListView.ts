@@ -1,8 +1,13 @@
-import {ViewGroup} from "../widgets/ViewGroup";
 import {ChatItemView} from "./ChatItemView";
 import {View} from "../widgets/View";
+import {EventBus} from "../common/EventBus";
 
 export class ChatListView extends View {
+
+    constructor() {
+        super();
+        EventBus.getInstance().register('onMessage', this)
+    }
 
     data: {[k: string]: string[]} = {
         'messages': [
@@ -11,6 +16,10 @@ export class ChatListView extends View {
             'hello',
             'How are you'
         ]
+    }
+
+    onMessage(payload: {}) {
+        console.log('onMessage ' + payload['hello'])
     }
 
     getTemplate(): string {

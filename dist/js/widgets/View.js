@@ -1,7 +1,9 @@
 import { Templator } from "../common/Templator";
+import { EventBus } from "../common/EventBus";
 export class View {
     constructor() {
         this.id = Templator.uuidv4();
+        EventBus.getInstance().register('onViewCreated', this);
     }
     convertProps(props2) {
         let result = {};
@@ -18,5 +20,12 @@ export class View {
     }
     render(view = this) {
         return Templator.getInstance().withTemplate(view.getTemplate()).compile(this.convertProps(view.getProps()));
+    }
+    onMessage(payload) {
+    }
+    onViewCreated(payload) {
+        if (this) {
+            console.log(this.id + ' created');
+        }
     }
 }

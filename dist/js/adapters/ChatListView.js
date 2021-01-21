@@ -1,8 +1,9 @@
 import { ChatItemView } from "./ChatItemView";
 import { View } from "../widgets/View";
+import { EventBus } from "../common/EventBus";
 export class ChatListView extends View {
     constructor() {
-        super(...arguments);
+        super();
         this.data = {
             'messages': [
                 `I can't get no satisfaction, I can't get no satisfaction 'cause I try and I try and I try and I try
@@ -11,6 +12,10 @@ export class ChatListView extends View {
                 'How are you'
             ]
         };
+        EventBus.getInstance().register('onMessage', this);
+    }
+    onMessage(payload) {
+        console.log('onMessage ' + payload['hello']);
     }
     getTemplate() {
         let result = '';
