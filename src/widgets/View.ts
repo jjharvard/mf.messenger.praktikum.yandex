@@ -1,8 +1,7 @@
 import {Templator} from "../common/Templator";
 import {EventBus} from "../common/EventBus";
-import {EventsListener} from "../common/EventsListener";
 
-export abstract class View implements EventsListener {
+export abstract class View {
 
     id: string = Templator.uuidv4()
 

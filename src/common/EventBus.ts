@@ -1,5 +1,4 @@
 import {View} from "../widgets/View";
-import {EventsListener} from "./EventsListener";
 
 export class EventBus {
 
@@ -11,31 +10,31 @@ export class EventBus {
         }
         return EventBus.instance;
     }
-    listeners: { [k: string]: EventsListener[] } = {};
+    listeners: { [k: string]: View[] } = {};
 
-    emit(event: string, payload = {}) {
-        // for (let listener of this.listeners[event]) {
-        //     if (typeof listener[event] === 'function') {
-        //         listener[event](payload)
-        //     }
-        // }
+    emit(event: EVENT, payload: Payload = {}) {
+        for (let listener of this.listeners[event]) {
+            if(listener[event]) {
+                listener[event](payload)
+            }
+        }
     }
 
-    register(event: string, view: View) {
+    register(event: EVENT, view: View) {
         if (!(event in this.listeners)) {
             this.listeners[event] = [];
         }
         this.listeners[event].push(view);
     }
 
-    unregister(event: string, view: View) {
+    unregister(event: EVENT, view: View) {
         let index = this.listeners[event].indexOf(view);
         if (index != -1) {
             this.listeners[event].splice(index, 1);
         }
     }
 
-    unregisterAll(event: string) {
+    unregisterAll(event: EVENT) {
         delete this.listeners[event];
     }
 

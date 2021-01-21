@@ -6,7 +6,7 @@ export class ChatListView extends View {
 
     constructor() {
         super();
-        // EventBus.getInstance().register('onMessage', this)
+        EventBus.getInstance().register('onMessage', this)
     }
 
     data: {[k: string]: string[]} = {
@@ -18,11 +18,11 @@ export class ChatListView extends View {
         ]
     }
 
-    onMessage(payload: {}) {
-        // console.log('onMessage ' + payload['hello'])
-        // this.data['messages'].unshift(payload['hello'])
-        // let element = document.getElementById(this.id)
-       // element.innerHTML = this.render()
+    onMessage(payload: Payload) {
+        console.log('onMessage ')
+        this.data['messages'].unshift(payload['hello'] as string)
+        let element = document.getElementById(this.id)
+        element!.innerHTML = this.render()
     }
 
     getTemplate(): string {
