@@ -23,12 +23,13 @@ export class Templator {
             if (key[1]) {
                 const tmplValue = key[1].trim();
                 const data = ctx[tmplValue];
-                // this.template = this.replateAt(this.template, key['index'], key[0].length, `${key[0]} id="${this.uuidv4()}"`)
                 this.template = this.template.replace(new RegExp(key[0], "gi"), data);
+                // let data = ctx[key[1].trim()]
+                // this.template = this.replateAt(this.template, key['index'], key[0].length, data)
             }
         }
 
-        let re = /(<[a-z]+) [^id]/g // if element has id no need to match
+        let re = /(<[a-z]+)/g // if element has id no need to match
         key = re.exec(this.template)
         // while(key = re.exec(this.template)) {
         if(key)

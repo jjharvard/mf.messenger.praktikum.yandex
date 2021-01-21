@@ -6,7 +6,7 @@ export class EditText extends ViewGroup {
                     <label class="input__attach" for="input__attach_id"></label>
                     {{UploadButton}}
                     {{InputMessage}}
-                   {{Button}}
+                    {{Button}}
                 </div>
             `;
     }

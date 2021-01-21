@@ -1,14 +1,13 @@
-import {View} from "../widgets/View";
-
+import { View } from "../widgets/View";
 export class ChatItemView extends View {
-
-    props: Props2 = {}
-
-    getProps(): Props2 {
+    constructor() {
+        super(...arguments);
+        this.props = {};
+    }
+    getProps() {
         return this.props;
     }
-
-    getTemplate(): string {
+    getTemplate() {
         return `<li class="message">
                 <div class="message__outgoing">
                         {{message}}
