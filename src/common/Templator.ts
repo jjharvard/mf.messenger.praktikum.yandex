@@ -23,10 +23,30 @@ export class Templator {
             if (key[1]) {
                 const tmplValue = key[1].trim();
                 const data = ctx[tmplValue];
+                // this.template = this.replateAt(this.template, key['index'], key[0].length, `${key[0]} id="${this.uuidv4()}"`)
                 this.template = this.template.replace(new RegExp(key[0], "gi"), data);
             }
         }
+
+        let re = /(<[a-z]+) [^id]/g // if element has id no need to match
+        key = re.exec(this.template)
+        // while(key = re.exec(this.template)) {
+        if(key)
+            this.template = this.replateAt(this.template, key['index'], key[1].length, `${key[1]} id="${ctx['uuid']}"`)
+        // }
         return this.template;
+    }
+
+
+     static uuidv4(): string {
+        return 'xxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random() * 8 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(8);
+        });
+    }
+
+    replateAt(str: string, index: number, offset: number, replacement: string) {
+        return str.substr(0, index) + replacement + str.substr(index + offset);
     }
 }
 

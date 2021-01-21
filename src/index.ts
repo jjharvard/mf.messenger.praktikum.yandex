@@ -4,6 +4,7 @@ import {Button} from "./widgets/Button";
 import {ChatListAdapter} from "./adapters/ChatListAdapter";
 import {ChatListView} from "./adapters/ChatListView";
 import {UploadButton} from "./widgets/UploadButton";
+import {InputMessage} from "./widgets/InputMessage";
 
 let root = document.getElementById('root');
 
@@ -26,6 +27,7 @@ let indexPage = new IndexPage([
     new ChatListView([new ChatListAdapter()]),
     new EditText([
         new UploadButton(),
+        new InputMessage(),
         new Button()
     ])
 ]);

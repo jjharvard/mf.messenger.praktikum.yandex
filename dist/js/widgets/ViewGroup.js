@@ -20,7 +20,7 @@ export class ViewGroup extends View {
                 result += c.render(c);
                 childProps = Object.assign(childProps, { [c.constructor.name]: c.render(c) });
             }
-            result = Templator.getInstance().withTemplate(view.getTemplate()).compile(childProps);
+            result = Templator.getInstance().withTemplate(view.getTemplate()).compile(Object.assign(childProps, { 'uuid': this.id }));
             return result;
         }
         else {

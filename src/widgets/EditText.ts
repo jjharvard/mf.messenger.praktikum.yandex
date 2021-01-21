@@ -7,14 +7,14 @@ export class EditText extends ViewGroup {
                 <div class="input">
                     <label class="input__attach" for="input__attach_id"></label>
                     {{UploadButton}}
-                    <input id="input__edit_id" name="message" class="input__edit" type="text" placeholder="Message">
+                    {{InputMessage}}
                    {{Button}}
                 </div>
             `;
     }
 
-    getProps(): Props {
-        return {};
+    getProps(): Props2 {
+        return {}
     }
 
 }

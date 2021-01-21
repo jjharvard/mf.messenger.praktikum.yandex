@@ -4,11 +4,14 @@ export class Button extends View {
 
     getTemplate(): string {
         return `
-                    <button id="input__send_id" onclick="{{hello}}" class="input__send"></button>
+                    <button onclick="{{hello}}" class="input__send">{{name}}</button>
                `;
     }
 
-    getProps(): Props {
-        return {};
+    getProps(): Props2 {
+        return {
+            'name': 'Button',
+            'hello': [123, 123, 123]
+        }
     }
 }

@@ -33,8 +33,8 @@ export class ChatListAdapter extends ArrayAdapter {
         };
     }
 
-    getProps(): Props {
-        return {}
+    getProps(): Props2 {
+        return {};
     }
 
 }

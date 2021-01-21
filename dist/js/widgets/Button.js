@@ -2,10 +2,13 @@ import { View } from "./View";
 export class Button extends View {
     getTemplate() {
         return `
-                    <button id="input__send_id" onclick="{{hello}}" class="input__send"></button>
+                    <button onclick="{{hello}}" class="input__send">{{name}}</button>
                `;
     }
     getProps() {
-        return {};
+        return {
+            'name': 'Button',
+            'hello': [123, 123, 123]
+        };
     }
 }

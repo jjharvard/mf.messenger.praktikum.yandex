@@ -10,9 +10,7 @@ export class ChatListView extends ViewGroup {
             `;
     }
 
-    getProps(): Props {
-        return {
-        };
+    getProps(): Props2 {
+        return {};
     }
-
 }
