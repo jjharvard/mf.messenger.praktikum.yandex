@@ -1,9 +1,11 @@
-import { ViewGroup } from "../../abstract/ViewGroup";
-export class LoginPage extends ViewGroup {
-    getProps() {
+import {ViewGroup} from "../../abstract/ViewGroup";
+
+export class SignPage extends ViewGroup {
+    getProps(): Props2 {
         return {};
     }
-    getTemplate() {
+
+    getTemplate(): string {
         return `<div class="sign-container">
                     <div class="sign">
                         <h1 class="sign__title">Registration</h1>
@@ -23,4 +25,5 @@ export class LoginPage extends ViewGroup {
                     </div>
                 </div>`;
     }
+
 }

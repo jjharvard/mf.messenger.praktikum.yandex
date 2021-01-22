@@ -1,5 +1,5 @@
 import { ViewGroup } from "../../abstract/ViewGroup";
-export class LoginPage extends ViewGroup {
+export class SignPage extends ViewGroup {
     getProps() {
         return {};
     }
