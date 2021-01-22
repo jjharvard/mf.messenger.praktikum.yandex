@@ -1,4 +1,5 @@
 import {View} from "../abstract/View";
+import {EventsListener} from "../abstract/EventsListener";
 
 export class EventBus {
 
@@ -10,7 +11,7 @@ export class EventBus {
         }
         return EventBus.instance;
     }
-    listeners: { [k: string]: View[] } = {};
+    listeners: { [k: string]: EventsListener[] } = {};
 
     emit(event: EVENT, payload: Payload = {}) {
         for (let listener of this.listeners[event]) {

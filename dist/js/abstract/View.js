@@ -1,7 +1,9 @@
 import { Templator } from "../common/Templator";
 import { EventBus } from "../common/EventBus";
-export class View {
+import { EventsListener } from "./EventsListener";
+export class View extends EventsListener {
     constructor() {
+        super();
         this.id = Templator.uuidv4();
         EventBus.getInstance().register('onViewCreated', this);
     }
@@ -20,9 +22,5 @@ export class View {
     }
     render(view = this) {
         return Templator.getInstance().withTemplate(view.getTemplate()).compile(this.convertProps(view.getProps()));
-    }
-    onMessage(payload) {
-    }
-    onViewCreated(payload) {
     }
 }

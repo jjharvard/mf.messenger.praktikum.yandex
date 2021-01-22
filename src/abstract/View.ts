@@ -1,11 +1,13 @@
 import {Templator} from "../common/Templator";
 import {EventBus} from "../common/EventBus";
+import {EventsListener} from "./EventsListener";
 
-export abstract class View {
+export abstract class View extends EventsListener {
 
     id: string = Templator.uuidv4()
 
     constructor() {
+        super();
         EventBus.getInstance().register('onViewCreated', this)
     }
 
@@ -30,9 +32,4 @@ export abstract class View {
         return Templator.getInstance().withTemplate(view.getTemplate()).compile(this.convertProps(view.getProps()));
     }
 
-    onMessage(payload: {}): void {
-    }
-
-    onViewCreated(payload: {}): void {
-    }
 }
