@@ -31,25 +31,6 @@ export class SignPage extends ViewGroup {
     }
     onViewCreated(payload) {
         console.log('Hello Chat Page');
-        let btnSign = document.getElementById('signBtnId');
-        btnSign.onclick = function () {
-            inputsArray.forEach(input => {
-                input.setAttribute('style', 'background: #00f;');
-            });
-        };
-        let inputsArray = Array.from(document.getElementsByClassName('should_be_validated'));
-        inputsArray.forEach(input => {
-            input.onfocus = function (event) {
-                let inputId = event.target.name;
-                switch (inputId) {
-                    case 'email':
-                        console.log('email hello');
-                }
-                event.currentTarget.setAttribute('style', 'border-color: red;');
-            };
-            input.onblur = function (event) {
-                event.currentTarget.setAttribute('style', 'border-color: black;');
-            };
-        });
+        this.validate('signBtnId');
     }
 }
