@@ -1,4 +1,4 @@
-import {View} from "../widgets/View";
+import {View} from "../abstract/View";
 
 export class EventBus {
 

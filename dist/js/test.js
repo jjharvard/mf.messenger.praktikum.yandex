@@ -1,10 +1,10 @@
-import { ViewGroup } from "./widgets/ViewGroup";
-import { EditText } from "./widgets/EditText";
-import { Button } from "./widgets/Button";
-import { ChatListView } from "./adapters/ChatListView";
-import { UploadButton } from "./widgets/UploadButton";
-import { InputMessage } from "./widgets/InputMessage";
-import { Chat } from "./adapters/Chat";
+import { ViewGroup } from "./abstract/ViewGroup";
+import { EditText } from "./components/chat/EditText";
+import { Button } from "./components/chat/Button";
+import { ChatListView } from "./components/chat/ChatListView";
+import { UploadButton } from "./components/chat/UploadButton";
+import { InputMessage } from "./components/chat/InputMessage";
+import { Chat } from "./components/chat/Chat";
 class IndexPage extends ViewGroup {
     getTemplate() {
         return `<div>

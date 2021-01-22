@@ -24,17 +24,14 @@ export class Templator {
                 const tmplValue = key[1].trim();
                 const data = ctx[tmplValue];
                 this.template = this.template.replace(new RegExp(key[0], "gi"), data);
-                // let data = ctx[key[1].trim()]
-                // this.template = this.replateAt(this.template, key['index'], key[0].length, data)
             }
         }
 
         let re = /(<[a-z]+)/g
         key = re.exec(this.template)
-        // while(key = re.exec(this.template)) {
-        if(key)
-            this.template = this.replateAt(this.template, key['index'], key[1].length, `${key[1]} id="${ctx['uuid']}"`)
-        // }
+        if(key) {
+            this.template = this.replaceAt(this.template, key['index'], key[1].length, `${key[1]} id="${ctx['uuid']}"`)
+        }
         return this.template;
     }
 
@@ -46,7 +43,7 @@ export class Templator {
         });
     }
 
-    replateAt(str: string, index: number, offset: number, replacement: string) {
+    replaceAt(str: string, index: number, offset: number, replacement: string) {
         return str.substr(0, index) + replacement + str.substr(index + offset);
     }
 }
