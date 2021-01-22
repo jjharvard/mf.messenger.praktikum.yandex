@@ -1,33 +1,7 @@
-import {ViewGroup} from "./abstract/ViewGroup";
-import {EditText} from "./components/chat/EditText";
-import {Button} from "./components/chat/Button";
-import {ChatListView} from "./components/chat/ChatListView";
-import {UploadButton} from "./components/chat/UploadButton";
-import {InputMessage} from "./components/chat/InputMessage";
-import {ChatRoom} from "./components/chat/ChatRoom";
+import {SignPage} from "./components/sign/SignPage";
 
-class IndexPage extends ViewGroup {
+let signPage = new SignPage();
 
-    getTemplate(): string {
-        return `<div>
-                    {{Chat}}
-                    {{EditText}}
-                </div>`;
-    }
+let inner = signPage.render(signPage);
 
-    getProps(): Props {
-        return {};
-    }
-}
-
-let indexPage = new IndexPage([
-    new ChatRoom([new ChatListView()]),
-    new EditText([
-        new UploadButton(),
-        new InputMessage(),
-        new Button()
-    ])
-]);
-
-let inner = indexPage.render(indexPage);
 console.log(inner);

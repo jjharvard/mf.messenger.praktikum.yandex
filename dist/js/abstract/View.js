@@ -7,11 +7,21 @@ export class View extends EventsListener {
         this.id = Templator.uuidv4();
         EventBus.getInstance().register('onViewCreated', this);
     }
+    getDOMView() {
+        return document.getElementById(this.id);
+    }
     convertProps(props2) {
         let result = {};
         for (let key in props2) {
             if (typeof props2 !== 'string') {
-                result[key] = "" + props2[key];
+                if (typeof props2[key] === 'function') {
+                    console.log('OK');
+                    result[key] = "(" + props2[key] + ")();";
+                    result[key] = result[key].replace(key, 'function');
+                }
+                else {
+                    result[key] = "" + props2[key];
+                }
             }
             else {
                 result[key] = props2[key];

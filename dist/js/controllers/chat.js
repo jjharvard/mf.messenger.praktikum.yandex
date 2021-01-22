@@ -1,4 +1,3 @@
-import { Mountable } from "../abstract/Mountable";
 import { User } from "../components/chat/User";
 import { Sidebar } from "../components/chat/Sidebar";
 import { ChatRoom } from "../components/chat/ChatRoom";
@@ -8,8 +7,8 @@ import { UploadButton } from "../components/chat/UploadButton";
 import { InputMessage } from "../components/chat/InputMessage";
 import { Button } from "../components/chat/Button";
 import { ChatPage } from "../components/chat/ChatPage";
-let MountableChatPage = Mountable(ChatPage);
-let chatPage = new MountableChatPage([
+import { Page } from "../abstract/Page";
+let chatPage = new Page(new ChatPage([
     new User(),
     new Sidebar(),
     new ChatRoom([new ChatListView()]),
@@ -18,5 +17,5 @@ let chatPage = new MountableChatPage([
         new InputMessage(),
         new Button()
     ])
-]);
-chatPage.mount(chatPage);
+]));
+chatPage.mount();

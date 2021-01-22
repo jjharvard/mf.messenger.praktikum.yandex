@@ -1,6 +1,5 @@
 import {ViewGroup} from "../../abstract/ViewGroup";
 
-
 export class Sidebar extends ViewGroup {
     getProps(): Props2 {
         return {};

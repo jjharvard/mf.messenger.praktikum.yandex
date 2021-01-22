@@ -1,8 +1,5 @@
-import {Mountable} from "../abstract/Mountable";
 import {SignPage} from "../components/sign/SignPage";
+import {Page} from "../abstract/Page";
 
-let MountableSignPage = Mountable(SignPage)
-
-let signPage = new MountableSignPage();
-
-signPage.mount(signPage)
+let page = new Page(new SignPage())
+page.mount()

@@ -15,11 +15,22 @@ export abstract class View extends EventsListener {
 
     abstract getProps(): Props2
 
+    getDOMView() : HTMLElement | null {
+        return document.getElementById(this.id)
+    }
+
     protected convertProps(props2: Props2): Props {
         let result: Props = {}
         for(let key in props2) {
             if(typeof props2 !== 'string') {
-                result[key] = "" + props2[key]
+                if(typeof  props2[key] === 'function') {
+                    console.log('OK')
+                    result[key] = "(" + props2[key] + ")();"
+                    result[key] = result[key].replace(key, 'function')
+                } else {
+                    result[key] = "" + props2[key]
+                }
+
             } else {
                 result[key] = props2[key]
             }

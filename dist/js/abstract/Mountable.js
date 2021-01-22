@@ -4,6 +4,7 @@ export function Mountable(Base) {
         mount(view) {
             let root = document.getElementById('root');
             let inner = view.render(view);
+            console.log(inner);
             root.innerHTML = inner;
             window.onload = function () {
                 EventBus.getInstance().emit('onViewCreated');

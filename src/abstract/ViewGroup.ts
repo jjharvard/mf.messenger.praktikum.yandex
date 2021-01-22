@@ -26,7 +26,7 @@ export abstract class ViewGroup extends View {
             childProps = Object.assign(childProps, {[c.constructor.name]: childTemplate});
             result += childTemplate;
         }
-        result = Templator.getInstance().withTemplate(view.getTemplate()).compile(Object.assign(childProps, {'uuid': this.id}));
+        result = Templator.getInstance().withTemplate(view.getTemplate()).compile(Object.assign(this.convertProps(view.getProps()), {'uuid': this.id}));
         return result;
     }
 
