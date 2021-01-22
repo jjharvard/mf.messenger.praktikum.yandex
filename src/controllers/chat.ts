@@ -1,36 +1,20 @@
-import {ViewGroup} from "../abstract/ViewGroup";
-import {EditText} from "../components/chat/EditText";
-import {Button} from "../components/chat/Button";
+import {Mountable} from "../abstract/Mountable";
+import {User} from "../components/chat/User";
+import {Sidebar} from "../components/chat/Sidebar";
+import {ChatRoom} from "../components/chat/ChatRoom";
 import {ChatListView} from "../components/chat/ChatListView";
+import {EditText} from "../components/chat/EditText";
 import {UploadButton} from "../components/chat/UploadButton";
 import {InputMessage} from "../components/chat/InputMessage";
-import {EventBus} from "../common/EventBus";
-import {Chat} from "../components/chat/Chat";
-import {Sidebar} from "../components/chat/Sidebar";
-import {User} from "../components/chat/User";
+import {Button} from "../components/chat/Button";
+import {ChatPage} from "../components/chat/ChatPage";
 
-let root = document.getElementById('root');
+let MountableChatPage = Mountable(ChatPage)
 
-class IndexPage extends ViewGroup {
-
-    getTemplate(): string {
-        return `<div class="chat-container">
-                    {{User}}
-                    {{Sidebar}}
-                    {{Chat}}
-                    {{EditText}}
-                </div>`;
-    }
-
-    getProps(): Props {
-        return {};
-    }
-}
-
-let indexPage = new IndexPage([
+let chatPage = new MountableChatPage([
     new User(),
     new Sidebar(),
-    new Chat([new ChatListView()]),
+    new ChatRoom([new ChatListView()]),
     new EditText([
         new UploadButton(),
         new InputMessage(),
@@ -38,9 +22,4 @@ let indexPage = new IndexPage([
     ])
 ]);
 
-let inner = indexPage.render(indexPage);
-console.log(inner);
-root!.innerHTML = inner;
-window.onload = function () {
-    EventBus.getInstance().emit('onViewCreated')
-}
+chatPage.mount(chatPage)

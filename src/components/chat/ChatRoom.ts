@@ -1,6 +1,6 @@
 import {ViewGroup} from "../../abstract/ViewGroup";
 
-export class Chat extends ViewGroup {
+export class ChatRoom extends ViewGroup {
 
     getProps(): Props2 {
         return {};
