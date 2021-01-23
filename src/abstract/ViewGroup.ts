@@ -18,13 +18,14 @@ export abstract class ViewGroup extends View {
         return this.children;
     }
 
-    getChildByName(name: string): HTMLElement | null {
+    getChildrenByName(name: string): HTMLElement[] {
+        let result = []
         for(let c of this.children) {
             if(name === c.constructor.name) {
-                return document.getElementById(c.id)
+                result.push(<HTMLElement>document.getElementById(c.id))
             }
         }
-        return null
+        return result
     }
 
     render(view: View = this): string {

@@ -3,8 +3,6 @@ import {SubmitButton} from "../_common/SubmitButton";
 
 export class LoginPage extends ViewGroup {
 
-    loginBtnId = 'loginBtnId';
-
     constructor() {
         super([
             new SubmitButton("'/chat.html'", "Authorise"),
@@ -13,9 +11,7 @@ export class LoginPage extends ViewGroup {
     }
 
     getKeys(): Keys {
-        return {
-            'loginBtnId': this.loginBtnId
-        };
+        return {};
     }
 
     getTemplate(): string {
@@ -27,20 +23,18 @@ export class LoginPage extends ViewGroup {
                             <input name="password" class="auth__input should_be_validated" text="" placeholder="Password" type="password">
                         </form>
                         <div class="auth__btn-group">
-                        
                             {{SubmitButton}}
                             {{SubmitButton}}
-                            <!--<button id="{{loginBtnId}}" onclick="location.href='/chat.html'" class="auth__btn_main">Authorise</button>
-                            <button onclick="location.href='/sign.html'" class="auth__btn_secondary">No Account?</button>-->
                         </div>
                     </div>
                 </div>`;
     }
 
     onViewCreated(payload: Payload) {
-        // this.validate(this.loginBtnId, () => {
-        //     location.href = '/chat.html'
-        // })
+        let id = this.getChildrenByName('SubmitButton')[0].id
+        this.validate(id, () => {
+            location.href = '/chat.html'
+        })
     }
 
 }

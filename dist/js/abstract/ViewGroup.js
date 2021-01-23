@@ -12,13 +12,14 @@ export class ViewGroup extends View {
     getChildren() {
         return this.children;
     }
-    getChildByName(name) {
+    getChildrenByName(name) {
+        let result = [];
         for (let c of this.children) {
             if (name === c.constructor.name) {
-                return document.getElementById(c.id);
+                result.push(document.getElementById(c.id));
             }
         }
-        return null;
+        return result;
     }
     render(view = this) {
         let result = '';

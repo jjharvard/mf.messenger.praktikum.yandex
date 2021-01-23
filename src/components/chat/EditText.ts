@@ -16,8 +16,8 @@ export class EditText extends ViewGroup {
 
     onViewCreated(payload: Payload) {
         EventBus.getInstance().register('onMessage', this)
-        let inputMessage = <HTMLInputElement>this.getChildByName('InputMessage')
-        let button = <HTMLButtonElement>this.getChildByName('Button')
+        let inputMessage = <HTMLInputElement>this.getChildrenByName('InputMessage')[0]
+        let button = <HTMLButtonElement>this.getChildrenByName('Button')[0]
         let sendMessage = () => {
             EventBus.getInstance().emit('onMessage', {'message': inputMessage.value})
             inputMessage.value = ''

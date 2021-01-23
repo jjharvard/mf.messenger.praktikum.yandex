@@ -13,8 +13,8 @@ export class EditText extends ViewGroup {
     }
     onViewCreated(payload) {
         EventBus.getInstance().register('onMessage', this);
-        let inputMessage = this.getChildByName('InputMessage');
-        let button = this.getChildByName('Button');
+        let inputMessage = this.getChildrenByName('InputMessage')[0];
+        let button = this.getChildrenByName('Button')[0];
         let sendMessage = () => {
             EventBus.getInstance().emit('onMessage', { 'message': inputMessage.value });
             inputMessage.value = '';
