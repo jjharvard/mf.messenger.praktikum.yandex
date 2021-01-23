@@ -17,7 +17,7 @@ export class Templator {
         return this;
     }
 
-    compile(ctx: Props) {
+    compile(ctx: FlatKeys) {
         let key = null;
         while ((key = Templator.REGEXP.exec(this.template))) {
             if (key[1]) {

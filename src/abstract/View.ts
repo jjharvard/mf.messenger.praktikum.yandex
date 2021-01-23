@@ -13,14 +13,14 @@ export abstract class View extends EventsListener {
 
     abstract getTemplate(): string
 
-    abstract getProps(): Props2
+    abstract getProps(): Keys
 
     getDOMView(): HTMLElement | null {
         return document.getElementById(this.id);
     }
 
-    protected convertProps(props2: Props2): Props {
-        let result: Props = {};
+    protected convertProps(props2: Keys): FlatKeys {
+        let result: FlatKeys = {};
         for (let key in props2) {
             if (typeof props2 !== 'string') {
                 if (typeof props2[key] === 'function') {

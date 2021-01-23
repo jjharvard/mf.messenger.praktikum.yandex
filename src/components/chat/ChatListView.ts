@@ -38,7 +38,7 @@ export class ChatListView extends View {
             `;
     }
 
-    getProps(): Props2 {
+    getProps(): Keys {
         return {};
     }
 }

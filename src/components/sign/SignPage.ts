@@ -4,7 +4,7 @@ export class SignPage extends ViewGroup {
 
     signBtnId = 'signBtnId';
 
-    getProps(): Props2 {
+    getProps(): Keys {
         return {
             'signBtnId': this.signBtnId
         };

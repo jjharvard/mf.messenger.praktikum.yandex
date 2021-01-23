@@ -13,7 +13,7 @@ export class EditText extends ViewGroup {
             `;
     }
 
-    getProps(): Props2 {
+    getProps(): Keys {
         return {}
     }
 

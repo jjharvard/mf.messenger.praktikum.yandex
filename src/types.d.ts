@@ -1,6 +1,6 @@
-type Props = { [prop: string]: string }
+type FlatKeys = { [k: string]: string }
 
-type Props2 = {[prop: string]: unknown}
+type Keys = {[k: string]: unknown}
 
 type EVENT = 'onMessage' | 'onViewCreated'
 

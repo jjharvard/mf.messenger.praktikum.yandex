@@ -2,9 +2,9 @@ import {View} from "../../abstract/View";
 
 export class ChatItemView extends View {
 
-    props: Props2 = {}
+    props: Keys = {}
 
-    getProps(): Props2 {
+    getProps(): Keys {
         return this.props;
     }
 

@@ -8,7 +8,7 @@ export class UploadButton extends View {
                     </form>`;
     }
 
-    getProps(): Props2 {
+    getProps(): Keys {
         return {};
     }
 

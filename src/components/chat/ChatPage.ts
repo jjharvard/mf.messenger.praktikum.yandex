@@ -11,7 +11,7 @@ export class ChatPage extends ViewGroup {
                 </div>`;
     }
 
-    getProps(): Props2 {
+    getProps(): Keys {
         return {};
     }
 }
