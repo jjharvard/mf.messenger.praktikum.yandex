@@ -21,13 +21,13 @@ export class EditText extends ViewGroup {
         };
         inputMessage.onkeypress = (e) => {
             let eventTarget = e.target;
-            if (e.key === 'Enter' && eventTarget.id === inputMessage.id) {
+            if (inputMessage.value && (e.key === 'Enter' && eventTarget.id === inputMessage.id)) {
                 sendMessage();
             }
         };
         button.onclick = (e) => {
             let eventTarget = e.target;
-            if (eventTarget.id === button.id) {
+            if (inputMessage.value && eventTarget.id === button.id) {
                 sendMessage();
             }
         };

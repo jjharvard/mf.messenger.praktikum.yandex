@@ -5,8 +5,8 @@ export class LoginPage extends ViewGroup {
 
     constructor() {
         super([
-            new SubmitButton("'/chat.html'", "Authorise"),
-            new SubmitButton("'/sign.html'", "No Account?"),
+            new SubmitButton("'/chat.html'", "Authorise", "'auth__btn_main'"),
+            new SubmitButton("'/sign.html'", "No Account?", "auth__btn_secondary"),
         ]);
     }
 

@@ -24,13 +24,13 @@ export class EditText extends ViewGroup {
         }
         inputMessage.onkeypress = (e: KeyboardEvent) => {
             let eventTarget: HTMLElement = <HTMLElement>e.target
-            if(e.key === 'Enter' && eventTarget.id === inputMessage.id) {
+            if(inputMessage.value && (e.key === 'Enter' && eventTarget.id === inputMessage.id)) {
                 sendMessage()
             }
         }
         button.onclick = (e: Event) => {
             let eventTarget: HTMLElement = <HTMLElement>e.target
-            if(eventTarget.id === button.id) {
+            if(inputMessage.value && eventTarget.id === button.id) {
                 sendMessage()
             }
         }

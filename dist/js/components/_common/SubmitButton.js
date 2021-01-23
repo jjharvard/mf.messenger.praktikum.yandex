@@ -1,9 +1,10 @@
 import { View } from "../../abstract/View";
 export class SubmitButton extends View {
-    constructor(locationHRef, name) {
+    constructor(locationHRef, name, clazz) {
         super();
         this.locationHRef = locationHRef;
         this.name = name;
+        this.clazz = clazz;
     }
     getKeys() {
         return {
@@ -11,6 +12,6 @@ export class SubmitButton extends View {
         };
     }
     getTemplate() {
-        return `<button onclick="location.href=${this.locationHRef}" hello="{{hello}}" class="auth__btn_main">${this.name}</button>`;
+        return `<button onclick="location.href=${this.locationHRef}" hello="{{hello}}" class=${this.clazz}>${this.name}</button>`;
     }
 }
