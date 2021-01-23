@@ -1,5 +1,5 @@
-import { Templator } from "../common/Templator";
-import { EventBus } from "../common/EventBus";
+import { Templator } from "../utils/Templator";
+import { EventBus } from "../utils/EventBus";
 import { EventsListener } from "./EventsListener";
 export class View extends EventsListener {
     constructor() {
@@ -30,8 +30,14 @@ export class View extends EventsListener {
         result = Object.assign(result, { 'uuid': this.id });
         return result;
     }
+    merge(a, argObj) {
+        for (let key in argObj) {
+            a[key] = a[key] ? [...a[key], argObj[key]] : [argObj[key]];
+        }
+        return a;
+    }
     render(view = this) {
-        return Templator.getInstance().withTemplate(view.getTemplate()).compile(this.convertKeys(view.getKeys()));
+        return Templator.getInstance().withTemplate(view.getTemplate()).compile(this.merge({}, this.convertKeys(view.getKeys())));
     }
     validate(buttonId, onValidated) {
         let checkInputs = (input) => {

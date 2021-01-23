@@ -1,6 +1,6 @@
 import {ChatItemView} from "./ChatItemView";
 import {View} from "../../abstract/View";
-import {EventBus} from "../../common/EventBus";
+import {EventBus} from "../../utils/EventBus";
 
 export class ChatListView extends View {
 

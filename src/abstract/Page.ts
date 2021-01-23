@@ -1,5 +1,5 @@
 import {View} from "./View";
-import {EventBus} from "../common/EventBus";
+import {EventBus} from "../utils/EventBus";
 
 export class Page {
 

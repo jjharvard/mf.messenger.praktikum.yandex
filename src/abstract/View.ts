@@ -1,5 +1,5 @@
-import {Templator} from "../common/Templator";
-import {EventBus} from "../common/EventBus";
+import {Templator} from "../utils/Templator";
+import {EventBus} from "../utils/EventBus";
 import {EventsListener} from "./EventsListener";
 
 export abstract class View extends EventsListener {
@@ -39,8 +39,15 @@ export abstract class View extends EventsListener {
         return result;
     }
 
+    merge(a: ArrayKeys, argObj: FlatKeys): ArrayKeys {
+        for (let key in argObj) {
+            a[key] = a[key] ? [...a[key], argObj[key]] : [argObj[key]]
+        }
+        return a
+    }
+
     render(view: View = this): string {
-        return Templator.getInstance().withTemplate(view.getTemplate()).compile(this.convertKeys(view.getKeys()));
+        return Templator.getInstance().withTemplate(view.getTemplate()).compile(this.merge({}, this.convertKeys(view.getKeys())));
     }
 
     validate(buttonId: string, onValidated: () => void) {

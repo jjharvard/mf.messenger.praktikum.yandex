@@ -1,5 +1,5 @@
 import {ViewGroup} from "../../abstract/ViewGroup";
-import {EventBus} from "../../common/EventBus";
+import {EventBus} from "../../utils/EventBus";
 
 export class EditText extends ViewGroup {
 

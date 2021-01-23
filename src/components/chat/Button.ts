@@ -1,5 +1,4 @@
 import {View} from "../../abstract/View";
-import {EventBus} from "../../common/EventBus";
 
 export class Button extends View {
 
