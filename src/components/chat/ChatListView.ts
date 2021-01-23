@@ -19,7 +19,7 @@ export class ChatListView extends View {
     }
 
     onMessage(payload: Payload) {
-        this.data['messages'].unshift(payload['hello'] as string)
+        this.data['messages'].unshift(payload['message'] as string)
         let element = document.getElementById(this.id)
         element!.innerHTML = this.render()
     }

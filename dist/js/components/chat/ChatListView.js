@@ -15,7 +15,7 @@ export class ChatListView extends View {
         EventBus.getInstance().register('onMessage', this);
     }
     onMessage(payload) {
-        this.data['messages'].unshift(payload['hello']);
+        this.data['messages'].unshift(payload['message']);
         let element = document.getElementById(this.id);
         element.innerHTML = this.render();
     }

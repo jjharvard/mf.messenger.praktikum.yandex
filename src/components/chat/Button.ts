@@ -9,13 +9,6 @@ export class Button extends View {
                `;
     }
 
-    onViewCreated(payload: {}) {
-        let button = document.getElementById(this.id)
-        button!.addEventListener('click', () => {
-            EventBus.getInstance().emit('onMessage', {'hello': 'World!'})
-        })
-    }
-
     getKeys(): Keys {
         return {
         }

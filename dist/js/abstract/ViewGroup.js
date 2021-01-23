@@ -12,6 +12,14 @@ export class ViewGroup extends View {
     getChildren() {
         return this.children;
     }
+    getChildByName(name) {
+        for (let c of this.children) {
+            if (name === c.constructor.name) {
+                return document.getElementById(c.id);
+            }
+        }
+        return null;
+    }
     render(view = this) {
         let result = '';
         let renderedChildKeys = {};

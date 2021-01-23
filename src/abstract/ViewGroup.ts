@@ -18,6 +18,15 @@ export abstract class ViewGroup extends View {
         return this.children;
     }
 
+    getChildByName(name: string): HTMLElement | null {
+        for(let c of this.children) {
+            if(name === c.constructor.name) {
+                return document.getElementById(c.id)
+            }
+        }
+        return null
+    }
+
     render(view: View = this): string {
         let result = '';
         let renderedChildKeys = {};
