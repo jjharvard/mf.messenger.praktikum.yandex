@@ -19,7 +19,7 @@ export class LoginPage extends ViewGroup {
                             <input name="password" class="auth__input should_be_validated" text="" placeholder="Password" type="password">
                         </form>
                         <div class="auth__btn-group">
-                            <button id="{{loginBtnId}}" class="auth__btn_main">Authorise</button>
+                            <button id="{{loginBtnId}}" onclick="location.href='/chat.html'" class="auth__btn_main">Authorise</button>
                             <button onclick="location.href='/sign.html'" class="auth__btn_secondary">No Account?</button>
                         </div>
                     </div>
@@ -27,7 +27,9 @@ export class LoginPage extends ViewGroup {
     }
 
     onViewCreated(payload: Payload) {
-        this.validate(this.loginBtnId)
+        this.validate(this.loginBtnId, () => {
+            location.href = '/chat.html'
+        })
     }
 
 }

@@ -43,7 +43,7 @@ export abstract class View extends EventsListener {
         return Templator.getInstance().withTemplate(view.getTemplate()).compile(this.convertKeys(view.getKeys()));
     }
 
-    validate(buttonId: string) {
+    validate(buttonId: string, onValidated: () => void) {
         let checkInputs = (input: HTMLInputElement) => {
             let hasError = false;
             switch (input.name) {
@@ -68,6 +68,7 @@ export abstract class View extends EventsListener {
             if (hasError) {
                 input.setAttribute('style', 'border: 2px solid #fa3e3e;');
             }
+            return hasError
         }
 
         let inputsArray: Element[] = Array.from(document.getElementsByClassName('should_be_validated'));
@@ -76,7 +77,10 @@ export abstract class View extends EventsListener {
 
         btnSign.onclick = function () {
             inputsArray.forEach(input => {
-                checkInputs(<HTMLInputElement>input)
+                let hasError = checkInputs(<HTMLInputElement>input)
+                if(!hasError) {
+                    onValidated()
+                }
             });
         };
 

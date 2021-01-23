@@ -32,7 +32,9 @@ export class SignPage extends ViewGroup {
     }
 
     onViewCreated(payload: Payload) {
-        this.validate('signBtnId')
+        this.validate('signBtnId', () => {
+
+        })
     }
 
 }

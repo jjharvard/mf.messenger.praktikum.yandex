@@ -20,7 +20,8 @@ export class ViewGroup extends View {
             renderedChildKeys = Object.assign(renderedChildKeys, { [c.constructor.name]: childTemplate });
             result += childTemplate;
         }
-        result = Templator.getInstance().withTemplate(view.getTemplate()).compile(Object.assign(renderedChildKeys, { 'uuid': this.id }));
+        let mergedKeys = Object.assign(this.convertKeys(view.getKeys()), renderedChildKeys);
+        result = Templator.getInstance().withTemplate(view.getTemplate()).compile(Object.assign(mergedKeys, { 'uuid': this.id }));
         return result;
     }
 }
