@@ -20,13 +20,13 @@ export abstract class ViewGroup extends View {
 
     render(view: View = this): string {
         let result = '';
-        let childProps = {};
+        let renderedChildKeys = {};
         for (let c of this.children) {
             let childTemplate = c.render(c)
-            childProps = Object.assign(childProps, {[c.constructor.name]: childTemplate});
+            renderedChildKeys = Object.assign(renderedChildKeys, {[c.constructor.name]: childTemplate});
             result += childTemplate;
         }
-        result = Templator.getInstance().withTemplate(view.getTemplate()).compile(Object.assign(childProps, {'uuid': this.id}));
+        result = Templator.getInstance().withTemplate(view.getTemplate()).compile(Object.assign(renderedChildKeys, {'uuid': this.id}));
         return result;
     }
 

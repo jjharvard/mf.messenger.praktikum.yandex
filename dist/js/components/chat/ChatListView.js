@@ -21,9 +21,9 @@ export class ChatListView extends View {
     }
     getTemplate() {
         let result = '';
-        for (let prop of this.data['messages']) {
+        for (let value of this.data['messages']) {
             let itemView = new ChatItemView();
-            itemView.props = { 'message': prop };
+            itemView.keys = { 'message': value };
             result += itemView.render() + '\n';
         }
         return `
@@ -32,7 +32,7 @@ export class ChatListView extends View {
                 </ul>
             `;
     }
-    getProps() {
+    getKeys() {
         return {};
     }
 }

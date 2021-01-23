@@ -4,7 +4,7 @@ export class LoginPage extends ViewGroup {
 
     loginBtnId = 'loginBtnId';
 
-    getProps(): Keys {
+    getKeys(): Keys {
         return {
             'loginBtnId': this.loginBtnId
         };

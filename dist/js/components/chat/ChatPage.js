@@ -8,7 +8,7 @@ export class ChatPage extends ViewGroup {
                     {{EditText}}
                 </div>`;
     }
-    getProps() {
+    getKeys() {
         return {};
     }
 }

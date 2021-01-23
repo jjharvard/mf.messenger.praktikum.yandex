@@ -13,26 +13,26 @@ export abstract class View extends EventsListener {
 
     abstract getTemplate(): string
 
-    abstract getProps(): Keys
+    abstract getKeys(): Keys
 
     getDOMView(): HTMLElement | null {
         return document.getElementById(this.id);
     }
 
-    protected convertProps(props2: Keys): FlatKeys {
+    protected convertKeys(keys: Keys): FlatKeys {
         let result: FlatKeys = {};
-        for (let key in props2) {
-            if (typeof props2 !== 'string') {
-                if (typeof props2[key] === 'function') {
+        for (let key in keys) {
+            if (typeof keys !== 'string') {
+                if (typeof keys[key] === 'function') {
                     console.log('OK');
-                    result[key] = "(" + props2[key] + ")();";
+                    result[key] = "(" + keys[key] + ")();";
                     result[key] = result[key].replace(key, 'function');
                 } else {
-                    result[key] = "" + props2[key];
+                    result[key] = "" + keys[key];
                 }
 
             } else {
-                result[key] = props2[key];
+                result[key] = keys[key];
             }
         }
         result = Object.assign(result, {'uuid': this.id});
@@ -40,7 +40,7 @@ export abstract class View extends EventsListener {
     }
 
     render(view: View = this): string {
-        return Templator.getInstance().withTemplate(view.getTemplate()).compile(this.convertProps(view.getProps()));
+        return Templator.getInstance().withTemplate(view.getTemplate()).compile(this.convertKeys(view.getKeys()));
     }
 
     validate(buttonId: string) {

@@ -2,10 +2,10 @@ import { View } from "../../abstract/View";
 export class ChatItemView extends View {
     constructor() {
         super(...arguments);
-        this.props = {};
+        this.keys = {};
     }
-    getProps() {
-        return this.props;
+    getKeys() {
+        return this.keys;
     }
     getTemplate() {
         return `<li class="message">

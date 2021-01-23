@@ -10,7 +10,7 @@ export class EditText extends ViewGroup {
                 </div>
             `;
     }
-    getProps() {
+    getKeys() {
         return {};
     }
 }

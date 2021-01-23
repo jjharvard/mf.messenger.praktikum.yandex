@@ -1,6 +1,6 @@
 import { ViewGroup } from "../../abstract/ViewGroup";
 export class Sidebar extends ViewGroup {
-    getProps() {
+    getKeys() {
         return {};
     }
     getTemplate() {

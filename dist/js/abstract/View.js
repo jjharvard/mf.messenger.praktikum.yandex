@@ -10,28 +10,28 @@ export class View extends EventsListener {
     getDOMView() {
         return document.getElementById(this.id);
     }
-    convertProps(props2) {
+    convertKeys(keys) {
         let result = {};
-        for (let key in props2) {
-            if (typeof props2 !== 'string') {
-                if (typeof props2[key] === 'function') {
+        for (let key in keys) {
+            if (typeof keys !== 'string') {
+                if (typeof keys[key] === 'function') {
                     console.log('OK');
-                    result[key] = "(" + props2[key] + ")();";
+                    result[key] = "(" + keys[key] + ")();";
                     result[key] = result[key].replace(key, 'function');
                 }
                 else {
-                    result[key] = "" + props2[key];
+                    result[key] = "" + keys[key];
                 }
             }
             else {
-                result[key] = props2[key];
+                result[key] = keys[key];
             }
         }
         result = Object.assign(result, { 'uuid': this.id });
         return result;
     }
     render(view = this) {
-        return Templator.getInstance().withTemplate(view.getTemplate()).compile(this.convertProps(view.getProps()));
+        return Templator.getInstance().withTemplate(view.getTemplate()).compile(this.convertKeys(view.getKeys()));
     }
     validate(buttonId) {
         let checkInputs = (input) => {

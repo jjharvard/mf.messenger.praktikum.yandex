@@ -12,7 +12,7 @@ export class Button extends View {
             EventBus.getInstance().emit('onMessage', { 'hello': 'World!' });
         });
     }
-    getProps() {
+    getKeys() {
         return {};
     }
 }

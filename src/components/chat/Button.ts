@@ -16,7 +16,7 @@ export class Button extends View {
         })
     }
 
-    getProps(): Keys {
+    getKeys(): Keys {
         return {
         }
     }

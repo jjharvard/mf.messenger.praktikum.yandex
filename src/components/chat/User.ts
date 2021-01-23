@@ -1,7 +1,7 @@
 import {ViewGroup} from "../../abstract/ViewGroup";
 
 export class User extends ViewGroup {
-    getProps(): Keys {
+    getKeys(): Keys {
         return {};
     }
 

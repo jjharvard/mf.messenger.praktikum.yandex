@@ -1,6 +1,6 @@
 import { ViewGroup } from "../../abstract/ViewGroup";
 export class ChatRoom extends ViewGroup {
-    getProps() {
+    getKeys() {
         return {};
     }
     getTemplate() {

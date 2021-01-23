@@ -5,7 +5,7 @@ export class UploadButton extends View {
                         <input name="file" id="input__attach_id" type="file" hidden/>
                     </form>`;
     }
-    getProps() {
+    getKeys() {
         return {};
     }
 }
