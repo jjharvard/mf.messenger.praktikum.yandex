@@ -31,7 +31,6 @@ export class ChatListView extends View {
             itemView.props = {'message': prop};
             result += itemView.render() + '\n'
         }
-
         return `
                 <ul class="chat__list">
                     ${result}

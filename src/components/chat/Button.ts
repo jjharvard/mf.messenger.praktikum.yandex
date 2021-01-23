@@ -5,7 +5,7 @@ export class Button extends View {
 
     getTemplate(): string {
         return `
-                    <button class="input__send"></button>
+                    <button id="btnId" class="input__send"></button>
                `;
     }
 
@@ -18,7 +18,6 @@ export class Button extends View {
 
     getProps(): Props2 {
         return {
-            'hello': [123, 123, 123]
         }
     }
 }

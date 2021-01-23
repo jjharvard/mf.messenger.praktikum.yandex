@@ -23,14 +23,13 @@ export class SignPage extends ViewGroup {
                             <input name="confirm_password" class="auth__input should_be_validated" text="" placeholder="Confirm Password" type="password">
                         </form>
                         <div class="sign__btn-group">
-                            <button id="{{signBtnId}}" class="sign__btn_main" onclick="{{hello}}">Registration</button>
+                            <button id="{{signBtnId}}" class="sign__btn_main">Registration</button>
                             <button onclick="location.href='/index.html'" class="sign__btn_secondary">Login</button>
                         </div>
                     </div>
                 </div>`;
     }
     onViewCreated(payload) {
-        console.log('Hello Chat Page');
         this.validate('signBtnId');
     }
 }

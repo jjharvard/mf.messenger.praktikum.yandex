@@ -3,7 +3,7 @@ import { EventBus } from "../../common/EventBus";
 export class Button extends View {
     getTemplate() {
         return `
-                    <button class="input__send"></button>
+                    <button id="btnId" class="input__send"></button>
                `;
     }
     onViewCreated(payload) {
@@ -13,8 +13,6 @@ export class Button extends View {
         });
     }
     getProps() {
-        return {
-            'hello': [123, 123, 123]
-        };
+        return {};
     }
 }

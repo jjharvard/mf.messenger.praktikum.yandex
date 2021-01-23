@@ -1,15 +1,16 @@
-import { ViewGroup } from "../../abstract/ViewGroup";
+import {ViewGroup} from "../../abstract/ViewGroup";
+
 export class LoginPage extends ViewGroup {
-    constructor() {
-        super(...arguments);
-        this.loginBtnId = 'loginBtnId';
-    }
-    getProps() {
+
+    loginBtnId = 'loginBtnId';
+
+    getProps(): Props2 {
         return {
             'loginBtnId': this.loginBtnId
         };
     }
-    getTemplate() {
+
+    getTemplate(): string {
         return `<div class="auth-container">
                     <div class="auth">
                         <h1 class="auth__title">Enter</h1>
@@ -24,7 +25,9 @@ export class LoginPage extends ViewGroup {
                     </div>
                 </div>`;
     }
-    onViewCreated(payload) {
-        this.validate(this.loginBtnId);
+
+    onViewCreated(payload: Payload) {
+        this.validate(this.loginBtnId)
     }
+
 }
