@@ -15,9 +15,21 @@ export class EditText extends ViewGroup {
         EventBus.getInstance().register('onMessage', this);
         let inputMessage = this.getChildByName('InputMessage');
         let button = this.getChildByName('Button');
-        button.onclick = (event) => {
+        let sendMessage = () => {
             EventBus.getInstance().emit('onMessage', { 'message': inputMessage.value });
             inputMessage.value = '';
+        };
+        inputMessage.onkeypress = (e) => {
+            let eventTarget = e.target;
+            if (e.key === 'Enter' && eventTarget.id === inputMessage.id) {
+                sendMessage();
+            }
+        };
+        button.onclick = (e) => {
+            let eventTarget = e.target;
+            if (eventTarget.id === button.id) {
+                sendMessage();
+            }
         };
     }
     getKeys() {
