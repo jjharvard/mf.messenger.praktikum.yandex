@@ -40,3 +40,4 @@ export class ComponentGroup extends Component {
         return result;
     }
 }
+//# sourceMappingURL=ComponentGroup.js.map

@@ -9,3 +9,4 @@ export class UploadButton extends Component {
         return {};
     }
 }
+//# sourceMappingURL=UploadButton.js.map

@@ -7,7 +7,7 @@ export abstract class Component extends EventsListener {
     id: string = Templator.uuidv4();
 
     constructor() {
-        super();
+        super()
         EventBus.getInstance().register('onViewCreated', this);
     }
 
@@ -24,7 +24,6 @@ export abstract class Component extends EventsListener {
         for (let key in keys) {
             if (typeof keys !== 'string') {
                 if (typeof keys[key] === 'function') {
-                    console.log('OK');
                     result[key] = "(" + keys[key] + ")();";
                     result[key] = result[key].replace(key, 'function');
                 } else {

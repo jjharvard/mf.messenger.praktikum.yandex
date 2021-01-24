@@ -31,3 +31,4 @@ export class EventBus {
         delete this.listeners[event];
     }
 }
+//# sourceMappingURL=EventBus.js.map

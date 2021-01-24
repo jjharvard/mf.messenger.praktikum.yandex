@@ -20,3 +20,4 @@ let chatPage = new Page(new ChatRootComponent([
     ])
 ]));
 chatPage.mount();
+//# sourceMappingURL=chat.js.map

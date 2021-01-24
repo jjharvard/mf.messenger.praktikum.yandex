@@ -38,3 +38,4 @@ export class ChatListView extends ComponentGroup {
         return {};
     }
 }
+//# sourceMappingURL=ChatListView.js.map

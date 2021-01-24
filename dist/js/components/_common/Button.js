@@ -17,3 +17,4 @@ export class Button extends Component {
         return `<button onclick="location.href={{location}}" class={{clazz}}>{{name}}</button>`;
     }
 }
+//# sourceMappingURL=Button.js.map

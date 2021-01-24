@@ -12,3 +12,4 @@ export class ChatRootComponent extends ComponentGroup {
         return {};
     }
 }
+//# sourceMappingURL=ChatRootComponent.js.map

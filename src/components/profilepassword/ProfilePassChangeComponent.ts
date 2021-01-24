@@ -39,7 +39,7 @@ export class ProfilePassChangeComponent extends ComponentGroup {
                 </div>`;
     }
 
-    onViewCreated(payload: Payload) {
+    onViewCreated() {
         let id = this.getChildrenByName('Button')[0].id;
         this.validate(id, () => {
             location.href = '/profile.html';

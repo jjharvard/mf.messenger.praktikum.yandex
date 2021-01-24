@@ -13,3 +13,4 @@ export class ChatRoom extends ComponentGroup {
                 </div>`;
     }
 }
+//# sourceMappingURL=ChatRoom.js.map

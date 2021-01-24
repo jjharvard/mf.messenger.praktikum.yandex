@@ -1,4 +1,13 @@
 export class EventsListener {
-    onMessage(payload) { }
-    onViewCreated(payload) { }
+    onMessage(payload = {}) {
+        if (!payload) {
+            console.log(payload);
+        }
+    }
+    onViewCreated(payload = {}) {
+        if (!payload) {
+            console.log(payload);
+        }
+    }
 }
+//# sourceMappingURL=EventsListener.js.map

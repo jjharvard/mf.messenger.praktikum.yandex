@@ -5,10 +5,6 @@ export class Adapter<T> {
     constructor(protected items: T[] = []) {
     }
 
-    setData(data: T) {
-
-    }
-
     getItems(): T[] {
         return this.items
     }

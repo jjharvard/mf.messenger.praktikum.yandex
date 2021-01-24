@@ -47,3 +47,4 @@ export class Templator {
     }
 }
 Templator.REGEXP = /\{\{(.*?)\}\}/gi;
+//# sourceMappingURL=Templator.js.map

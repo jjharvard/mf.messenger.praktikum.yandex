@@ -50,3 +50,4 @@ export class Sidebar extends ComponentGroup {
     </div>`;
     }
 }
+//# sourceMappingURL=Sidebar.js.map

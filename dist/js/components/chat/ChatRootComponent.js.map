@@ -1,0 +1,1 @@
+{"version":3,"file":"ChatRootComponent.js","sourceRoot":"","sources":["../../../../src/components/chat/ChatRootComponent.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,cAAc,EAAC,MAAM,+BAA+B,CAAC;AAE7D,MAAM,OAAO,iBAAkB,SAAQ,cAAc;IAEjD,WAAW;QACP,OAAO;;;;;uBAKQ,CAAC;IACpB,CAAC;IAED,OAAO;QACH,OAAO,EAAE,CAAC;IACd,CAAC;CACJ"}

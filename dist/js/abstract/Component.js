@@ -15,7 +15,6 @@ export class Component extends EventsListener {
         for (let key in keys) {
             if (typeof keys !== 'string') {
                 if (typeof keys[key] === 'function') {
-                    console.log('OK');
                     result[key] = "(" + keys[key] + ")();";
                     result[key] = result[key].replace(key, 'function');
                 }
@@ -92,3 +91,4 @@ export class Component extends EventsListener {
         });
     }
 }
+//# sourceMappingURL=Component.js.map

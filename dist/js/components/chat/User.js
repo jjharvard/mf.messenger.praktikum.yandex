@@ -18,3 +18,4 @@ export class User extends ComponentGroup {
             `;
     }
 }
+//# sourceMappingURL=User.js.map

@@ -66,3 +66,4 @@ export class ProfileComponent extends ComponentGroup {
                 </div>`;
     }
 }
+//# sourceMappingURL=ProfileComponent.js.map

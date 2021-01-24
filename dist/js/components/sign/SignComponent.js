@@ -30,10 +30,11 @@ export class SignComponent extends ComponentGroup {
                     </div>
                 </div>`;
     }
-    onViewCreated(payload) {
+    onViewCreated() {
         let id = this.getChildrenByName('Button')[0].id;
         this.validate(id, () => {
             console.log('registration');
         });
     }
 }
+//# sourceMappingURL=SignComponent.js.map

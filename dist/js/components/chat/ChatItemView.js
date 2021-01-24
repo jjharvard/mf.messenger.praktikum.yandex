@@ -18,3 +18,4 @@ export class ChatItemView extends Component {
             </li>`;
     }
 }
+//# sourceMappingURL=ChatItemView.js.map

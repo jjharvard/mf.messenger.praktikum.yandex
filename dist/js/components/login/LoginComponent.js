@@ -25,10 +25,11 @@ export class LoginComponent extends ComponentGroup {
                     </div>
                 </div>`;
     }
-    onViewCreated(payload) {
+    onViewCreated() {
         let id = this.getChildrenByName('Button')[0].id;
         this.validate(id, () => {
             location.href = '/chat.html';
         });
     }
 }
+//# sourceMappingURL=LoginComponent.js.map

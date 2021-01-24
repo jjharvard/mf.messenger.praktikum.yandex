@@ -47,10 +47,11 @@ export class ProfileDataChangeComponent extends ComponentGroup {
                     </div>
                 </div>`;
     }
-    onViewCreated(payload) {
+    onViewCreated() {
         let id = this.getChildrenByName('Button')[0].id;
         this.validate(id, () => {
             location.href = '/profile.html';
         });
     }
 }
+//# sourceMappingURL=ProfileDataChangeComponent.js.map

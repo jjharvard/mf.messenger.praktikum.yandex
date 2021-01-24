@@ -18,3 +18,4 @@ export class Avatar extends Component {
                 </div>`;
     }
 }
+//# sourceMappingURL=Avatar.js.map

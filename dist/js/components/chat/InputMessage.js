@@ -7,3 +7,4 @@ export class InputMessage extends Component {
         return {};
     }
 }
+//# sourceMappingURL=InputMessage.js.map

@@ -1,5 +1,13 @@
 export class EventsListener {
-    onMessage(payload: Payload): void {}
+    onMessage(payload: Payload = {}): void {
+        if(!payload) {
+            console.log(payload)
+        }
+    }
 
-    onViewCreated(payload: Payload): void {}
+    onViewCreated(payload: Payload = {}): void {
+        if(!payload) {
+            console.log(payload)
+        }
+    }
 }

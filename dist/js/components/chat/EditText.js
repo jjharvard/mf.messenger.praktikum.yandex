@@ -11,7 +11,7 @@ export class EditText extends ComponentGroup {
                 </div>
             `;
     }
-    onViewCreated(payload) {
+    onViewCreated() {
         EventBus.getInstance().register('onMessage', this);
         let inputMessage = this.getChildrenByName('InputMessage')[0];
         let button = this.getChildrenByName('Button')[0];
@@ -36,3 +36,4 @@ export class EditText extends ComponentGroup {
         return {};
     }
 }
+//# sourceMappingURL=EditText.js.map

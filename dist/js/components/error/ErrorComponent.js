@@ -18,3 +18,4 @@ export class ErrorComponent extends ComponentGroup {
                 </div>`;
     }
 }
+//# sourceMappingURL=ErrorComponent.js.map

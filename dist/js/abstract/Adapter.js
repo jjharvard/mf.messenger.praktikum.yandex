@@ -2,8 +2,6 @@ export class Adapter {
     constructor(items = []) {
         this.items = items;
     }
-    setData(data) {
-    }
     getItems() {
         return this.items;
     }
@@ -11,3 +9,4 @@ export class Adapter {
         this.items.unshift(item);
     }
 }
+//# sourceMappingURL=Adapter.js.map
