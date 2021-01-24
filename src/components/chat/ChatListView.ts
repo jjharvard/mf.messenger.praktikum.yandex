@@ -1,9 +1,9 @@
 import {ChatItemView} from "./ChatItemView";
 import {EventBus} from "../../utils/EventBus";
-import {ViewGroup} from "../../abstract/ViewGroup";
+import {ComponentGroup} from "../../abstract/ComponentGroup";
 import {Adapter} from "../../abstract/Adapter";
 
-export class ChatListView extends ViewGroup {
+export class ChatListView extends ComponentGroup {
 
     static initialData(): string[] {
         return [

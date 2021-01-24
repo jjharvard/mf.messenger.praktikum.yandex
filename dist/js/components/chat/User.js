@@ -1,5 +1,5 @@
-import { ViewGroup } from "../../abstract/ViewGroup";
-export class User extends ViewGroup {
+import { ComponentGroup } from "../../abstract/ComponentGroup";
+export class User extends ComponentGroup {
     getKeys() {
         return {};
     }

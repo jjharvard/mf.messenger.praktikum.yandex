@@ -1,6 +1,6 @@
-import { ViewGroup } from "../../abstract/ViewGroup";
+import { ComponentGroup } from "../../abstract/ComponentGroup";
 import { EventBus } from "../../utils/EventBus";
-export class EditText extends ViewGroup {
+export class EditText extends ComponentGroup {
     getTemplate() {
         return `
                 <div class="input">

@@ -1,5 +1,5 @@
-import { ViewGroup } from "../../abstract/ViewGroup";
-export class ChatPage extends ViewGroup {
+import { ComponentGroup } from "../../abstract/ComponentGroup";
+export class ChatPage extends ComponentGroup {
     getTemplate() {
         return `<div class="chat-container">
                     {{User}}

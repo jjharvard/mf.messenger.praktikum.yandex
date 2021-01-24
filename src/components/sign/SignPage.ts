@@ -1,7 +1,7 @@
-import {ViewGroup} from "../../abstract/ViewGroup";
+import {ComponentGroup} from "../../abstract/ComponentGroup";
 import {Button} from "../_common/Button";
 
-export class SignPage extends ViewGroup {
+export class SignPage extends ComponentGroup {
 
     constructor() {
         super([

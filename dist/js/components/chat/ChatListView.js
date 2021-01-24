@@ -1,7 +1,7 @@
 import { ChatItemView } from "./ChatItemView";
 import { EventBus } from "../../utils/EventBus";
-import { ViewGroup } from "../../abstract/ViewGroup";
-export class ChatListView extends ViewGroup {
+import { ComponentGroup } from "../../abstract/ComponentGroup";
+export class ChatListView extends ComponentGroup {
     constructor(adapter) {
         super(adapter.getItems().map(item => {
             return new ChatItemView(item);

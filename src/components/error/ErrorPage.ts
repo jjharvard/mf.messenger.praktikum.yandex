@@ -1,6 +1,6 @@
-import {ViewGroup} from "../../abstract/ViewGroup";
+import {ComponentGroup} from "../../abstract/ComponentGroup";
 
-export class ErrorPage extends ViewGroup {
+export class ErrorPage extends ComponentGroup {
 
     constructor(private errorNumber: string, private errorMessage: string) {
         super();

@@ -1,6 +1,6 @@
-import {ViewGroup} from "../../abstract/ViewGroup";
+import {ComponentGroup} from "../../abstract/ComponentGroup";
 
-export class Sidebar extends ViewGroup {
+export class Sidebar extends ComponentGroup {
     getKeys(): Keys {
         return {};
     }

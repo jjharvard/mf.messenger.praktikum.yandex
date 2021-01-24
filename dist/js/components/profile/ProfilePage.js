@@ -1,6 +1,6 @@
-import { ViewGroup } from "../../abstract/ViewGroup";
+import { ComponentGroup } from "../../abstract/ComponentGroup";
 import { Button } from "../_common/Button";
-export class ProfilePage extends ViewGroup {
+export class ProfilePage extends ComponentGroup {
     constructor() {
         super([
             new Button("'/profile-change-data.html'", "Change user data", "'change__ref'"),

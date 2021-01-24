@@ -1,7 +1,7 @@
 import {Component} from "./Component";
 import {Templator} from "../utils/Templator";
 
-export abstract class ViewGroup extends Component {
+export abstract class ComponentGroup extends Component {
 
     children: Component[] = [];
 

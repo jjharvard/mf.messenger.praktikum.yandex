@@ -1,7 +1,7 @@
-import {ViewGroup} from "../../abstract/ViewGroup";
+import {ComponentGroup} from "../../abstract/ComponentGroup";
 import {Button} from "../_common/Button";
 
-export class ProfilePasswordChange extends ViewGroup {
+export class ProfilePasswordChange extends ComponentGroup {
 
     constructor() {
         super([new Button("''", "Save", "'profile-save__btn'")]);
@@ -42,7 +42,7 @@ export class ProfilePasswordChange extends ViewGroup {
     onViewCreated(payload: Payload) {
         let id = this.getChildrenByName('Button')[0].id;
         this.validate(id, () => {
-            console.log('save password');
+            location.href = '/profile.html'
         });
     }
 }
