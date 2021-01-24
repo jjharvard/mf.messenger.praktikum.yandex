@@ -60,6 +60,7 @@ export abstract class View extends EventsListener {
                 case 'login':
                 case 'name':
                 case 'surname':
+                case 'nickname':
                     hasError = !/^[a-zA-Z\-]+$/.test(input.value);
                     break;
                 case 'phone':
