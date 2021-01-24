@@ -1,5 +1,5 @@
 import { View } from "../../abstract/View";
-export class SubmitButton extends View {
+export class Button extends View {
     constructor(locationHRef, name, clazz) {
         super();
         this.locationHRef = locationHRef;

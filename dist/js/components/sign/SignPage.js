@@ -1,13 +1,14 @@
 import { ViewGroup } from "../../abstract/ViewGroup";
+import { Button } from "../_common/Button";
 export class SignPage extends ViewGroup {
     constructor() {
-        super(...arguments);
-        this.signBtnId = 'signBtnId';
+        super([
+            new Button("", "Registration", "'sign__btn_main'"),
+            new Button("'/index.html'", "Login", "sign__btn_secondary"),
+        ]);
     }
     getKeys() {
-        return {
-            'signBtnId': this.signBtnId
-        };
+        return {};
     }
     getTemplate() {
         return `<div class="sign-container">
@@ -23,14 +24,16 @@ export class SignPage extends ViewGroup {
                             <input name="confirm_password" class="auth__input should_be_validated" text="" placeholder="Confirm Password" type="password">
                         </form>
                         <div class="sign__btn-group">
-                            <button id="{{signBtnId}}" class="sign__btn_main">Registration</button>
-                            <button onclick="location.href='/index.html'" class="sign__btn_secondary">Login</button>
+                            {{Button}}
+                            {{Button}}
                         </div>
                     </div>
                 </div>`;
     }
     onViewCreated(payload) {
-        this.validate('signBtnId', () => {
+        let id = this.getChildrenByName('Button')[0].id;
+        this.validate(id, () => {
+            console.log('Registration started');
         });
     }
 }

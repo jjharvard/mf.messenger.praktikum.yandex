@@ -1,12 +1,12 @@
 import {ViewGroup} from "../../abstract/ViewGroup";
-import {SubmitButton} from "../_common/SubmitButton";
+import {Button} from "../_common/Button";
 
 export class LoginPage extends ViewGroup {
 
     constructor() {
         super([
-            new SubmitButton("'/chat.html'", "Authorise", "'auth__btn_main'"),
-            new SubmitButton("'/sign.html'", "No Account?", "auth__btn_secondary"),
+            new Button("'/chat.html'", "Authorise", "'auth__btn_main'"),
+            new Button("'/sign.html'", "No Account?", "auth__btn_secondary"),
         ]);
     }
 
@@ -23,15 +23,15 @@ export class LoginPage extends ViewGroup {
                             <input name="password" class="auth__input should_be_validated" text="" placeholder="Password" type="password">
                         </form>
                         <div class="auth__btn-group">
-                            {{SubmitButton}}
-                            {{SubmitButton}}
+                            {{Button}}
+                            {{Button}}
                         </div>
                     </div>
                 </div>`;
     }
 
     onViewCreated(payload: Payload) {
-        let id = this.getChildrenByName('SubmitButton')[0].id
+        let id = this.getChildrenByName('Button')[0].id
         this.validate(id, () => {
             location.href = '/chat.html'
         })
