@@ -1,19 +1,19 @@
 import { ComponentGroup } from "../../abstract/ComponentGroup";
 import { Button } from "../_common/Button";
+import { Avatar } from "../_common/Avatar";
 export class ProfilePassChangeComponent extends ComponentGroup {
     constructor() {
-        super([new Button("'/profile.html'", "Save", "'profile-save__btn'")]);
+        super([
+            new Avatar('none'),
+            new Button("'/profile.html'", "Save", "'profile-save__btn'")
+        ]);
     }
     getKeys() {
         return {};
     }
     getTemplate() {
         return `<div class="profile-container">
-                    <div  class="profile-title">
-                        <img class="profile-title__icon" src="img/owl.png" alt=""/>
-                        <label class="profile-title__label">John</label>
-                    </div>
-                
+                   {{Avatar}}
                     <form class="profile">
                         <div class="profile__field">
                             <label class="profile__label" for="form__password_old">Old Password</label>

@@ -1,8 +1,10 @@
 import { ComponentGroup } from "../../abstract/ComponentGroup";
 import { Button } from "../_common/Button";
+import { Avatar } from "../_common/Avatar";
 export class ProfileComponent extends ComponentGroup {
     constructor() {
         super([
+            new Avatar('flex'),
             new Button("'/profile-change-data.html'", "Change user data", "'change__ref'"),
             new Button("'/profile-change-password.html'", "Change password", "change__ref"),
             new Button("'/index.html'", "Exit", "change__ref_alert"),
@@ -13,12 +15,7 @@ export class ProfileComponent extends ComponentGroup {
     }
     getTemplate() {
         return `<div class="profile-container">
-                    <div  class="profile-title">
-                        <img class="profile-title__icon" src="img/owl.png" alt=""/>
-                        <p class="profile-title__hover-message">Upload<br>image</p>
-                        <label class="profile-title__label">John</label>
-                    </div>
-                
+                    {{Avatar}}
                     <form class="profile">
                         <div class="profile__field">
                             <label class="profile__label" for="form__email">Email</label>
@@ -44,7 +41,6 @@ export class ProfileComponent extends ComponentGroup {
                             <label class="profile__label" for="form__phone">Phone</label>
                             <input class="profile__input" id="form__phone" value="8(900)909-99-00" readonly>
                         </div>
-                
                     </form>
                 
                     <div class="change">

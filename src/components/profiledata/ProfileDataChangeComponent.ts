@@ -1,10 +1,14 @@
 import {ComponentGroup} from "../../abstract/ComponentGroup";
 import {Button} from "../_common/Button";
+import {Avatar} from "../_common/Avatar";
 
 export class ProfileDataChangeComponent extends ComponentGroup {
 
     constructor() {
-        super([new Button("'/profile.html'", "Save", "'profile-save__btn'")]);
+        super([
+            new Avatar('none'),
+            new Button("'/profile.html'", "Save", "'profile-save__btn'")
+        ]);
     }
 
     getKeys(): Keys {
@@ -13,11 +17,7 @@ export class ProfileDataChangeComponent extends ComponentGroup {
 
     getTemplate(): string {
         return `<div class="profile-container">
-                    <div  class="profile-title">
-                        <img class="profile-title__icon" src="img/owl.png" alt=""/>
-                        <label class="profile-title__label">John</label>
-                    </div>
-                
+                    {{Avatar}}
                     <form class="profile">
                         <div class="profile__field">
                             <label class="profile__label" for="form__email">Email</label>
