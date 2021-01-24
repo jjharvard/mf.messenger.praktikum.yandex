@@ -9,6 +9,12 @@ export class ViewGroup extends View {
     addView(child) {
         this.children.push(child);
     }
+    addViews(children) {
+        this.children = [...this.children, ...children];
+    }
+    removeAllChildren() {
+        this.children = [];
+    }
     getChildren() {
         return this.children;
     }

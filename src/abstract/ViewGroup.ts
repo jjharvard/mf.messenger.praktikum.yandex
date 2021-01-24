@@ -14,6 +14,14 @@ export abstract class ViewGroup extends View {
         this.children.push(child);
     }
 
+    addViews(children: View[]) {
+        this.children = [...this.children,...children]
+    }
+
+    removeAllChildren() {
+        this.children = []
+    }
+
     getChildren(): View[] {
         return this.children;
     }

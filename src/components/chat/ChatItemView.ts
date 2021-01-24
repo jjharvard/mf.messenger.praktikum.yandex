@@ -2,17 +2,21 @@ import {View} from "../../abstract/View";
 
 export class ChatItemView extends View {
 
-    keys: Keys = {}
+    constructor(private message: string) {
+        super();
+    }
 
     getKeys(): Keys {
-        return this.keys;
+        return {
+            'time': '11:30'
+        };
     }
 
     getTemplate(): string {
         return `<li class="message">
                 <div class="message__outgoing">
-                        {{message}}
-                    <div class="timer__outgoing">11:30</div>
+                        ${this.message}
+                    <div class="timer__outgoing">{{time}}</div>
                 </div>
             </li>`;
     }
