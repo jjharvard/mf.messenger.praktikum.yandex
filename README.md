@@ -2,6 +2,10 @@
 
 [https://angry-darwin-d47765.netlify.app](https://angry-darwin-d47765.netlify.app)
 <br/>
+Для компиляции проекта выполните команду:
+<br/>
+tsc
+<br/>
 Для запуска локального сервера выполните команды:
 <br/>
 yarn install
