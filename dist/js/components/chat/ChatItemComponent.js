@@ -1,18 +1,15 @@
-import {Component} from "../../abstract/Component.js";
-
-export class ChatItemView extends Component {
-
-    constructor(private message: string) {
+import { Component } from "../../abstract/Component.js";
+export class ChatItemComponent extends Component {
+    constructor(message) {
         super();
+        this.message = message;
     }
-
-    getKeys(): Keys {
+    getKeys() {
         return {
             'message': this.message
         };
     }
-
-    getTemplate(): string {
+    getTemplate() {
         return `<li class="message">
                 <div class="message__outgoing">
                         {{message}}
@@ -21,3 +18,4 @@ export class ChatItemView extends Component {
             </li>`;
     }
 }
+//# sourceMappingURL=ChatItemComponent.js.map

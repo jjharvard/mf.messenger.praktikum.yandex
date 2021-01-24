@@ -1,7 +1,7 @@
 import { User } from "../components/chat/User.js";
 import { Sidebar } from "../components/chat/Sidebar.js";
 import { ChatRoom } from "../components/chat/ChatRoom.js";
-import { ChatListView } from "../components/chat/ChatListView.js";
+import { ChatListComponent } from "../components/chat/ChatListComponent.js";
 import { EditText } from "../components/chat/EditText.js";
 import { UploadButton } from "../components/chat/UploadButton.js";
 import { InputMessage } from "../components/chat/InputMessage.js";
@@ -12,7 +12,7 @@ import { Adapter } from "../abstract/Adapter.js";
 let chatPage = new Page(new ChatRootComponent([
     new User(),
     new Sidebar(),
-    new ChatRoom([new ChatListView(new Adapter(ChatListView.initialData()))]),
+    new ChatRoom([new ChatListComponent(new Adapter(ChatListComponent.initialData()))]),
     new EditText([
         new UploadButton(),
         new InputMessage(),

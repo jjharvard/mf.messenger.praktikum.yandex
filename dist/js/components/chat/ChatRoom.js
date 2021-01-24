@@ -9,7 +9,7 @@ export class ChatRoom extends ComponentGroup {
                         <div class="chat__name">Mick</div>
                         <button class="chat__remove"></button>
                     </div>
-                        {{ChatListView}}
+                        {{ChatListComponent}}
                 </div>`;
     }
 }

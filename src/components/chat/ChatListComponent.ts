@@ -1,10 +1,10 @@
-import {ChatItemView} from "./ChatItemView.js";
+import {ChatItemComponent} from "./ChatItemComponent.js";
 import {EventBus} from "../../utils/EventBus.js";
 import {ComponentGroup} from "../../abstract/ComponentGroup.js";
 import {Adapter} from "../../abstract/Adapter.js";
 import {Templator} from "../../utils/Templator.js";
 
-export class ChatListView extends ComponentGroup {
+export class ChatListComponent extends ComponentGroup {
 
     static initialData(): string[] {
         return [
@@ -17,7 +17,7 @@ export class ChatListView extends ComponentGroup {
 
     constructor(private adapter: Adapter<string>) {
         super(adapter.getItems().map(item => {
-            return new ChatItemView(item);
+            return new ChatItemComponent(item);
         }));
         EventBus.getInstance().register('onMessage', this);
     }
@@ -26,7 +26,7 @@ export class ChatListView extends ComponentGroup {
         this.removeAllChildren();
         this.adapter.addItem(payload['message'] as string);
         this.addViews(this.adapter.getItems().map(item => {
-            return new ChatItemView(item);
+            return new ChatItemComponent(item);
         }));
         let element = document.getElementById(this.id);
         element!.innerHTML = this.render();
@@ -35,7 +35,7 @@ export class ChatListView extends ComponentGroup {
     getTemplate(): string {
         return `
                 <ul class="chat__list">
-                    ${Templator.appendTemplate('{{ChatItemView}}', this.adapter.getItems().length)}
+                    ${Templator.appendTemplate('{{ChatItemComponent}}', this.adapter.getItems().length)}
                 </ul>
             `;
     }
