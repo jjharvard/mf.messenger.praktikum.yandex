@@ -5,7 +5,7 @@ export class SignComponent extends ComponentGroup {
 
     constructor() {
         super([
-            new Button("", "Registration", "'sign__btn_main'"),
+            new Button("'/chat.html'", "Registration", "'sign__btn_main'"),
             new Button("'/index.html'", "Login", "sign__btn_secondary"),
         ]);
     }

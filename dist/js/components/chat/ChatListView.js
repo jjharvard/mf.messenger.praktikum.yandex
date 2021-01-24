@@ -1,6 +1,7 @@
 import { ChatItemView } from "./ChatItemView";
 import { EventBus } from "../../utils/EventBus";
 import { ComponentGroup } from "../../abstract/ComponentGroup";
+import { Templator } from "../../utils/Templator";
 export class ChatListView extends ComponentGroup {
     constructor(adapter) {
         super(adapter.getItems().map(item => {
@@ -29,7 +30,7 @@ export class ChatListView extends ComponentGroup {
     getTemplate() {
         return `
                 <ul class="chat__list">
-                    ${this.adapter.appendTemplate('ChatItemView')}
+                    ${Templator.appendTemplate('{{ChatItemView}}', this.adapter.getItems().length)}
                 </ul>
             `;
     }

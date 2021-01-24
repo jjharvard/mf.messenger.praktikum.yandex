@@ -10,11 +10,4 @@ export class Adapter {
     addItem(item) {
         this.items.unshift(item);
     }
-    appendTemplate(constructorName) {
-        let res = '';
-        for (let i = 0; i < this.items.length; i++) {
-            res += '{{' + constructorName + '}}\n';
-        }
-        return res;
-    }
 }

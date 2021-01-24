@@ -7,13 +7,15 @@ export class ChatItemView extends Component {
     }
 
     getKeys(): Keys {
-        return {};
+        return {
+            'message': this.message
+        };
     }
 
     getTemplate(): string {
         return `<li class="message">
                 <div class="message__outgoing">
-                        ${this.message}
+                        {{message}}
                     <div class="timer__outgoing">11:30</div>
                 </div>
             </li>`;

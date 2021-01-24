@@ -35,6 +35,13 @@ export class Templator {
             return v.toString(8);
         });
     }
+    static appendTemplate(constructorName, count) {
+        let res = '';
+        for (let i = 0; i < count; i++) {
+            res += constructorName + '\n';
+        }
+        return res;
+    }
     replaceAt(str, index, offset, replacement) {
         return str.substr(0, index) + replacement + str.substr(index + offset);
     }

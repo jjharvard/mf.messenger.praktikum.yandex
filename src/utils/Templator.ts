@@ -23,24 +23,32 @@ export class Templator {
             if (key[1]) {
                 const tmplValue = key[1].trim();
                 const data = ctx[tmplValue];
-                let value = <string>data.shift()
+                let value = <string>data.shift();
                 this.template = this.template.replace(new RegExp(key[0], "i"), value);
             }
         }
 
-        let re = /(<[a-z]+)/g
-        key = re.exec(this.template)
-        if(key) {
-            this.template = this.replaceAt(this.template, key['index'], key[1].length, `${key[1]} id="${ctx['uuid']}"`)
+        let re = /(<[a-z]+)/g;
+        key = re.exec(this.template);
+        if (key) {
+            this.template = this.replaceAt(this.template, key['index'], key[1].length, `${key[1]} id="${ctx['uuid']}"`);
         }
         return this.template;
     }
 
-     static uuidv4(): string {
-        return 'xxxxxxxx'.replace(/[xy]/g, function(c) {
+    static uuidv4(): string {
+        return 'xxxxxxxx'.replace(/[xy]/g, function (c) {
             var r = Math.random() * 8 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
             return v.toString(8);
         });
+    }
+
+    static appendTemplate(constructorName: string, count: number): string {
+        let res = '';
+        for (let i = 0; i < count; i++) {
+            res += constructorName + '\n';
+        }
+        return res;
     }
 
     replaceAt(str: string, index: number, offset: number, replacement: string) {

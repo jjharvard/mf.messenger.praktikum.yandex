@@ -2,7 +2,7 @@ import { ComponentGroup } from "../../abstract/ComponentGroup";
 import { Button } from "../_common/Button";
 export class ProfilePassChangeComponent extends ComponentGroup {
     constructor() {
-        super([new Button("''", "Save", "'profile-save__btn'")]);
+        super([new Button("'/profile.html'", "Save", "'profile-save__btn'")]);
     }
     getKeys() {
         return {};

@@ -17,12 +17,4 @@ export class Adapter<T> {
         this.items.unshift(item)
     }
 
-    appendTemplate(constructorName: string): string {
-        let res = '';
-        for (let i = 0; i < this.items.length; i++) {
-            res += '{{' + constructorName + '}}\n';
-        }
-        return res;
-    }
-
 }

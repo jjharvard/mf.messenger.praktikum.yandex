@@ -51,7 +51,4 @@ export class Sidebar extends ComponentGroup {
 
     </div>`;
     }
-
-
-
 }

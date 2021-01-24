@@ -4,7 +4,7 @@ import {Button} from "../_common/Button";
 export class ProfileDataChangeComponent extends ComponentGroup {
 
     constructor() {
-        super([new Button("''", "Save", "'profile-save__btn'")]);
+        super([new Button("'/profile.html'", "Save", "'profile-save__btn'")]);
     }
 
     getKeys(): Keys {
@@ -53,9 +53,9 @@ export class ProfileDataChangeComponent extends ComponentGroup {
     }
 
     onViewCreated(payload: Payload) {
-        let id = this.getChildrenByName('Button')[0].id
+        let id = this.getChildrenByName('Button')[0].id;
         this.validate(id, () => {
-            location.href = '/profile.html'
-        })
+            location.href = '/profile.html';
+        });
     }
 }
