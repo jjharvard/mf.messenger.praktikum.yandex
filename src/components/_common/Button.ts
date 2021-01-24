@@ -1,6 +1,6 @@
-import {View} from "../../abstract/View";
+import {Component} from "../../abstract/Component";
 
-export class Button extends View {
+export class Button extends Component {
 
     constructor(private locationHRef: string, private name: string, private clazz: string) {
         super();

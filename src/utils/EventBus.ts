@@ -1,4 +1,4 @@
-import {View} from "../abstract/View";
+import {Component} from "../abstract/Component";
 import {EventsListener} from "../abstract/EventsListener";
 
 export class EventBus {
@@ -21,14 +21,14 @@ export class EventBus {
         }
     }
 
-    register(event: EVENT, view: View) {
+    register(event: EVENT, view: Component) {
         if (!(event in this.listeners)) {
             this.listeners[event] = [];
         }
         this.listeners[event].push(view);
     }
 
-    unregister(event: EVENT, view: View) {
+    unregister(event: EVENT, view: Component) {
         let index = this.listeners[event].indexOf(view);
         if (index != -1) {
             this.listeners[event].splice(index, 1);

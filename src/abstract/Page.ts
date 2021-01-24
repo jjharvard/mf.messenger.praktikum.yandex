@@ -1,11 +1,11 @@
-import {View} from "./View";
+import {Component} from "./Component";
 import {EventBus} from "../utils/EventBus";
 
 export class Page {
 
-    view: View
+    view: Component
 
-    constructor(view: View) {
+    constructor(view: Component) {
         this.view = view;
     }
 

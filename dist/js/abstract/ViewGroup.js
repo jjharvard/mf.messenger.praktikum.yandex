@@ -1,6 +1,6 @@
-import { View } from "./View";
+import { Component } from "./Component";
 import { Templator } from "../utils/Templator";
-export class ViewGroup extends View {
+export class ViewGroup extends Component {
     constructor(views = []) {
         super();
         this.children = [];

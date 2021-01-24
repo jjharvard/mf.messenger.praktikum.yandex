@@ -2,7 +2,7 @@ import {Templator} from "../utils/Templator";
 import {EventBus} from "../utils/EventBus";
 import {EventsListener} from "./EventsListener";
 
-export abstract class View extends EventsListener {
+export abstract class Component extends EventsListener {
 
     id: string = Templator.uuidv4();
 
@@ -46,7 +46,7 @@ export abstract class View extends EventsListener {
         return a
     }
 
-    render(view: View = this): string {
+    render(view: Component = this): string {
         return Templator.getInstance().withTemplate(view.getTemplate()).compile(this.merge({}, this.convertKeys(view.getKeys())));
     }
 
@@ -84,12 +84,16 @@ export abstract class View extends EventsListener {
         let btnSign = <HTMLButtonElement>document.getElementById(buttonId);
 
         btnSign.onclick = function () {
+            let next = true
             inputsArray.forEach(input => {
                 let hasError = checkInputs(<HTMLInputElement>input)
-                if(!hasError) {
-                    onValidated()
+                if(hasError && next) {
+                     next = false
                 }
             });
+            if(next) {
+                onValidated()
+            }
         };
 
         inputsArray.forEach(input => {

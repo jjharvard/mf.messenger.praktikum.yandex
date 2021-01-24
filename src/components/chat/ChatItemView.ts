@@ -1,6 +1,6 @@
-import {View} from "../../abstract/View";
+import {Component} from "../../abstract/Component";
 
-export class ChatItemView extends View {
+export class ChatItemView extends Component {
 
     constructor(private message: string) {
         super();

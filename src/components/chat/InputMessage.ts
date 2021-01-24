@@ -1,6 +1,6 @@
-import {View} from "../../abstract/View";
+import {Component} from "../../abstract/Component";
 
-export class InputMessage extends View {
+export class InputMessage extends Component {
 
     getTemplate(): string {
         return `<input name="message" class="input__edit" type="text" placeholder="Message">`;

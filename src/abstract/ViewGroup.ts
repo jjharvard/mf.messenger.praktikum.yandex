@@ -1,20 +1,20 @@
-import {View} from "./View";
+import {Component} from "./Component";
 import {Templator} from "../utils/Templator";
 
-export abstract class ViewGroup extends View {
+export abstract class ViewGroup extends Component {
 
-    children: View[] = [];
+    children: Component[] = [];
 
-    constructor(views: View[] = []) {
+    constructor(views: Component[] = []) {
         super();
         this.children = views;
     }
 
-    addView(child: View) {
+    addView(child: Component) {
         this.children.push(child);
     }
 
-    addViews(children: View[]) {
+    addViews(children: Component[]) {
         this.children = [...this.children,...children]
     }
 
@@ -22,7 +22,7 @@ export abstract class ViewGroup extends View {
         this.children = []
     }
 
-    getChildren(): View[] {
+    getChildren(): Component[] {
         return this.children;
     }
 
@@ -36,7 +36,7 @@ export abstract class ViewGroup extends View {
         return result
     }
 
-    render(view: View = this): string {
+    render(view: Component = this): string {
         let result = '';
         let renderedChildKeys: ArrayKeys = {};
         for (let c of this.children) {

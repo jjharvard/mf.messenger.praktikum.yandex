@@ -1,6 +1,6 @@
-import {View} from "../../abstract/View";
+import {Component} from "../../abstract/Component";
 
-export class UploadButton extends View {
+export class UploadButton extends Component {
 
     getTemplate(): string {
         return `<form class="input__attach-form" method="post" enctype="multipart/form-data">

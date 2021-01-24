@@ -1,6 +1,6 @@
-import {View} from "../../abstract/View";
+import {Component} from "../../abstract/Component";
 
-export class Button extends View {
+export class Button extends Component {
 
     getTemplate(): string {
         return `
@@ -9,7 +9,6 @@ export class Button extends View {
     }
 
     getKeys(): Keys {
-        return {
-        }
+        return {};
     }
 }
