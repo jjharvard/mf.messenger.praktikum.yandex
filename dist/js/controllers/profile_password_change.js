@@ -1,4 +1,4 @@
 import { Page } from "../abstract/Page";
-import { ProfilePasswordChange } from "../components/profilepassword/ProfilePasswordChange";
-let profilePasswordChange = new Page(new ProfilePasswordChange());
+import { ProfilePassChangeComponent } from "../components/profilepassword/ProfilePassChangeComponent";
+let profilePasswordChange = new Page(new ProfilePassChangeComponent());
 profilePasswordChange.mount();

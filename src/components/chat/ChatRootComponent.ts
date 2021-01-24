@@ -1,6 +1,6 @@
 import {ComponentGroup} from "../../abstract/ComponentGroup";
 
-export class ChatPage extends ComponentGroup {
+export class ChatRootComponent extends ComponentGroup {
 
     getTemplate(): string {
         return `<div class="chat-container">

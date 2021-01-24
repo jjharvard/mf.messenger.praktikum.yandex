@@ -1,7 +1,7 @@
 import {ComponentGroup} from "../../abstract/ComponentGroup";
 import {Button} from "../_common/Button";
 
-export class ProfileDataChange extends ComponentGroup {
+export class ProfileDataChangeComponent extends ComponentGroup {
 
     constructor() {
         super([new Button("''", "Save", "'profile-save__btn'")]);

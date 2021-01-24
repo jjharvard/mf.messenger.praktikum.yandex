@@ -1,17 +1,13 @@
-import {ComponentGroup} from "../../abstract/ComponentGroup";
-import {Button} from "../_common/Button";
-
-export class ProfilePasswordChange extends ComponentGroup {
-
+import { ComponentGroup } from "../../abstract/ComponentGroup";
+import { Button } from "../_common/Button";
+export class ProfilePassChangeComponent extends ComponentGroup {
     constructor() {
         super([new Button("''", "Save", "'profile-save__btn'")]);
     }
-
-    getKeys(): Keys {
+    getKeys() {
         return {};
     }
-
-    getTemplate(): string {
+    getTemplate() {
         return `<div class="profile-container">
                     <div  class="profile-title">
                         <img class="profile-title__icon" src="img/owl.png" alt=""/>
@@ -38,11 +34,10 @@ export class ProfilePasswordChange extends ComponentGroup {
                     </div>
                 </div>`;
     }
-
-    onViewCreated(payload: Payload) {
+    onViewCreated(payload) {
         let id = this.getChildrenByName('Button')[0].id;
         this.validate(id, () => {
-            location.href = '/profile.html'
+            location.href = '/profile.html';
         });
     }
 }

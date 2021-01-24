@@ -6,10 +6,10 @@ import { EditText } from "../components/chat/EditText";
 import { UploadButton } from "../components/chat/UploadButton";
 import { InputMessage } from "../components/chat/InputMessage";
 import { Button } from "../components/chat/Button";
-import { ChatPage } from "../components/chat/ChatPage";
+import { ChatRootComponent } from "../components/chat/ChatRootComponent";
 import { Page } from "../abstract/Page";
 import { Adapter } from "../abstract/Adapter";
-let chatPage = new Page(new ChatPage([
+let chatPage = new Page(new ChatRootComponent([
     new User(),
     new Sidebar(),
     new ChatRoom([new ChatListView(new Adapter(ChatListView.initialData()))]),

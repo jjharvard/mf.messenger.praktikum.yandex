@@ -1,4 +1,4 @@
-import { ChatPage } from "./components/chat/ChatPage";
+import { ChatRootComponent } from "./components/chat/ChatRootComponent";
 import { User } from "./components/chat/User";
 import { Sidebar } from "./components/chat/Sidebar";
 import { ChatRoom } from "./components/chat/ChatRoom";
@@ -8,7 +8,7 @@ import { UploadButton } from "./components/chat/UploadButton";
 import { InputMessage } from "./components/chat/InputMessage";
 import { Button } from "./components/chat/Button";
 import { Adapter } from "./abstract/Adapter";
-let chatPage = new ChatPage([
+let chatPage = new ChatRootComponent([
     new User(),
     new Sidebar(),
     new ChatRoom([new ChatListView(new Adapter(ChatListView.initialData()))]),

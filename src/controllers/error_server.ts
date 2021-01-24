@@ -1,5 +1,5 @@
 import {Page} from "../abstract/Page";
-import {ErrorPage} from "../components/error/ErrorPage";
+import {ErrorComponent} from "../components/error/ErrorComponent";
 
-let errorPage = new Page(new ErrorPage('500', 'Server Error'))
+let errorPage = new Page(new ErrorComponent('500', 'Server Error'))
 errorPage.mount()

@@ -1,6 +1,6 @@
 import {Page} from "../abstract/Page";
-import {LoginPage} from "../components/login/LoginPage";
+import {LoginComponent} from "../components/login/LoginComponent";
 
 
-let loginPage = new Page(new LoginPage())
+let loginPage = new Page(new LoginComponent())
 loginPage.mount()

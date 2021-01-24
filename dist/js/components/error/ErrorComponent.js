@@ -1,16 +1,14 @@
-import {ComponentGroup} from "../../abstract/ComponentGroup";
-
-export class ErrorPage extends ComponentGroup {
-
-    constructor(private errorNumber: string, private errorMessage: string) {
+import { ComponentGroup } from "../../abstract/ComponentGroup";
+export class ErrorComponent extends ComponentGroup {
+    constructor(errorNumber, errorMessage) {
         super();
+        this.errorNumber = errorNumber;
+        this.errorMessage = errorMessage;
     }
-
-    getKeys(): Keys {
+    getKeys() {
         return {};
     }
-
-    getTemplate(): string {
+    getTemplate() {
         return `<div class="error-container">
                     <div class="error">
                         <h1 class="error__title">${this.errorNumber}</h1>
@@ -19,5 +17,4 @@ export class ErrorPage extends ComponentGroup {
                     </div>
                 </div>`;
     }
-
 }

@@ -1,5 +1,5 @@
 import {Page} from "../abstract/Page";
-import {ProfilePage} from "../components/profile/ProfilePage";
+import {ProfileComponent} from "../components/profile/ProfileComponent";
 
-let profilePage = new Page(new ProfilePage())
+let profilePage = new Page(new ProfileComponent())
 profilePage.mount()
