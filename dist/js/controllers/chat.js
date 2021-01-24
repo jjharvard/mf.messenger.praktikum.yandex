@@ -8,10 +8,11 @@ import { InputMessage } from "../components/chat/InputMessage";
 import { Button } from "../components/chat/Button";
 import { ChatPage } from "../components/chat/ChatPage";
 import { Page } from "../abstract/Page";
+import { ViewAdapter } from "../abstract/ViewAdapter";
 let chatPage = new Page(new ChatPage([
     new User(),
     new Sidebar(),
-    new ChatRoom([new ChatListView()]),
+    new ChatRoom([new ChatListView(new ViewAdapter())]),
     new EditText([
         new UploadButton(),
         new InputMessage(),
