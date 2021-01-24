@@ -1,9 +1,11 @@
 import {ChatItemView} from "../components/chat/ChatItemView";
+import {Adapter} from "./Adapter";
 
-export class ViewAdapter {
+export class ViewAdapter extends Adapter<ChatItemView> {
 
     constructor(private items: ChatItemView[] = []) {
-        this.items = ViewAdapter._preRendered()
+        super()
+        this.items = this._preRendered()
     }
 
     setData(data: ChatItemView) {
@@ -19,7 +21,7 @@ export class ViewAdapter {
 
     }
 
-    static _preRendered(): ChatItemView[] {
+    _preRendered(): ChatItemView[] {
         let a = [
             `I can't get no satisfaction, I can't get no satisfaction 'cause I try and I try and I try and I try
                     I can't get no, I can't get no`,
