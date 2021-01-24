@@ -1,5 +1,5 @@
-import { ComponentGroup } from "../../abstract/ComponentGroup";
-import { Button } from "../_common/Button";
+import { ComponentGroup } from "../../abstract/ComponentGroup.js";
+import { Button } from "../_common/Button.js";
 export class SignComponent extends ComponentGroup {
     constructor() {
         super([

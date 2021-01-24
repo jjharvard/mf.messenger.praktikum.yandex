@@ -1,14 +1,14 @@
-import { User } from "../components/chat/User";
-import { Sidebar } from "../components/chat/Sidebar";
-import { ChatRoom } from "../components/chat/ChatRoom";
-import { ChatListView } from "../components/chat/ChatListView";
-import { EditText } from "../components/chat/EditText";
-import { UploadButton } from "../components/chat/UploadButton";
-import { InputMessage } from "../components/chat/InputMessage";
-import { Button } from "../components/chat/Button";
-import { ChatRootComponent } from "../components/chat/ChatRootComponent";
-import { Page } from "../abstract/Page";
-import { Adapter } from "../abstract/Adapter";
+import { User } from "../components/chat/User.js";
+import { Sidebar } from "../components/chat/Sidebar.js";
+import { ChatRoom } from "../components/chat/ChatRoom.js";
+import { ChatListView } from "../components/chat/ChatListView.js";
+import { EditText } from "../components/chat/EditText.js";
+import { UploadButton } from "../components/chat/UploadButton.js";
+import { InputMessage } from "../components/chat/InputMessage.js";
+import { Button } from "../components/chat/Button.js";
+import { ChatRootComponent } from "../components/chat/ChatRootComponent.js";
+import { Page } from "../abstract/Page.js";
+import { Adapter } from "../abstract/Adapter.js";
 let chatPage = new Page(new ChatRootComponent([
     new User(),
     new Sidebar(),

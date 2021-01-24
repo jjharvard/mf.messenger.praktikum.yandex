@@ -1,7 +1,7 @@
-import { ChatItemView } from "./ChatItemView";
-import { EventBus } from "../../utils/EventBus";
-import { ComponentGroup } from "../../abstract/ComponentGroup";
-import { Templator } from "../../utils/Templator";
+import { ChatItemView } from "./ChatItemView.js";
+import { EventBus } from "../../utils/EventBus.js";
+import { ComponentGroup } from "../../abstract/ComponentGroup.js";
+import { Templator } from "../../utils/Templator.js";
 export class ChatListView extends ComponentGroup {
     constructor(adapter) {
         super(adapter.getItems().map(item => {

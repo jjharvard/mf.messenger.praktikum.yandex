@@ -1,5 +1,5 @@
-import { Component } from "./Component";
-import { Templator } from "../utils/Templator";
+import { Component } from "./Component.js";
+import { Templator } from "../utils/Templator.js";
 export class ComponentGroup extends Component {
     constructor(views = []) {
         super();

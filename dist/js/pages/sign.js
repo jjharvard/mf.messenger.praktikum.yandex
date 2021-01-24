@@ -1,5 +1,5 @@
-import { SignComponent } from "../components/sign/SignComponent";
-import { Page } from "../abstract/Page";
+import { SignComponent } from "../components/sign/SignComponent.js";
+import { Page } from "../abstract/Page.js";
 let page = new Page(new SignComponent());
 page.mount();
 //# sourceMappingURL=sign.js.map

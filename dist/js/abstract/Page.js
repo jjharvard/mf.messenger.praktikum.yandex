@@ -1,4 +1,4 @@
-import { EventBus } from "../utils/EventBus";
+import { EventBus } from "../utils/EventBus.js";
 export class Page {
     constructor(view) {
         this.view = view;

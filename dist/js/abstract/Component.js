@@ -1,6 +1,6 @@
-import { Templator } from "../utils/Templator";
-import { EventBus } from "../utils/EventBus";
-import { EventsListener } from "./EventsListener";
+import { Templator } from "../utils/Templator.js";
+import { EventBus } from "../utils/EventBus.js";
+import { EventsListener } from "./EventsListener.js";
 export class Component extends EventsListener {
     constructor() {
         super();

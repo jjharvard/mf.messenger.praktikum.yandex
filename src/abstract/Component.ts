@@ -1,13 +1,13 @@
-import {Templator} from "../utils/Templator";
-import {EventBus} from "../utils/EventBus";
-import {EventsListener} from "./EventsListener";
+import {Templator} from "../utils/Templator.js";
+import {EventBus} from "../utils/EventBus.js";
+import {EventsListener} from "./EventsListener.js";
 
 export abstract class Component extends EventsListener {
 
     id: string = Templator.uuidv4();
 
     constructor() {
-        super()
+        super();
         EventBus.getInstance().register('onViewCreated', this);
     }
 
@@ -40,9 +40,9 @@ export abstract class Component extends EventsListener {
 
     merge(a: ArrayKeys, argObj: FlatKeys): ArrayKeys {
         for (let key in argObj) {
-            a[key] = a[key] ? [...a[key], argObj[key]] : [argObj[key]]
+            a[key] = a[key] ? [...a[key], argObj[key]] : [argObj[key]];
         }
-        return a
+        return a;
     }
 
     render(view: Component = this): string {
@@ -63,11 +63,11 @@ export abstract class Component extends EventsListener {
                     hasError = !/^[a-zA-Z\-]+$/.test(input.value);
                     break;
                 case 'phone':
-                    hasError = !/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/.test(input.value)
+                    hasError = !/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/.test(input.value);
                     break;
                 case 'password':
                 case 'confirm_password':
-                    hasError = !/^(\S){6,25}$/.test(input.value)
+                    hasError = !/^(\S){6,25}$/.test(input.value);
                     break;
                 default:
                     break;
@@ -75,23 +75,23 @@ export abstract class Component extends EventsListener {
             if (hasError) {
                 input.setAttribute('style', 'border: 2px solid #fa3e3e;');
             }
-            return hasError
-        }
+            return hasError;
+        };
 
         let inputsArray: Element[] = Array.from(document.getElementsByClassName('should_be_validated'));
 
         let btnSign = <HTMLButtonElement>document.getElementById(buttonId);
 
         btnSign.onclick = function () {
-            let next = true
+            let next = true;
             inputsArray.forEach(input => {
-                let hasError = checkInputs(<HTMLInputElement>input)
-                if(hasError && next) {
-                     next = false
+                let hasError = checkInputs(<HTMLInputElement>input);
+                if (hasError && next) {
+                    next = false;
                 }
             });
-            if(next) {
-                onValidated()
+            if (next) {
+                onValidated();
             }
         };
 
@@ -102,7 +102,7 @@ export abstract class Component extends EventsListener {
 
             (<HTMLInputElement>input).onblur = function (event) {
                 let input = (<HTMLInputElement>event.target);
-                checkInputs(input)
+                checkInputs(input);
             };
         });
     }

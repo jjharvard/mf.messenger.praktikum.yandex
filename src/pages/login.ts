@@ -1,6 +1,5 @@
-import {Page} from "../abstract/Page";
-import {LoginComponent} from "../components/login/LoginComponent";
+import {Page} from "../abstract/Page.js";
+import {LoginComponent} from "../components/login/LoginComponent.js";
 
-
-let loginPage = new Page(new LoginComponent())
-loginPage.mount()
+let loginPage = new Page(new LoginComponent());
+loginPage.mount();

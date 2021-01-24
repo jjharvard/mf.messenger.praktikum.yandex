@@ -1,4 +1,4 @@
-import {ComponentGroup} from "../../abstract/ComponentGroup";
+import {ComponentGroup} from "../../abstract/ComponentGroup.js";
 
 export class User extends ComponentGroup {
     getKeys(): Keys {

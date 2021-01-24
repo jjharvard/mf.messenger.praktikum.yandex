@@ -1,6 +1,6 @@
-import { ComponentGroup } from "../../abstract/ComponentGroup";
-import { Button } from "../_common/Button";
-import { Avatar } from "../_common/Avatar";
+import { ComponentGroup } from "../../abstract/ComponentGroup.js";
+import { Button } from "../_common/Button.js";
+import { Avatar } from "../_common/Avatar.js";
 export class ProfileDataChangeComponent extends ComponentGroup {
     constructor() {
         super([

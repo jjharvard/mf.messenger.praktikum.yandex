@@ -1,8 +1,8 @@
-import {ChatItemView} from "./ChatItemView";
-import {EventBus} from "../../utils/EventBus";
-import {ComponentGroup} from "../../abstract/ComponentGroup";
-import {Adapter} from "../../abstract/Adapter";
-import {Templator} from "../../utils/Templator";
+import {ChatItemView} from "./ChatItemView.js";
+import {EventBus} from "../../utils/EventBus.js";
+import {ComponentGroup} from "../../abstract/ComponentGroup.js";
+import {Adapter} from "../../abstract/Adapter.js";
+import {Templator} from "../../utils/Templator.js";
 
 export class ChatListView extends ComponentGroup {
 
@@ -17,16 +17,16 @@ export class ChatListView extends ComponentGroup {
 
     constructor(private adapter: Adapter<string>) {
         super(adapter.getItems().map(item => {
-            return new ChatItemView(item)
+            return new ChatItemView(item);
         }));
         EventBus.getInstance().register('onMessage', this);
     }
 
     onMessage(payload: Payload) {
-        this.removeAllChildren()
-        this.adapter.addItem(payload['message'] as string)
+        this.removeAllChildren();
+        this.adapter.addItem(payload['message'] as string);
         this.addViews(this.adapter.getItems().map(item => {
-            return new ChatItemView(item)
+            return new ChatItemView(item);
         }));
         let element = document.getElementById(this.id);
         element!.innerHTML = this.render();

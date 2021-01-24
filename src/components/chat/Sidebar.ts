@@ -1,4 +1,4 @@
-import {ComponentGroup} from "../../abstract/ComponentGroup";
+import {ComponentGroup} from "../../abstract/ComponentGroup.js";
 
 export class Sidebar extends ComponentGroup {
     getKeys(): Keys {

@@ -1,9 +1,9 @@
-import {Component} from "./Component";
-import {EventBus} from "../utils/EventBus";
+import {Component} from "./Component.js";
+import {EventBus} from "../utils/EventBus.js";
 
 export class Page {
 
-    view: Component
+    view: Component;
 
     constructor(view: Component) {
         this.view = view;
@@ -14,8 +14,8 @@ export class Page {
         let inner = this.view.render(this.view);
         root!.innerHTML = inner;
         window.onload = function () {
-            EventBus.getInstance().emit('onViewCreated')
-        }
+            EventBus.getInstance().emit('onViewCreated');
+        };
     }
 
 }

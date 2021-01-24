@@ -1,4 +1,4 @@
-import {Component} from "../../abstract/Component";
+import {Component} from "../../abstract/Component.js";
 
 export class Button extends Component {
 
