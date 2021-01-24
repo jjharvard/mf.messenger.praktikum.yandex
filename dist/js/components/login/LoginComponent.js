@@ -3,8 +3,8 @@ import { Button } from "../_common/Button";
 export class LoginComponent extends ComponentGroup {
     constructor() {
         super([
-            new Button("''", "Authorise", "'auth__btn_main'"),
-            new Button("'/sign.html'", "No Account?", "auth__btn_secondary"),
+            new Button("'/chat.html'", "Authorise", "'auth__btn_main'"),
+            new Button("'/sign.html'", "No Account?", "'auth__btn_secondary'"),
         ]);
     }
     getKeys() {

@@ -7,9 +7,13 @@ export class Button extends Component {
         this.clazz = clazz;
     }
     getKeys() {
-        return {};
+        return {
+            'name': this.name,
+            'location': this.locationHRef,
+            'clazz': this.clazz
+        };
     }
     getTemplate() {
-        return `<button onclick="location.href=${this.locationHRef}" class=${this.clazz}>${this.name}</button>`;
+        return `<button onclick="location.href={{location}}" class={{clazz}}>{{name}}</button>`;
     }
 }
