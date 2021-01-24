@@ -33,7 +33,7 @@ export class SignPage extends ViewGroup {
     onViewCreated(payload) {
         let id = this.getChildrenByName('Button')[0].id;
         this.validate(id, () => {
-            console.log('Registration started');
+            console.log('registration');
         });
     }
 }
