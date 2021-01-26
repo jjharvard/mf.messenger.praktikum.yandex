@@ -2,9 +2,13 @@
 
 [https://angry-darwin-d47765.netlify.app](https://angry-darwin-d47765.netlify.app)
 <br/>
-Для компиляции проекта выполните команду:
+Для компиляции проекта установите typescript:
 <br/>
-tsc
+npm install typescript -g
+<br/>
+и выполните команду:
+<br/>
+yarn build
 <br/>
 Для запуска локального сервера выполните команды:
 <br/>
