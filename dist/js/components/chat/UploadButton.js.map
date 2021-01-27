@@ -1,0 +1,1 @@
+{"version":3,"file":"UploadButton.js","sourceRoot":"","sources":["../../../../src/components/chat/UploadButton.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,SAAS,EAAC,MAAM,6BAA6B,CAAC;AAEtD,MAAM,OAAO,YAAa,SAAQ,SAAS;IAEvC,WAAW;QACP,OAAO;;4BAEa,CAAC;IACzB,CAAC;IAED,OAAO;QACH,OAAO,EAAE,CAAC;IACd,CAAC;CAEJ"}

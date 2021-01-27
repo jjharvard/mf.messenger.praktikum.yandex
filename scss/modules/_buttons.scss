@@ -1,0 +1,11 @@
+@mixin btn-submit($background: $app__colorPrimary, $color: $app__colorWhite) {
+  height: $app__btnHeight;
+  background: $background;
+  color: $color;
+  border-radius: $app__radiusBorder;
+  @content;
+  &:focus {
+    outline: none;
+    border-radius: $app__radiusBorder;
+  }
+}

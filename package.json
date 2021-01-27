@@ -12,6 +12,7 @@
     "node": ">=12.0.0"
   },
   "scripts": {
+    "sass": "sass --watch scss:dist/style --style expanded --sourcemap=none",
     "build": "tsc",
     "serve": "nodemon server.js --watch"
   }
