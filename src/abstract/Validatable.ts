@@ -1,73 +1,39 @@
-import {Templator} from "../utils/Templator.js";
-import {EventBus} from "../utils/EventBus.js";
-import {EventsListener} from "./EventsListener.js";
+import {Component} from "./Component.js";
 
-export abstract class Component extends EventsListener {
-
-    id: string = Templator.uuidv4();
-
-    constructor() {
-        super();
-        EventBus.getInstance().register('onViewCreated', this);
-    }
-
-    abstract getTemplate(): string
-
-    abstract getKeys(): Keys
-
-    getDOMView(): HTMLElement | null {
-        return document.getElementById(this.id);
-    }
-
-    protected convertKeys(keys: Keys): FlatKeys {
-        let result: FlatKeys = {};
-        for (let key in keys) {
-            if (typeof keys !== 'string') {
-                result[key] = "" + keys[key];
-            } else {
-                result[key] = keys[key];
-            }
-        }
-        result = Object.assign(result, {'uuid': this.id});
-        return result;
-    }
-
-    merge(a: ArrayKeys, argObj: FlatKeys): ArrayKeys {
-        for (let key in argObj) {
-            a[key] = a[key] ? [...a[key], argObj[key]] : [argObj[key]];
-        }
-        return a;
-    }
-
-    render(view: Component = this): string {
-        return Templator.getInstance().withTemplate(view.getTemplate()).compile(this.merge({}, this.convertKeys(view.getKeys())));
-    }
+export abstract class Validatable extends Component {
 
     validate(buttonId: string, onValidated: () => void) {
         let checkInputs = (input: HTMLInputElement) => {
             let hasError = false;
+            let inputMessage = ''
             switch (input.name) {
                 case 'email':
                     hasError = !/^\S+@\S+\.[a-z]{2,5}$/.test(input.value);
+                    inputMessage = 'Should contain valid email'
                     break;
                 case 'login':
                 case 'name':
                 case 'surname':
                 case 'nickname':
                     hasError = !/^[a-zA-Z\-]+$/.test(input.value);
+                    inputMessage = 'Should contain letters only'
                     break;
                 case 'phone':
                     hasError = !/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/.test(input.value);
+                    inputMessage = 'Should contain valid phone'
                     break;
                 case 'password':
                 case 'confirm_password':
                     hasError = !/^(\S){6,25}$/.test(input.value);
+                    inputMessage = 'Password length from 6 to 25'
                     break;
                 default:
                     break;
             }
             if (hasError) {
                 input.setAttribute('style', 'border: 2px solid #fa3e3e;');
+                input.value = ''
+                input.placeholder = inputMessage;
             }
             return hasError;
         };

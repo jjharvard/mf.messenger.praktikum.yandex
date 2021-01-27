@@ -26,6 +26,7 @@ export class Templator {
                 let value = <string>data.shift();
                 this.template = this.template.replace(new RegExp(key[0], "i"), value);
             }
+            Templator.REGEXP.lastIndex = 0;
         }
 
         let re = /(<[a-z]+)/g;
