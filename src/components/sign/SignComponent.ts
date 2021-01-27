@@ -36,7 +36,7 @@ export class SignComponent extends ComponentGroup {
     }
 
     onViewCreated() {
-        let id = this.getChildrenByName('Button')[0].id;
+        let id = this.getChildElementsByName('Button')[0].id;
         this.validate(id, () => {
             console.log('registration');
         });

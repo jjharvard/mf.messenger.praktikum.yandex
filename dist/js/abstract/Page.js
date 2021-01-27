@@ -7,6 +7,7 @@ export class Page {
         let root = document.getElementById('root');
         let inner = this.view.render(this.view);
         root.innerHTML = inner;
+        console.log(inner);
         window.onload = function () {
             EventBus.getInstance().emit('onViewCreated');
         };

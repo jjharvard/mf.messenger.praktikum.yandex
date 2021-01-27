@@ -48,7 +48,7 @@ export class ProfileDataChangeComponent extends ComponentGroup {
                 </div>`;
     }
     onViewCreated() {
-        let id = this.getChildrenByName('Button')[0].id;
+        let id = this.getChildElementsByName('Button')[0].id;
         this.validate(id, () => {
             location.href = '/profile.html';
         });

@@ -18,6 +18,29 @@ body {
   align-items: center;
 }
 
+.validatable {
+  position: relative;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: stretch;
+  justify-self: stretch;
+}
+.validatable_error {
+  display: none;
+  background: #fa3e3e;
+  padding: 3px;
+  font-size: 0.9rem;
+  height: 40px;
+  color: white;
+  word-wrap: break-word;
+  vertical-align: middle;
+  width: 250px;
+  position: absolute;
+  right: -260px;
+  bottom: 20px;
+}
+
 .auth-container {
   height: 90vh;
   display: flex;
