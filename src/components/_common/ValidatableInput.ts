@@ -8,10 +8,10 @@ export class ValidatableInput extends ComponentGroup {
     // @ts-ignore
     message: HTMLDivElement;
 
-    constructor(name: string, clazz: string, placeholder: string, type: string) {
+    constructor(prefix: string, name: string, clazz: string, placeholder: string, type: string, value: string) {
         super([
-            new Input(name, clazz, placeholder, type),
-            new ValidationMessage(name)
+            new Input(name, clazz, placeholder, type, value),
+            new ValidationMessage(prefix, name)
         ]);
     }
 
@@ -40,7 +40,7 @@ export class ValidatableInput extends ComponentGroup {
     }
 
     setErrorStyle() {
-        this.message.setAttribute('style', 'display: block;');
+        this.message.setAttribute('style', 'display: flex;');
         this.input.setAttribute('style', 'border: 2px solid #fa3e3e;');
     }
 

@@ -6,9 +6,9 @@ export class LoginComponent extends ComponentGroup {
 
     constructor() {
         super([
-            new ValidatableInput("login", "auth__input should_be_validated", "Login", "text"),
-            new ValidatableInput("password", "auth__input should_be_validated", "Password", "password"),
-            new Button("", "Authorise", "'auth__btn_main'"),
+            new ValidatableInput("auth", "login", "auth__input", "Login", "text", ''),
+            new ValidatableInput("auth","password", "auth__input", "Password", "password", ''),
+            new Button("", "Authorise", "auth__btn_main"),
             new Button("'/sign.html'", "No Account?", "'auth__btn_secondary'"),
         ]);
     }

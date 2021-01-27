@@ -59,19 +59,16 @@
   justify-content: center;
   align-items: stretch;
   justify-self: stretch;
+}
 
-  &_error {
-    display: none;
-    background: #fa3e3e;
-    padding: $app__marginExtraSmall;
-    font-size: 0.9rem;
-    height: 40px;
-    color: white;
-    word-wrap: break-word;
-    vertical-align: middle;
-    width: 250px;
-    position: absolute;
-    right: -260px;
-    bottom: 20px;
-  }
+@include validatable('auth') {
+  bottom: 21px;
+  height: 24px;
+  font-size: 0.9rem;
+}
+
+@include validatable('profile') {
+  bottom: 0;
+  height: 16px;
+  font-size: 0.8rem;
 }

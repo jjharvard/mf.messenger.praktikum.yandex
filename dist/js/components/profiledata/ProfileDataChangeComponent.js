@@ -1,9 +1,17 @@
 import { ComponentGroup } from "../../abstract/ComponentGroup.js";
 import { Button } from "../_common/Button.js";
 import { Avatar } from "../_common/Avatar.js";
+import { ValidatableInput } from "../_common/ValidatableInput.js";
 export class ProfileDataChangeComponent extends ComponentGroup {
+    //<input name="email" class="profile__input should_be_validated" id="form__email" value="john@yandex.ru">
     constructor() {
         super([
+            new ValidatableInput("profile", "email", "profile__input", "Email", "text", "john@yandex.ru"),
+            new ValidatableInput("profile", "login", "profile__input", "Login", "text", "john"),
+            new ValidatableInput("profile", "name", "profile__input", "Name", "text", "John"),
+            new ValidatableInput("profile", "surname", "profile__input", "Surname", "text", "Doe"),
+            new ValidatableInput("profile", "nickname", "profile__input", "Nickname", "text", "Johnny"),
+            new ValidatableInput("profile", "phone", "profile__input", "Phone", "text", "8(900)909-99-00"),
             new Avatar('none'),
             new Button("'/profile.html'", "Save", "'profile-save__btn'")
         ]);
@@ -17,27 +25,27 @@ export class ProfileDataChangeComponent extends ComponentGroup {
                     <form class="profile">
                         <div class="profile__field">
                             <label class="profile__label" for="form__email">Email</label>
-                            <input name="email" class="profile__input should_be_validated" id="form__email" value="john@yandex.ru">
+                            {{ValidatableInput}}
                         </div>
                         <div class="profile__field">
                             <label class="profile__label" for="form__login">Login</label>
-                            <input name="login" class="profile__input should_be_validated" id="form__login" value="john">
+                            {{ValidatableInput}}
                         </div>
                         <div class="profile__field">
                             <label class="profile__label" for="form__name">Name</label>
-                            <input name="name" class="profile__input should_be_validated" id="form__name" value="John">
+                            {{ValidatableInput}}
                         </div>
                         <div class="profile__field">
                             <label class="profile__label" for="form__surname">Surname</label>
-                            <input name="name" class="profile__input should_be_validated" id="form__surname" value="Doe">
+                            {{ValidatableInput}}
                         </div>
                         <div class="profile__field">
                             <label class="profile__label" for="form__nickname">Chat Nickname</label>
-                            <input name="nickname" class="profile__input should_be_validated" id="form__nickname" value="Johnny">
+                            {{ValidatableInput}}
                         </div>
                         <div class="profile__field">
                             <label class="profile__label" for="form__phone">Phone</label>
-                            <input name="phone" class="profile__input should_be_validated" id="form__phone" value="8(900)909-99-00">
+                            {{ValidatableInput}}
                         </div>
                 
                     </form>
@@ -48,8 +56,9 @@ export class ProfileDataChangeComponent extends ComponentGroup {
                 </div>`;
     }
     onViewCreated() {
-        let id = this.getChildElementsByName('Button')[0].id;
-        this.validate(id, () => {
+        let signBtn = this.getChildElementsByName('Button')[0];
+        let validatableInputs = this.getChildComponentsByName('ValidatableInput');
+        this.validateOnClick(signBtn, validatableInputs, () => {
             location.href = '/profile.html';
         });
     }

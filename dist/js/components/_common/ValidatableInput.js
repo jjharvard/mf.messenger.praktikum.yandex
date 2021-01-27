@@ -2,10 +2,10 @@ import { ComponentGroup } from "../../abstract/ComponentGroup.js";
 import { Input } from "./Input.js";
 import { ValidationMessage } from "./ValidationMessage.js";
 export class ValidatableInput extends ComponentGroup {
-    constructor(name, clazz, placeholder, type) {
+    constructor(prefix, name, clazz, placeholder, type, value) {
         super([
-            new Input(name, clazz, placeholder, type),
-            new ValidationMessage(name)
+            new Input(name, clazz, placeholder, type, value),
+            new ValidationMessage(prefix, name)
         ]);
     }
     getKeys() {
@@ -29,7 +29,7 @@ export class ValidatableInput extends ComponentGroup {
         return hasError;
     }
     setErrorStyle() {
-        this.message.setAttribute('style', 'display: block;');
+        this.message.setAttribute('style', 'display: flex;');
         this.input.setAttribute('style', 'border: 2px solid #fa3e3e;');
     }
     setValidStyle() {

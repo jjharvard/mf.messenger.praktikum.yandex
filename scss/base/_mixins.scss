@@ -8,6 +8,24 @@
   }
 }
 
+@mixin validatable($action) {
+  .#{$action}__validatable_error {
+    display: none;
+    background: #fa3e3e;
+    align-items: center;
+    justify-content: center;
+    padding: $app__marginExtraSmall;
+    font-size: 0.8rem;
+    color: white;
+    word-wrap: break-word;
+    text-align: center;
+    width: 340px;
+    position: absolute;
+    right: -350px;
+    @content
+  }
+}
+
 @mixin astext() {
   background: none;
   border: none;

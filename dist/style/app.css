@@ -26,19 +26,41 @@ body {
   align-items: stretch;
   justify-self: stretch;
 }
-.validatable_error {
+
+.auth__validatable_error {
   display: none;
   background: #fa3e3e;
+  align-items: center;
+  justify-content: center;
   padding: 3px;
-  font-size: 0.9rem;
-  height: 40px;
+  font-size: 0.8rem;
   color: white;
   word-wrap: break-word;
-  vertical-align: middle;
-  width: 250px;
+  text-align: center;
+  width: 340px;
   position: absolute;
-  right: -260px;
-  bottom: 20px;
+  right: -350px;
+  bottom: 21px;
+  height: 24px;
+  font-size: 0.9rem;
+}
+
+.profile__validatable_error {
+  display: none;
+  background: #fa3e3e;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  font-size: 0.8rem;
+  color: white;
+  word-wrap: break-word;
+  text-align: center;
+  width: 340px;
+  position: absolute;
+  right: -350px;
+  bottom: 0;
+  height: 16px;
+  font-size: 0.8rem;
 }
 
 .auth-container {
