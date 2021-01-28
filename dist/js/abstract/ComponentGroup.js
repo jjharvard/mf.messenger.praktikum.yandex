@@ -18,7 +18,16 @@ export class ComponentGroup extends Component {
     getChildren() {
         return this.children;
     }
-    getChildrenByName(name) {
+    getChildComponentsByName(name) {
+        let result = [];
+        for (let c of this.children) {
+            if (name === c.constructor.name) {
+                result.push(c);
+            }
+        }
+        return result;
+    }
+    getChildElementsByName(name) {
         let result = [];
         for (let c of this.children) {
             if (name === c.constructor.name) {
@@ -26,6 +35,19 @@ export class ComponentGroup extends Component {
             }
         }
         return result;
+    }
+    validateOnClick(btn, validatableInputs, onNext) {
+        btn.onclick = () => {
+            let hasError = false;
+            validatableInputs.forEach((vi) => {
+                if (!hasError) {
+                    hasError = vi.check();
+                }
+            });
+            if (!hasError) {
+                onNext();
+            }
+        };
     }
     render(view = this) {
         let result = '';

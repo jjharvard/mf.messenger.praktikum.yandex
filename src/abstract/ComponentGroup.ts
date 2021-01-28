@@ -1,5 +1,6 @@
 import {Component} from "./Component.js";
 import {Templator} from "../utils/Templator.js";
+import {ValidatableInput} from "../components/_common/ValidatableInput.js";
 
 export abstract class ComponentGroup extends Component {
 
@@ -26,7 +27,17 @@ export abstract class ComponentGroup extends Component {
         return this.children;
     }
 
-    getChildrenByName(name: string): HTMLElement[] {
+    getChildComponentsByName(name: string): Component[] {
+        let result = [];
+        for (let c of this.children) {
+            if (name === c.constructor.name) {
+                result.push(c);
+            }
+        }
+        return result;
+    }
+
+    getChildElementsByName(name: string): HTMLElement[] {
         let result = [];
         for (let c of this.children) {
             if (name === c.constructor.name) {
@@ -34,6 +45,20 @@ export abstract class ComponentGroup extends Component {
             }
         }
         return result;
+    }
+
+    validateOnClick(btn: HTMLButtonElement, validatableInputs: ValidatableInput[], onNext: () => void) {
+        btn.onclick = () => {
+            let hasError = false;
+            validatableInputs.forEach((vi) => {
+                if (!hasError) {
+                    hasError = vi.check();
+                }
+            });
+            if (!hasError) {
+                onNext();
+            }
+        };
     }
 
     render(view: Component = this): string {

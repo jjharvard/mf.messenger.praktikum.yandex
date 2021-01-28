@@ -1,0 +1,65 @@
+@mixin container($action) {
+  .#{$action}-container {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @content;
+  }
+}
+
+@mixin validatable($action) {
+  .#{$action}__validatable_error {
+    display: none;
+    background: #fa3e3e;
+    align-items: center;
+    justify-content: center;
+    padding: $app__marginExtraSmall;
+    font-size: 0.8rem;
+    color: white;
+    word-wrap: break-word;
+    text-align: center;
+    width: 340px;
+    position: absolute;
+    right: -350px;
+    @content
+  }
+}
+
+@mixin astext() {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  @content;
+}
+
+@mixin rounded($diameter) {
+  margin: 0px auto 0px auto;
+  border-radius: 50%;
+  width: $diameter;
+  height: $diameter;
+  border: 2px solid #f1f1f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @content;
+}
+
+@mixin asimage($width) {
+  margin: 0px auto 0px auto;
+  width: $width;
+  height: $width;
+  border: none;
+  @content;
+}
+
+@mixin transparent() {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
