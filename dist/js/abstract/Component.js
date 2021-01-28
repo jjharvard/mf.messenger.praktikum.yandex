@@ -30,7 +30,9 @@ export class Component extends EventsListener {
         return a;
     }
     render(view = this) {
-        return Templator.getInstance().withTemplate(view.getTemplate()).compile(this.merge({}, this.convertKeys(view.getKeys())));
+        return Templator.getInstance()
+            .withTemplate(view.getTemplate())
+            .compile(this.merge({}, this.convertKeys(view.getKeys())));
     }
 }
 //# sourceMappingURL=Component.js.map

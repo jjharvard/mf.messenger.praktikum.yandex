@@ -2,7 +2,9 @@ export class Templator {
 
     static instance: Templator;
 
-    static REGEXP = /\{\{(.*?)\}\}/gi;
+    static REGEXP_KEY = /\{\{(.*?)\}\}/gi;
+    static REGEXP_ID = /(<[a-z]+)/g;
+
     private template: string = '';
 
     static getInstance() {
@@ -19,21 +21,21 @@ export class Templator {
 
     compile(ctx: ArrayKeys) {
         let key = null;
-        while ((key = Templator.REGEXP.exec(this.template))) {
+        while ((key = Templator.REGEXP_KEY.exec(this.template))) {
             if (key[1]) {
-                const tmplValue = key[1].trim();
-                const data = ctx[tmplValue];
+                const tmplKey = key[1].trim();
+                const data = ctx[tmplKey];
                 let value = <string>data.shift();
                 this.template = this.template.replace(new RegExp(key[0], "i"), value);
             }
-            Templator.REGEXP.lastIndex = 0;
+            Templator.REGEXP_KEY.lastIndex = 0;
         }
 
-        let re = /(<[a-z]+)/g;
-        key = re.exec(this.template);
+        key = Templator.REGEXP_ID.exec(this.template);
         if (key) {
-            this.template = this.replaceAt(this.template, key['index'], key[1].length, `${key[1]} id="${ctx['uuid']}"`);
+            this.template = this.replaceAt(this.template, key.index, key[1].length, `${key[1]} id="${ctx['uuid']}"`);
         }
+        Templator.REGEXP_ID.lastIndex = 0;
         return this.template;
     }
 

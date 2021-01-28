@@ -40,7 +40,9 @@ export abstract class Component extends EventsListener {
     }
 
     render(view: Component = this): string {
-        return Templator.getInstance().withTemplate(view.getTemplate()).compile(this.merge({}, this.convertKeys(view.getKeys())));
+        return Templator.getInstance()
+            .withTemplate(view.getTemplate())
+            .compile(this.merge({}, this.convertKeys(view.getKeys())));
     }
 
 }

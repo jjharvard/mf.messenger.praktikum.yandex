@@ -38,4 +38,4 @@ export class Templator {
         return str.substr(0, index) + replacement + str.substr(index + offset);
     }
 }
-Templator.REGEXP = /\{\{(.*?)\}\}/gi;
+Templator.REGEXP_KEY = /\{\{(.*?)\}\}/gi;

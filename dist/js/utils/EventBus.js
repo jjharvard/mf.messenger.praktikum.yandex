@@ -23,7 +23,7 @@ export class EventBus {
     }
     unregister(event, view) {
         let index = this.listeners[event].indexOf(view);
-        if (index != -1) {
+        if (index !== -1) {
             this.listeners[event].splice(index, 1);
         }
     }
