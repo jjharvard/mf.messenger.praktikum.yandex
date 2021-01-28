@@ -1,6 +1,7 @@
 import { ComponentGroup } from "../../abstract/ComponentGroup.js";
 import { Input } from "./Input.js";
 import { ValidationMessage } from "./ValidationMessage.js";
+import { ValidationUtil } from "../../utils/ValidationUtil.js";
 export class ValidatableInput extends ComponentGroup {
     constructor(prefix, name, clazz, placeholder, type, value) {
         super([
@@ -22,7 +23,7 @@ export class ValidatableInput extends ComponentGroup {
         };
     }
     check() {
-        let hasError = this.hasError(this.input);
+        let hasError = ValidationUtil.hasError(this.input);
         if (hasError) {
             this.setErrorStyle();
         }
@@ -42,30 +43,6 @@ export class ValidatableInput extends ComponentGroup {
                     {{ValidationMessage}}
                 </div>
                 `;
-    }
-    hasError(input) {
-        let hasError = false;
-        switch (input.name) {
-            case 'email':
-                hasError = !/^\S+@\S+\.[a-z]{2,5}$/.test(input.value);
-                break;
-            case 'login':
-            case 'name':
-            case 'surname':
-            case 'nickname':
-                hasError = !/^[a-zA-Z\-]+$/.test(input.value);
-                break;
-            case 'phone':
-                hasError = !/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/.test(input.value);
-                break;
-            case 'password':
-            case 'confirm_password':
-                hasError = !/^(\S){6,25}$/.test(input.value);
-                break;
-            default:
-                break;
-        }
-        return hasError;
     }
 }
 //# sourceMappingURL=ValidatableInput.js.map

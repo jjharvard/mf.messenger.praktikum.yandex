@@ -3,7 +3,6 @@ import { Button } from "../_common/Button.js";
 import { Avatar } from "../_common/Avatar.js";
 import { ValidatableInput } from "../_common/ValidatableInput.js";
 export class ProfileDataChangeComponent extends ComponentGroup {
-    //<input name="email" class="profile__input should_be_validated" id="form__email" value="john@yandex.ru">
     constructor() {
         super([
             new ValidatableInput("profile", "email", "profile__input", "Email", "text", "john@yandex.ru"),
@@ -47,7 +46,6 @@ export class ProfileDataChangeComponent extends ComponentGroup {
                             <label class="profile__label" for="form__phone">Phone</label>
                             {{ValidatableInput}}
                         </div>
-                
                     </form>
                 
                     <div class="profile-save">

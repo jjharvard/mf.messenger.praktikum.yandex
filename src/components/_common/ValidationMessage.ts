@@ -1,17 +1,7 @@
 import {Component} from "../../abstract/Component.js";
+import {ValidationUtil} from "../../utils/ValidationUtil.js";
 
 export class ValidationMessage extends Component {
-
-    static MESSAGES: { [k: string]: string } = {
-        'email': 'Should contain valid email',
-        'password': 'Password should be of length from 6 to 25 symbols',
-        'confirm_password': 'Password should be of length from 6 to 25 symbols',
-        'name': 'Name should contain letters only',
-        'login': 'Login should contain letters only',
-        'surname': 'Surname should contain letters only',
-        'nickname': 'Nickname should contain letters only',
-        'phone': 'Should contain valid phone number',
-    };
 
     constructor(private prefix: string, private name: string) {
         super();
@@ -19,7 +9,7 @@ export class ValidationMessage extends Component {
 
     getKeys(): Keys {
         return {
-            'message': ValidationMessage.MESSAGES[this.name],
+            'message': ValidationUtil.VALIDATION_DATA[this.name][0],
             'prefix': this.prefix
         };
     }
