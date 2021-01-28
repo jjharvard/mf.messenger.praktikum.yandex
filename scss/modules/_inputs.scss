@@ -1,0 +1,13 @@
+@mixin input-field($height, $colorBorder: $app__colorSecondary, $colorBorderFocused: $app__colorPrimaryLight, $marginBottom: $app__marginMedium) {
+  margin-bottom: $marginBottom;
+  height: $height;
+  border-radius: $app__radiusBorder;
+  border: $app__thicknessBorder solid $colorBorder;
+  padding-left: $app__marginSmall;
+  &:focus {
+    outline: none;
+    border-radius: $app__radiusBorder;
+    border: $app__thicknessBorder solid $colorBorderFocused;
+  }
+  @content
+}
