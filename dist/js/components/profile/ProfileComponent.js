@@ -1,6 +1,7 @@
 import { ComponentGroup } from "../../abstract/ComponentGroup.js";
 import { Button } from "../_common/Button.js";
 import { Avatar } from "../_common/Avatar.js";
+import { Router } from "../../abstract/Router.js";
 export class ProfileComponent extends ComponentGroup {
     constructor() {
         super([
@@ -12,6 +13,18 @@ export class ProfileComponent extends ComponentGroup {
     }
     getKeys() {
         return {};
+    }
+    onViewCreated() {
+        if (super.onViewCreated()) {
+            let btnExit = this.getChildElementsByName('Button')[2];
+            btnExit.onclick = () => {
+                Router.getInstance().popAll();
+            };
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     getTemplate() {
         return `<div class="profile-container">

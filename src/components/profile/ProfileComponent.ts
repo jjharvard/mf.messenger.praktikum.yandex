@@ -17,6 +17,18 @@ export class ProfileComponent extends ComponentGroup {
         return {};
     }
 
+    onViewCreated(): boolean {
+        if (super.onViewCreated()) {
+            let btnExit: HTMLButtonElement = <HTMLButtonElement>this.getChildElementsByName('Button')[2];
+            btnExit.onclick = () => {
+
+            };
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     getTemplate(): string {
         return `<div class="profile-container">
                     {{Avatar}}

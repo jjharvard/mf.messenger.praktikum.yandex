@@ -1,14 +1,13 @@
 export class Router {
     constructor(routes) {
         this.routes = routes;
-        // window.onpopstate = (event: PopStateEvent) => {
-        //     console.log('PopStateEvent => ', event);
-        // };
+        window.onpopstate = (e) => {
+            console.log('popstate => ', e.state);
+        };
         (function addListener(scope) {
             window.addEventListener('hashchange', function (event) {
-                console.log('HashChangeEvent => ', event);
-                console.log('oldNew => ', event.oldURL, ' => ', event.newURL);
-                console.log('window.location.hash => ', window.location.hash);
+                // console.log('history.length => ', window.history.length);
+                // console.log('history.state => ', window.history.state);
                 let regex = /#([a-z-]+)/;
                 let key = regex.exec(event.newURL);
                 if (key) {
@@ -45,6 +44,12 @@ export class Router {
     }
     back() {
         window.history.back();
+    }
+    popAll() {
+        for (let i = 0; i < window.history.length; i++) {
+            window.history.back();
+        }
+        window.location.replace('#login');
     }
     start() {
         if (window.location.hash) {
