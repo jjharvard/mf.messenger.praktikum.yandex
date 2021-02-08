@@ -19,13 +19,19 @@ export class ChatListComponent extends ComponentGroup {
         ];
     }
     onMessage(payload) {
-        this.removeAllChildren();
-        this.adapter.addItem(payload['message']);
-        this.addViews(this.adapter.getItems().map(item => {
-            return new ChatItemComponent(item);
-        }));
-        let element = document.getElementById(this.id);
-        element.innerHTML = this.render();
+        if (super.onMessage(payload)) {
+            this.removeAllChildren();
+            this.adapter.addItem(payload['message']);
+            this.addViews(this.adapter.getItems().map(item => {
+                return new ChatItemComponent(item);
+            }));
+            let element = document.getElementById(this.id);
+            element.innerHTML = this.render();
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     getTemplate() {
         return `

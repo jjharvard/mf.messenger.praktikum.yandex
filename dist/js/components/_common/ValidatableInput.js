@@ -13,14 +13,20 @@ export class ValidatableInput extends ComponentGroup {
         return {};
     }
     onViewCreated() {
-        this.input = document.getElementById(this.getChildren()[0].id);
-        this.message = document.getElementById(this.getChildren()[1].id);
-        this.input.onblur = () => {
-            this.check();
-        };
-        this.input.onfocus = () => {
-            this.setValidStyle();
-        };
+        if (super.onViewCreated()) {
+            this.input = document.getElementById(this.getChildren()[0].id);
+            this.message = document.getElementById(this.getChildren()[1].id);
+            this.input.onblur = () => {
+                this.check();
+            };
+            this.input.onfocus = () => {
+                this.setValidStyle();
+            };
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     check() {
         let hasError = ValidationUtil.hasError(this.input);

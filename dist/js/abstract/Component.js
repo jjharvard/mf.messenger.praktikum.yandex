@@ -1,9 +1,8 @@
 import { Templator } from "../utils/Templator.js";
 import { EventBus } from "../utils/EventBus.js";
-import { EventsListener } from "./EventsListener.js";
-export class Component extends EventsListener {
+import { Utils } from "../utils/Utils.js";
+export class Component {
     constructor() {
-        super();
         this.id = Templator.uuidv4();
         EventBus.getInstance().register('onViewCreated', this);
     }
@@ -33,6 +32,18 @@ export class Component extends EventsListener {
         return Templator.getInstance()
             .withTemplate(view.getTemplate())
             .compile(this.merge({}, this.convertKeys(view.getKeys())));
+    }
+    onMessage(payload = {}) {
+        if (!payload) {
+            console.log(payload);
+        }
+        return Utils.isRendered(this);
+    }
+    onViewCreated(payload = {}) {
+        if (!payload) {
+            console.log(payload);
+        }
+        return Utils.isRendered(this);
     }
 }
 //# sourceMappingURL=Component.js.map

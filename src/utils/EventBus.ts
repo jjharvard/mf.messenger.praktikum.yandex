@@ -1,5 +1,4 @@
 import {Component} from "../abstract/Component.js";
-import {EventsListener} from "../abstract/EventsListener.js";
 
 export class EventBus {
 
@@ -12,7 +11,7 @@ export class EventBus {
         return EventBus.instance;
     }
 
-    listeners: { [k: string]: EventsListener[] } = {};
+    listeners: { [k: string]: Component[] } = {};
 
     emit(event: EVENT, payload: Payload = {}) {
         for (let listener of this.listeners[event]) {

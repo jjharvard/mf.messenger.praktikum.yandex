@@ -22,14 +22,20 @@ export class ChatListComponent extends ComponentGroup {
         EventBus.getInstance().register('onMessage', this);
     }
 
-    onMessage(payload: Payload) {
-        this.removeAllChildren();
-        this.adapter.addItem(payload['message'] as string);
-        this.addViews(this.adapter.getItems().map(item => {
-            return new ChatItemComponent(item);
-        }));
-        let element = document.getElementById(this.id);
-        element!.innerHTML = this.render();
+    onMessage(payload: Payload): boolean {
+        if (super.onMessage(payload)) {
+            this.removeAllChildren();
+            this.adapter.addItem(payload['message'] as string);
+            this.addViews(this.adapter.getItems().map(item => {
+                return new ChatItemComponent(item);
+            }));
+            let element = document.getElementById(this.id);
+            element!.innerHTML = this.render();
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     getTemplate(): string {

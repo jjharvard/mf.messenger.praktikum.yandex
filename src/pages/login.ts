@@ -1,5 +1,4 @@
 import {Page} from "../abstract/Page.js";
 import {LoginComponent} from "../components/login/LoginComponent.js";
 
-let loginPage = new Page(new LoginComponent());
-loginPage.mount();
+export const loginPage = new Page(new LoginComponent());

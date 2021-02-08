@@ -5,9 +5,9 @@ export class ProfileComponent extends ComponentGroup {
     constructor() {
         super([
             new Avatar('flex'),
-            new Button("'/profile-change-data.html'", "Change user data", "'change__ref'"),
-            new Button("'/profile-change-password.html'", "Change password", "change__ref"),
-            new Button("'/index.html'", "Exit", "change__ref_alert"),
+            new Button("'#profile-change-data'", "Change user data", "'change__ref'"),
+            new Button("'#profile-change-password'", "Change password", "change__ref"),
+            new Button("'#index'", "Exit", "change__ref_alert"),
         ]);
     }
     getKeys() {

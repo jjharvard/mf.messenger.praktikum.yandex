@@ -2,6 +2,7 @@ import { ComponentGroup } from "../../abstract/ComponentGroup.js";
 import { Button } from "../_common/Button.js";
 import { Avatar } from "../_common/Avatar.js";
 import { ValidatableInput } from "../_common/ValidatableInput.js";
+import { Router } from "../../abstract/Router.js";
 export class ProfileDataChangeComponent extends ComponentGroup {
     constructor() {
         super([
@@ -12,7 +13,7 @@ export class ProfileDataChangeComponent extends ComponentGroup {
             new ValidatableInput("profile", "nickname", "profile__input", "Nickname", "text", "Johnny"),
             new ValidatableInput("profile", "phone", "profile__input", "Phone", "text", "8(900)909-99-00"),
             new Avatar('none'),
-            new Button("'/profile.html'", "Save", "'profile-save__btn'")
+            new Button("#profile'", "Save", "'profile-save__btn'")
         ]);
     }
     getKeys() {
@@ -54,11 +55,17 @@ export class ProfileDataChangeComponent extends ComponentGroup {
                 </div>`;
     }
     onViewCreated() {
-        let signBtn = this.getChildElementsByName('Button')[0];
-        let validatableInputs = this.getChildComponentsByName('ValidatableInput');
-        this.validateOnClick(signBtn, validatableInputs, () => {
-            location.href = '/profile.html';
-        });
+        if (super.onViewCreated()) {
+            let signBtn = this.getChildElementsByName('Button')[0];
+            let validatableInputs = this.getChildComponentsByName('ValidatableInput');
+            this.validateOnClick(signBtn, validatableInputs, () => {
+                Router.getInstance().back();
+            });
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
 //# sourceMappingURL=ProfileDataChangeComponent.js.map

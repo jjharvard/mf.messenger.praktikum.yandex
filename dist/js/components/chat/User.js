@@ -9,7 +9,7 @@ export class User extends ComponentGroup {
                         Add
                         <i class="arrow"></i>
                     </button>
-                    <button class="user__profile" onclick="location.href='/profile.html'">
+                    <button class="user__profile" onclick="location.href='#profile'">
                         Profile
                         <i class="arrow"></i>
                     </button>

@@ -9,7 +9,7 @@ import { Button } from "../components/chat/Button.js";
 import { ChatRootComponent } from "../components/chat/ChatRootComponent.js";
 import { Page } from "../abstract/Page.js";
 import { Adapter } from "../abstract/Adapter.js";
-let chatPage = new Page(new ChatRootComponent([
+export const chatPage = new Page(new ChatRootComponent([
     new User(),
     new Sidebar(),
     new ChatRoom([new ChatListComponent(new Adapter(ChatListComponent.initialData()))]),
@@ -19,5 +19,4 @@ let chatPage = new Page(new ChatRootComponent([
         new Button()
     ])
 ]));
-chatPage.mount();
 //# sourceMappingURL=chat.js.map

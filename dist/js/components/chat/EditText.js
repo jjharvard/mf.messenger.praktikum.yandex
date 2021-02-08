@@ -12,25 +12,31 @@ export class EditText extends ComponentGroup {
             `;
     }
     onViewCreated() {
-        EventBus.getInstance().register('onMessage', this);
-        let inputMessage = this.getChildElementsByName('InputMessage')[0];
-        let button = this.getChildElementsByName('Button')[0];
-        let sendMessage = () => {
-            EventBus.getInstance().emit('onMessage', { 'message': inputMessage.value });
-            inputMessage.value = '';
-        };
-        inputMessage.onkeypress = (e) => {
-            let eventTarget = e.target;
-            if (inputMessage.value && (e.key === 'Enter' && eventTarget.id === inputMessage.id)) {
-                sendMessage();
-            }
-        };
-        button.onclick = (e) => {
-            let eventTarget = e.target;
-            if (inputMessage.value && eventTarget.id === button.id) {
-                sendMessage();
-            }
-        };
+        if (super.onViewCreated()) {
+            EventBus.getInstance().register('onMessage', this);
+            let inputMessage = this.getChildElementsByName('InputMessage')[0];
+            let button = this.getChildElementsByName('Button')[0];
+            let sendMessage = () => {
+                EventBus.getInstance().emit('onMessage', { 'message': inputMessage.value });
+                inputMessage.value = '';
+            };
+            inputMessage.onkeypress = (e) => {
+                let eventTarget = e.target;
+                if (inputMessage.value && (e.key === 'Enter' && eventTarget.id === inputMessage.id)) {
+                    sendMessage();
+                }
+            };
+            button.onclick = (e) => {
+                let eventTarget = e.target;
+                if (inputMessage.value && eventTarget.id === button.id) {
+                    sendMessage();
+                }
+            };
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     getKeys() {
         return {};

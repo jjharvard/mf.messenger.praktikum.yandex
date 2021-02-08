@@ -4,9 +4,8 @@ import {ValidationMessage} from "./ValidationMessage.js";
 import {ValidationUtil} from "../../utils/ValidationUtil.js";
 
 export class ValidatableInput extends ComponentGroup {
-    // @ts-ignore проинициализируются после рендеринга
+
     input: HTMLInputElement;
-    // @ts-ignore
     message: HTMLDivElement;
 
     constructor(prefix: string, name: string, clazz: string, placeholder: string, type: string, value: string) {
@@ -20,16 +19,20 @@ export class ValidatableInput extends ComponentGroup {
         return {};
     }
 
-    onViewCreated() {
-        this.input = <HTMLInputElement>document.getElementById(this.getChildren()[0].id);
-        this.message = <HTMLDivElement>document.getElementById(this.getChildren()[1].id);
-
-        this.input.onblur = () => {
-            this.check();
-        };
-        this.input.onfocus = () => {
-            this.setValidStyle();
-        };
+    onViewCreated(): boolean {
+        if (super.onViewCreated()) {
+            this.input = <HTMLInputElement>document.getElementById(this.getChildren()[0].id);
+            this.message = <HTMLDivElement>document.getElementById(this.getChildren()[1].id);
+            this.input.onblur = () => {
+                this.check();
+            };
+            this.input.onfocus = () => {
+                this.setValidStyle();
+            };
+            return true;
+        } else {
+            return false;
+        }
     }
 
     check() {

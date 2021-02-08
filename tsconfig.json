@@ -9,6 +9,7 @@
     "alwaysStrict": true,
     "sourceMap": true,
     "strictNullChecks": true,
+    "strictPropertyInitialization": false,
     "types": ["./src/types"]
   },
   "include": [

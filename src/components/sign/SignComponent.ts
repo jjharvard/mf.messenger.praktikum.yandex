@@ -13,8 +13,8 @@ export class SignComponent extends ComponentGroup {
             new ValidatableInput('auth', 'phone', 'auth__input', 'Phone', 'text', ''),
             new ValidatableInput('auth', 'password', 'auth__input', 'Password', 'password', ''),
             new ValidatableInput('auth', 'confirm_password', 'auth__input', 'Confirm Password', 'password', ''),
-            new Button("'/chat.html'", "Registration", "'sign__btn_main'"),
-            new Button("'/index.html'", "Login", "sign__btn_secondary"),
+            new Button("#chat", "Registration", "'sign__btn_main'"),
+            new Button("#login", "Login", "sign__btn_secondary"),
         ]);
     }
 
@@ -43,12 +43,17 @@ export class SignComponent extends ComponentGroup {
                 </div>`;
     }
 
-    onViewCreated() {
-        let signBtn = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
-        let validatableInputs = <ValidatableInput[]>this.getChildComponentsByName('ValidatableInput');
-        this.validateOnClick(signBtn, validatableInputs, () => {
-            console.log('registration');
-        });
+    onViewCreated(): boolean {
+        if (super.onViewCreated()) {
+            let signBtn = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
+            let validatableInputs = <ValidatableInput[]>this.getChildComponentsByName('ValidatableInput');
+            this.validateOnClick(signBtn, validatableInputs, () => {
+                console.log('registration');
+            });
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
