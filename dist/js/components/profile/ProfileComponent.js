@@ -16,9 +16,11 @@ export class ProfileComponent extends ComponentGroup {
     }
     onViewCreated() {
         if (super.onViewCreated()) {
+            console.log('history length => ', window.history.length);
             let btnExit = this.getChildElementsByName('Button')[2];
             btnExit.onclick = () => {
-                Router.getInstance().popAll();
+                Router.getInstance().back();
+                // Router.getInstance().replace('/#login');
             };
             return true;
         }

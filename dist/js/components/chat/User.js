@@ -1,7 +1,20 @@
 import { ComponentGroup } from "../../abstract/ComponentGroup.js";
+import { Router } from "../../abstract/Router.js";
 export class User extends ComponentGroup {
     getKeys() {
         return {};
+    }
+    onViewCreated() {
+        if (super.onViewCreated()) {
+            let btnProfile = this.getDOMView().querySelector('.user__profile');
+            btnProfile.onclick = () => {
+                Router.getInstance().push('/#profile');
+            };
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     getTemplate() {
         return `<div class="user">
@@ -9,7 +22,7 @@ export class User extends ComponentGroup {
                         Add
                         <i class="arrow"></i>
                     </button>
-                    <button class="user__profile" onclick="location.href='#profile'">
+                    <button class="user__profile">
                         Profile
                         <i class="arrow"></i>
                     </button>

@@ -15,21 +15,14 @@ export class Router {
 
     constructor(private routes: Route[]) {
 
-        (function addListener(scope) {
-            window.addEventListener('hashchange', function (event: HashChangeEvent) {
-                console.log('HashChangeEvent => ', event);
-                console.log('oldNew => ', event.oldURL, ' => ', event.newURL);
-                console.log('window.location.hash => ', window.location.hash);
-                let regex = /#([a-z-]+)/;
-                let key = regex.exec(event.newURL);
-                if (key) {
-                    console.log(key[0]);
-                    scope.go(key[0]);
-                } else {
-                    scope.go("#login");
-                }
-            });
-        })(this);
+        window.onpopstate = (event: PopStateEvent) => {
+            let hash = (event.currentTarget as Window).location.hash;
+            if (hash) {
+                this._onRoute('/' + hash);
+            } else {
+                this.start();
+            }
+        };
 
     }
 
@@ -39,7 +32,7 @@ export class Router {
         });
     }
 
-    go(path: string) {
+    _onRoute(path: string) {
         const route = this.getRoute(path);
         if (this.currentRoute) {
             this.currentRoute.page.hide();
@@ -48,8 +41,14 @@ export class Router {
         this.currentRoute.page.show();
     }
 
+    push(path: string) {
+        window.history.pushState({}, "", path);
+        this._onRoute(path);
+    }
+
     replace(path: string) {
-        window.location.replace(path);
+        window.history.replaceState({}, "", path);
+        this._onRoute(path);
     }
 
     back() {
@@ -57,10 +56,10 @@ export class Router {
     }
 
     start() {
-        if (window.location.hash) {
-            this.go(window.location.hash);
+        if (this.getRoute('/' + window.location.hash)) {
+            this._onRoute('/' + window.location.hash);
         } else {
-            this.go("#login");
+            this.replace("/#login");
         }
     }
 

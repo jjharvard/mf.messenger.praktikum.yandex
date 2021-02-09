@@ -10,7 +10,7 @@ export class LoginComponent extends ComponentGroup {
             new ValidatableInput("auth", "login", "auth__input", "Login", "text", ''),
             new ValidatableInput("auth", "password", "auth__input", "Password", "password", ''),
             new Button("", "Authorise", "auth__btn_main"),
-            new Button("#sign", "No Account?", "'auth__btn_secondary'"),
+            new Button("'/#sign'", "No Account?", "'auth__btn_secondary'"),
         ]);
     }
 
@@ -39,7 +39,7 @@ export class LoginComponent extends ComponentGroup {
             let signBtn = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
             let validatableInputs = <ValidatableInput[]>this.getChildComponentsByName('ValidatableInput');
             this.validateOnClick(signBtn, validatableInputs, () => {
-                Router.getInstance().replace('#chat');
+                Router.getInstance().replace('/#chat');
             });
             return true;
         } else {
