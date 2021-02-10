@@ -13,7 +13,7 @@ export class ProfileDataChangeComponent extends ComponentGroup {
             new ValidatableInput("profile", "nickname", "profile__input", "Nickname", "text", "Johnny"),
             new ValidatableInput("profile", "phone", "profile__input", "Phone", "text", "8(900)909-99-00"),
             new Avatar('none'),
-            new Button("#profile'", "Save", "'profile-save__btn'")
+            new Button("Save", "'profile-save__btn'")
         ]);
     }
     getKeys() {

@@ -1,4 +1,5 @@
 import {Route} from "./Route.js";
+import {StateUtil} from "../utils/StateUtil.js";
 
 export class Router {
 
@@ -14,21 +15,11 @@ export class Router {
     currentRoute: Route;
 
     constructor(private routes: Route[]) {
-
-        window.onpopstate = (event: PopStateEvent) => {
-            let hash = (event.currentTarget as Window).location.hash;
-            if (hash) {
-                this._onRoute('/' + hash);
-            } else {
-                this.start();
-            }
-        };
-
-    }
-
-    addRoutes(routes: Route[]) {
-        routes.forEach(route => {
-            this.routes.push(route);
+        window.addEventListener('popstate', (e: PopStateEvent) => {
+            let prevPath = this.currentRoute.path;
+            let path = e.state.path;
+            console.log('ON_POP_STATE1', ' path => ', path, ' prevPath => ', prevPath);
+            this._onRoute(e.state.path);
         });
     }
 
@@ -38,28 +29,33 @@ export class Router {
             this.currentRoute.page.hide();
         }
         this.currentRoute = route;
+        StateUtil.setRouterState({
+            currUri: this.currentRoute.path,
+            length: history.length
+        });
         this.currentRoute.page.show();
     }
 
     push(path: string) {
-        window.history.pushState({}, "", path);
+        history.pushState({path}, "", path);
         this._onRoute(path);
     }
 
     replace(path: string) {
-        window.history.replaceState({}, "", path);
+        history.replaceState({path}, "", path);
         this._onRoute(path);
     }
 
     back() {
-        window.history.back();
+        history.back();
     }
 
-    start() {
-        if (this.getRoute('/' + window.location.hash)) {
-            this._onRoute('/' + window.location.hash);
+    start(path: string) {
+        let state = StateUtil.getRouterState();
+        if (state && state.length === history.length) {
+            this.replace(state.currUri);
         } else {
-            this.replace("/#login");
+            this.push(path);
         }
     }
 
@@ -67,4 +63,9 @@ export class Router {
         return this.routes.find(route => route.path === path)!;
     }
 
+    addRoutes(routes: Route[]) {
+        routes.forEach(route => {
+            this.routes.push(route);
+        });
+    }
 }

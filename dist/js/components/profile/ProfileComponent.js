@@ -6,9 +6,9 @@ export class ProfileComponent extends ComponentGroup {
     constructor() {
         super([
             new Avatar('flex'),
-            new Button("'#profile-change-data'", "Change user data", "'change__ref'"),
-            new Button("'#profile-change-password'", "Change password", "change__ref"),
-            new Button("'#index'", "Exit", "change__ref_alert"),
+            new Button("Change user data", "'change__ref'"),
+            new Button("Change password", "change__ref"),
+            new Button("Exit", "change__ref_alert"),
         ]);
     }
     getKeys() {
@@ -16,11 +16,16 @@ export class ProfileComponent extends ComponentGroup {
     }
     onViewCreated() {
         if (super.onViewCreated()) {
-            console.log('history length => ', window.history.length);
+            let btnChangeData = this.getChildElementsByName('Button')[0];
+            btnChangeData.onclick = () => {
+                Router.getInstance().push('/profile-change-data');
+            };
+            let btnChangePass = this.getChildElementsByName('Button')[1];
+            btnChangePass.onclick = () => {
+                Router.getInstance().push('/profile-change-password');
+            };
             let btnExit = this.getChildElementsByName('Button')[2];
             btnExit.onclick = () => {
-                Router.getInstance().back();
-                // Router.getInstance().replace('/#login');
             };
             return true;
         }

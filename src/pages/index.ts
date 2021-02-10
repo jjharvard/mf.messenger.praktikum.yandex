@@ -10,33 +10,32 @@ const router = Router.getInstance();
 
 router.addRoutes([
     {
-        path: "/#login",
+        path: "/login",
         page: loginPage
     },
     {
-        path: "/#sign",
+        path: "/sign",
         page: signPage
     },
     {
-        path: "/#chat",
+        path: "/chat",
         page: chatPage
     },
     {
-        path: "/#profile",
+        path: "/profile",
         page: profilePage
     },
     {
-        path: "/#profile-change-data",
+        path: "/profile-change-data",
         page: profileDataChange
     },
     {
-        path: "/#profile-change-password",
+        path: "/profile-change-password",
         page: profilePasswordChange
     }
 ]);
 
-
 window.onload = () => {
-    router.start();
+    router.start("/login");
 };
 

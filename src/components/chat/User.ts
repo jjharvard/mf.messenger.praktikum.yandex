@@ -8,9 +8,9 @@ export class User extends ComponentGroup {
 
     onViewCreated(): boolean {
         if (super.onViewCreated()) {
-            let btnProfile = <HTMLButtonElement>this.getDOMView()!.querySelector('.user__profile')
+            let btnProfile = <HTMLButtonElement>this.getDOMView()!.querySelector('.user__profile');
             btnProfile.onclick = () => {
-                Router.getInstance().push('/#profile');
+                Router.getInstance().push('/profile');
             };
             return true;
         } else {

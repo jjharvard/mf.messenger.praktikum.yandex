@@ -10,7 +10,7 @@ export class ProfilePassChangeComponent extends ComponentGroup {
             new ValidatableInput('profile', 'password', 'profile__input', '', 'password', '123456'),
             new ValidatableInput('profile', 'password', 'profile__input', '', 'password', ''),
             new ValidatableInput('profile', 'password', 'profile__input', '', 'password', ''),
-            new Button("#profile'", "Save", "'profile-save__btn'")
+            new Button("Save", "'profile-save__btn'")
         ]);
     }
     getKeys() {

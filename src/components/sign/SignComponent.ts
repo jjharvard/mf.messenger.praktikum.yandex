@@ -1,6 +1,7 @@
 import {ComponentGroup} from "../../abstract/ComponentGroup.js";
 import {Button} from "../_common/Button.js";
 import {ValidatableInput} from "../_common/ValidatableInput.js";
+import {Router} from "../../abstract/Router.js";
 
 export class SignComponent extends ComponentGroup {
 
@@ -13,8 +14,8 @@ export class SignComponent extends ComponentGroup {
             new ValidatableInput('auth', 'phone', 'auth__input', 'Phone', 'text', ''),
             new ValidatableInput('auth', 'password', 'auth__input', 'Password', 'password', ''),
             new ValidatableInput('auth', 'confirm_password', 'auth__input', 'Confirm Password', 'password', ''),
-            new Button("'#chat'", "Registration", "'sign__btn_main'"),
-            new Button("'#login'", "Login", "sign__btn_secondary"),
+            new Button("Registration", "'sign__btn_main'"),
+            new Button("Login", "sign__btn_secondary"),
         ]);
     }
 
@@ -45,11 +46,15 @@ export class SignComponent extends ComponentGroup {
 
     onViewCreated(): boolean {
         if (super.onViewCreated()) {
-            let signBtn = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
+            let btnSign = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
             let validatableInputs = <ValidatableInput[]>this.getChildComponentsByName('ValidatableInput');
-            this.validateOnClick(signBtn, validatableInputs, () => {
-                console.log('/#registration');
+            this.validateOnClick(btnSign, validatableInputs, () => {
+                console.log('/registration');
             });
+            let btnLogin = <HTMLButtonElement>this.getChildElementsByName('Button')[1];
+            btnLogin.onclick = () => {
+                Router.getInstance().push('/login');
+            };
             return true;
         } else {
             return false;

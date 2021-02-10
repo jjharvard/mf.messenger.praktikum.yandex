@@ -1,15 +1,16 @@
 import {ComponentGroup} from "../../abstract/ComponentGroup.js";
 import {Button} from "../_common/Button.js";
 import {Avatar} from "../_common/Avatar.js";
+import {Router} from "../../abstract/Router.js";
 
 export class ProfileComponent extends ComponentGroup {
 
     constructor() {
         super([
             new Avatar('flex'),
-            new Button("'#profile-change-data'", "Change user data", "'change__ref'"),
-            new Button("'#profile-change-password'", "Change password", "change__ref"),
-            new Button("'#index'", "Exit", "change__ref_alert"),
+            new Button("Change user data", "'change__ref'"),
+            new Button("Change password", "change__ref"),
+            new Button("Exit", "change__ref_alert"),
         ]);
     }
 
@@ -19,9 +20,16 @@ export class ProfileComponent extends ComponentGroup {
 
     onViewCreated(): boolean {
         if (super.onViewCreated()) {
+            let btnChangeData: HTMLButtonElement = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
+            btnChangeData.onclick = () => {
+                Router.getInstance().push('/profile-change-data');
+            };
+            let btnChangePass: HTMLButtonElement = <HTMLButtonElement>this.getChildElementsByName('Button')[1];
+            btnChangePass.onclick = () => {
+                Router.getInstance().push('/profile-change-password');
+            };
             let btnExit: HTMLButtonElement = <HTMLButtonElement>this.getChildElementsByName('Button')[2];
             btnExit.onclick = () => {
-
             };
             return true;
         } else {

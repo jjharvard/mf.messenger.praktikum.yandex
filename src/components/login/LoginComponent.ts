@@ -9,8 +9,8 @@ export class LoginComponent extends ComponentGroup {
         super([
             new ValidatableInput("auth", "login", "auth__input", "Login", "text", ''),
             new ValidatableInput("auth", "password", "auth__input", "Password", "password", ''),
-            new Button("", "Authorise", "auth__btn_main"),
-            new Button("'/#sign'", "No Account?", "'auth__btn_secondary'"),
+            new Button("Authorise", "auth__btn_main"),
+            new Button("No Account?", "'auth__btn_secondary'"),
         ]);
     }
 
@@ -36,11 +36,15 @@ export class LoginComponent extends ComponentGroup {
 
     onViewCreated(): boolean {
         if (super.onViewCreated()) {
-            let signBtn = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
+            let btnSign = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
             let validatableInputs = <ValidatableInput[]>this.getChildComponentsByName('ValidatableInput');
-            this.validateOnClick(signBtn, validatableInputs, () => {
-                Router.getInstance().replace('/#chat');
+            this.validateOnClick(btnSign, validatableInputs, () => {
+                Router.getInstance().push('/chat');
             });
+            let btnNoAccount = <HTMLButtonElement>this.getChildElementsByName('Button')[1];
+            btnNoAccount.onclick = () => {
+                Router.getInstance().push('/sign');
+            };
             return true;
         } else {
             return false;
