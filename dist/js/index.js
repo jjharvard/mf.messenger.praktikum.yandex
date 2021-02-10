@@ -1,13 +1,11 @@
-import {Router} from "../abstract/Router.js";
-import {signPage} from "./sign.js";
-import {chatPage} from "./chat.js";
-import {loginPage} from "./login.js";
-import {profilePage} from "./profile.js";
-import {profileDataChange} from "./profile_data_change.js";
-import {profilePasswordChange} from "./profile_password_change.js";
-
+import { Router } from "./abstract/Router.js";
+import { signPage } from "./pages/sign.js";
+import { chatPage } from "./pages/chat.js";
+import { loginPage } from "./pages/login.js";
+import { profilePage } from "./pages/profile.js";
+import { profileDataChange } from "./pages/profile_data_change.js";
+import { profilePasswordChange } from "./pages/profile_password_change.js";
 const router = Router.getInstance();
-
 router.addRoutes([
     {
         path: "/login",
@@ -34,8 +32,7 @@ router.addRoutes([
         page: profilePasswordChange
     }
 ]);
-
 window.onload = () => {
     router.start("/login");
 };
-
+//# sourceMappingURL=index.js.map
