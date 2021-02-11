@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "rootDir": "./",
     "outDir": "./dist/js",
     "target": "ES2018",
     "strict": true,
@@ -10,9 +11,14 @@
     "sourceMap": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": false,
-    "types": ["./src/types"]
+    "noEmit": true,
+    "skipLibCheck": true
   },
   "include": [
-      "./src/**/*"
+    "./src/**/*",
+    "./test/**/*.spec.ts"
   ],
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -5,39 +5,38 @@ enum METHODS {
     DELETE = 'DELETE'
 };
 
-export interface RequestOptions {
-    data: object,
-    timeout: number,
-    url: string
+interface Options {
+    headers: { [k: string]: string },
+    data: object
 }
 
 export class HTTPTransport {
 
-    queryStringify(data) {
+    queryStringify(data: { [k: string]: string }) {
         return "?" + Object.keys(data).map(key => key + '=' + data[key]).join('&');
     }
 
-    get = (url, options: RequestOptions) => {
-        if (typeof options.data === "object") {
-            url = url + this.queryStringify(options.data);
+    get = (url: string, options: Options) => {
+        if (options) {
+            url = url + this.queryStringify({...options.headers, ...options.data});
         }
-        return this.request(url, {...options, method: METHODS.GET}, options.timeout);
+        return this.request(url, METHODS.GET, options);
     };
 
-    put = (url, options: RequestOptions) => {
-        return this.request(url, {...options, method: METHODS.PUT}, options.timeout);
+    put = (url: string, options: Options) => {
+        return this.request(url, METHODS.PUT, options);
     };
 
-    post = (url, options: RequestOptions) => {
-        return this.request(url, {...options, method: METHODS.POST}, options.timeout);
+    post = (url: string, options: Options) => {
+        return this.request(url, METHODS.POST, options);
     };
 
-    delete = (url, options: RequestOptions) => {
-        return this.request(url, {...options, method: METHODS.DELETE}, options.timeout);
+    delete = (url: string, options: Options) => {
+        return this.request(url, METHODS.DELETE, options);
     };
 
-    request = (url, options, timeout = 5000) => {
-        const {method, headers, data} = options;
+    request = (url: string, method: METHODS, options: Options, timeout = 5000) => {
+        const {headers} = options;
 
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
@@ -60,13 +59,13 @@ export class HTTPTransport {
             xhr.onerror = reject;
             xhr.ontimeout = reject;
 
-            switch (options.method) {
+            switch (method) {
                 case METHODS.GET:
                     xhr.send();
                     break;
                 case METHODS.POST:
                 case METHODS.PUT:
-                    xhr.send(JSON.stringify(options.data));
+                    xhr.send(JSON.stringify(options));
                     break;
                 case METHODS.DELETE:
                     xhr.send();
