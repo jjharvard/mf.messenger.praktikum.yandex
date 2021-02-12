@@ -1,14 +1,12 @@
-import {Router} from "./abstract/Router.js";
-import {signPage} from "./pages/sign.js";
-import {chatPage} from "./pages/chat.js";
-import {loginPage} from "./pages/login.js";
-import {profilePage} from "./pages/profile.js";
-import {profileDataChange} from "./pages/profile_data_change.js";
-import {profilePasswordChange} from "./pages/profile_password_change.js";
-import {AuthApi} from "./api/AuthApi.js";
-
+import { Router } from "./abstract/Router.js";
+import { signPage } from "./pages/sign.js";
+import { chatPage } from "./pages/chat.js";
+import { loginPage } from "./pages/login.js";
+import { profilePage } from "./pages/profile.js";
+import { profileDataChange } from "./pages/profile_data_change.js";
+import { profilePasswordChange } from "./pages/profile_password_change.js";
+import { AuthApi } from "./api/AuthApi.js";
 const router = Router.getInstance();
-
 router.addRoutes([
     {
         path: "/login",
@@ -35,10 +33,9 @@ router.addRoutes([
         page: profilePasswordChange
     }
 ]);
-
 window.onload = () => {
     AuthApi.logOut().then(_ => {
         router.start("/login");
-    })
+    });
 };
-
+//# sourceMappingURL=index.js.map

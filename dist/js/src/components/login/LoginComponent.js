@@ -1,11 +1,9 @@
-import {ComponentGroup} from "../../abstract/ComponentGroup.js";
-import {Button} from "../_common/Button.js";
-import {ValidatableInput} from "../_common/ValidatableInput.js";
-import {Router} from "../../abstract/Router.js";
-import {AuthApi} from "../../api/AuthApi.js";
-
+import { ComponentGroup } from "../../abstract/ComponentGroup.js";
+import { Button } from "../_common/Button.js";
+import { ValidatableInput } from "../_common/ValidatableInput.js";
+import { Router } from "../../abstract/Router.js";
+import { AuthApi } from "../../api/AuthApi.js";
 export class LoginComponent extends ComponentGroup {
-
     constructor() {
         super([
             new ValidatableInput("auth", "login", "auth__input", "Login", "text", ''),
@@ -14,12 +12,10 @@ export class LoginComponent extends ComponentGroup {
             new Button("No Account?", "'auth__btn_secondary'"),
         ]);
     }
-
-    getKeys(): Keys {
+    getKeys() {
         return {};
     }
-
-    getTemplate(): string {
+    getTemplate() {
         return `<div class="auth-container">
                     <div class="auth">
                         <h1 class="auth__title">Enter</h1>
@@ -34,29 +30,29 @@ export class LoginComponent extends ComponentGroup {
                     </div>
                 </div>`;
     }
-
-    onViewCreated(): boolean {
+    onViewCreated() {
         if (super.onViewCreated()) {
-            let btnSign = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
-            let validatableInputs = <ValidatableInput[]>this.getChildComponentsByName('ValidatableInput');
+            let btnSign = this.getChildElementsByName('Button')[0];
+            let validatableInputs = this.getChildComponentsByName('ValidatableInput');
             let loginInput = validatableInputs[0];
             let passwordInput = validatableInputs[1];
             this.validateOnClick(btnSign, validatableInputs, () => {
                 AuthApi.signIn(loginInput.input.value, passwordInput.input.value)
                     .then(response => {
-                        if (response.ok) {
-                            Router.getInstance().push('/chat');
-                        }
-                    });
+                    if (response.ok) {
+                        Router.getInstance().push('/chat');
+                    }
+                });
             });
-            let btnNoAccount = <HTMLButtonElement>this.getChildElementsByName('Button')[1];
+            let btnNoAccount = this.getChildElementsByName('Button')[1];
             btnNoAccount.onclick = () => {
                 Router.getInstance().push('/sign');
             };
             return true;
-        } else {
+        }
+        else {
             return false;
         }
     }
-
 }
+//# sourceMappingURL=LoginComponent.js.map
