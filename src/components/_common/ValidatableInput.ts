@@ -23,6 +23,11 @@ export class ValidatableInput extends ComponentGroup {
         return this.input;
     }
 
+    showMessage(message: string) {
+        this.message.textContent = message;
+        this.setErrorStyle();
+    }
+
     onViewCreated(): boolean {
         if (super.onViewCreated()) {
             this.input = <HTMLInputElement>document.getElementById(this.getChildren()[0].id);

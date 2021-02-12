@@ -1,5 +1,6 @@
 import {Route} from "./Route.js";
 import {StateUtil} from "../utils/StateUtil.js";
+import {AuthApi} from "../api/AuthApi.js";
 
 export class Router {
 
@@ -18,8 +19,20 @@ export class Router {
         window.addEventListener('popstate', (e: PopStateEvent) => {
             let prevPath = this.currentRoute.path;
             let path = e.state.path;
-            console.log('ON_POP_STATE1', ' path => ', path, ' prevPath => ', prevPath);
-            this._onRoute(e.state.path);
+            console.log('ON_POP_STATE1', ' path => ', path, ' prevPath => ', prevPath, 'cookie => ', document.cookie);
+            if(prevPath === '/chat' && path === '/login') {
+                AuthApi.logOut().then(_ => {
+                    this._onRoute(e.state.path);
+                })
+            } else if(prevPath === '/login') {
+                if(StateUtil.isAuthenticated()) {
+                    this._onRoute(e.state.path);
+                } else {
+                    history.replaceState({path: '/login'}, '', '/login')
+                }
+            } else {
+                this._onRoute(e.state.path);
+            }
         });
     }
 

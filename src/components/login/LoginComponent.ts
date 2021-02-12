@@ -46,6 +46,9 @@ export class LoginComponent extends ComponentGroup {
                     .then(response => {
                         if (response.ok) {
                             Router.getInstance().push('/chat');
+                        } else {
+                            let message = JSON.parse(response.data)['reason'];
+                            loginInput.showMessage(message);
                         }
                     });
             });

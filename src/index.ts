@@ -5,7 +5,6 @@ import {loginPage} from "./pages/login.js";
 import {profilePage} from "./pages/profile.js";
 import {profileDataChange} from "./pages/profile_data_change.js";
 import {profilePasswordChange} from "./pages/profile_password_change.js";
-import {AuthApi} from "./api/AuthApi.js";
 
 const router = Router.getInstance();
 
@@ -37,8 +36,6 @@ router.addRoutes([
 ]);
 
 window.onload = () => {
-    AuthApi.logOut().then(_ => {
-        router.start("/login");
-    })
+    router.start("/login");
 };
 
