@@ -10,7 +10,7 @@ export class ValidatableInput extends ComponentGroup {
 
     constructor(prefix: string, name: string, clazz: string, placeholder: string, type: string, value: string) {
         super([
-            new Input(name, clazz, placeholder, type, value),
+            new Input(name, clazz, placeholder, type, value, ''),
             new ValidationMessage(prefix, name)
         ]);
     }
