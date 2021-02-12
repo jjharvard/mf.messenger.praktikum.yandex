@@ -2,6 +2,7 @@ import {ComponentGroup} from "../../abstract/ComponentGroup.js";
 import {Button} from "../_common/Button.js";
 import {ValidatableInput} from "../_common/ValidatableInput.js";
 import {Router} from "../../abstract/Router.js";
+import {AuthApi} from "../../api/AuthApi.js";
 
 export class SignComponent extends ComponentGroup {
 
@@ -49,7 +50,17 @@ export class SignComponent extends ComponentGroup {
             let btnSign = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
             let validatableInputs = <ValidatableInput[]>this.getChildComponentsByName('ValidatableInput');
             this.validateOnClick(btnSign, validatableInputs, () => {
-                console.log('/registration');
+                let keys = ['email', 'login', 'first_name', 'second_name', 'phone', 'password'];
+                let requestData = keys.reduce((acc, value, i) => Object.assign(acc, {[value]: validatableInputs[i].getInput().value}), {});
+                AuthApi.signUp(requestData)
+                    .then(response => {
+                        if (response.ok) {
+                            Router.getInstance().push('/chat');
+                        } else {
+                            let message = JSON.parse(response.data)['reason'];
+                            validatableInputs[0].showMessage(message);
+                        }
+                    });
             });
             let btnLogin = <HTMLButtonElement>this.getChildElementsByName('Button')[1];
             btnLogin.onclick = () => {

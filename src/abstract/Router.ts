@@ -18,17 +18,17 @@ export class Router {
     constructor(private routes: Route[]) {
         window.addEventListener('popstate', (e: PopStateEvent) => {
             let prevPath = this.currentRoute.path;
-            let path = e.state.path;
+            let path = e.state.path ?? '';
             console.log('ON_POP_STATE1', ' path => ', path, ' prevPath => ', prevPath, 'cookie => ', document.cookie);
-            if(prevPath === '/chat' && path === '/login') {
+            if ((prevPath === '/chat' && path === '/login') || (prevPath === '/chat' && path === '/sign')) { // going back from chat
                 AuthApi.logOut().then(_ => {
                     this._onRoute(e.state.path);
-                })
-            } else if(prevPath === '/login') {
-                if(StateUtil.isAuthenticated()) {
+                });
+            } else if ((prevPath === '/login' && path !== '/sign') || (prevPath === '/sign' && path !== '/login')) { // going forward from login or sign
+                if (StateUtil.isAuthenticated()) {
                     this._onRoute(e.state.path);
                 } else {
-                    history.replaceState({path: '/login'}, '', '/login')
+                    history.replaceState({path: prevPath}, '', prevPath);
                 }
             } else {
                 this._onRoute(e.state.path);

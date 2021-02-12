@@ -22,14 +22,12 @@ export class AuthApi {
             return result;
         });
 
-    static signUp = (firstName: string, secondName: string, login: string,
-                     email: string, password: string, phone: string) => client.post('/auth/signup', {
-        first_name: firstName,
-        second_name: secondName,
-        login: login,
-        email: email,
-        password: password,
-        phone: phone
-    });
+    static signUp = (data: object) => client.post('/auth/signup', data)
+        .then(result => {
+            if (result.ok) {
+                StateUtil.setAuthenticated(true);
+            }
+            return result;
+        });
 
 }

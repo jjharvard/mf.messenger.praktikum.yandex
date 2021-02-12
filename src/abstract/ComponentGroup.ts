@@ -1,6 +1,7 @@
 import {Component} from "./Component.js";
 import {Templator} from "../utils/Templator.js";
 import {ValidatableInput} from "../components/_common/ValidatableInput.js";
+import {Router} from "./Router.js";
 
 export abstract class ComponentGroup extends Component {
 
@@ -55,6 +56,12 @@ export abstract class ComponentGroup extends Component {
                     hasError = vi.check();
                 }
             });
+            if(Router.getInstance().currentRoute.path === '/profile-change-password' && validatableInputs[1].getInput().value !== validatableInputs[2].getInput().value) {
+                validatableInputs[2].showMessage("Passwords do not match");
+            }
+            if (Router.getInstance().currentRoute.path === '/sign' && validatableInputs[5].getInput().value !== validatableInputs[6].getInput().value) {
+                validatableInputs[6].showMessage("Passwords do not match");
+            }
             if (!hasError) {
                 onNext();
             }
