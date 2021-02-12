@@ -3,6 +3,7 @@ import {Button} from "../_common/Button.js";
 import {Avatar} from "../_common/Avatar.js";
 import {ValidatableInput} from "../_common/ValidatableInput.js";
 import {Router} from "../../abstract/Router.js";
+import {UsersApi} from "../../api/UsersApi.js";
 
 export class ProfilePassChangeComponent extends ComponentGroup {
 
@@ -49,7 +50,18 @@ export class ProfilePassChangeComponent extends ComponentGroup {
             let signBtn = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
             let validatableInputs = <ValidatableInput[]>this.getChildComponentsByName('ValidatableInput');
             this.validateOnClick(signBtn, validatableInputs, () => {
-                Router.getInstance().back();
+                let keys = ['oldPassword', 'newPassword'];
+                let data = keys.reduce((acc, key, i) =>
+                    Object.assign(acc, {[key]: validatableInputs[i].getInput().value}), {});
+                UsersApi.changePassword(data)
+                    .then(response => {
+                        if (response.ok) {
+                            Router.getInstance().back();
+                        } else {
+                            let message = JSON.parse(response.data)['reason'];
+                            validatableInputs[1].showMessage(message);
+                        }
+                    });
             });
             return true;
         } else {
