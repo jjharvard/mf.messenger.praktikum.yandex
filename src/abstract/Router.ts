@@ -6,6 +6,8 @@ export class Router {
 
     private static instance: Router;
 
+    private shouldExit = false;
+
     static getInstance() {
         if (!Router.instance) {
             Router.instance = new Router([]);
@@ -17,8 +19,17 @@ export class Router {
 
     constructor(private routes: Route[]) {
         window.addEventListener('popstate', (e: PopStateEvent) => {
+            if (this.shouldExit) {
+                if (e.state.path === '/login' || e.state.path === '/sign') {
+                    this.shouldExit = false;
+                    this._onRoute(e.state.path);
+                } else {
+                    history.back();
+                }
+                return;
+            }
             let prevPath = this.currentRoute.path;
-            let path = e.state.path ?? '';
+            let path = e.state ? e.state.path : '';
             console.log('ON_POP_STATE1', ' path => ', path, ' prevPath => ', prevPath, 'cookie => ', document.cookie);
             if ((prevPath === '/chat' && path === '/login') || (prevPath === '/chat' && path === '/sign')) { // going back from chat
                 AuthApi.logOut().then(_ => {
@@ -60,6 +71,11 @@ export class Router {
     }
 
     back() {
+        history.back();
+    }
+
+    exit() {
+        this.shouldExit = true;
         history.back();
     }
 

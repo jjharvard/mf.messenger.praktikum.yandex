@@ -2,6 +2,7 @@ import {ComponentGroup} from "../../abstract/ComponentGroup.js";
 import {Button} from "../_common/Button.js";
 import {Avatar} from "../_common/Avatar.js";
 import {Router} from "../../abstract/Router.js";
+import {AuthApi} from "../../api/AuthApi.js";
 
 export class ProfileComponent extends ComponentGroup {
 
@@ -30,6 +31,11 @@ export class ProfileComponent extends ComponentGroup {
             };
             let btnExit: HTMLButtonElement = <HTMLButtonElement>this.getChildElementsByName('Button')[2];
             btnExit.onclick = () => {
+                AuthApi.logOut().then(response => {
+                    if(response.ok) {
+                        Router.getInstance().exit();
+                    }
+                })
             };
             return true;
         } else {

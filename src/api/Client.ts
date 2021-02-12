@@ -3,7 +3,7 @@ import {HTTPTransport, HTTPTransportBuilder} from "../abstract/http/HTTPTranspor
 export const client: HTTPTransport = new HTTPTransportBuilder()
     .withBaseUrl('https://ya-praktikum.tech/api/v2')
     .withXHR(new XMLHttpRequest())
-    .allowInterceptors(true)
+    .allowInterceptors(false)
     .withRequestInterceptor(request => {
         console.log(`${request.url} => `, JSON.stringify(request.data));
     })
