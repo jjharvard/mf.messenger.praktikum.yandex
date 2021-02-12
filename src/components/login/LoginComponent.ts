@@ -40,9 +40,10 @@ export class LoginComponent extends ComponentGroup {
             let btnSign = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
             let validatableInputs = <ValidatableInput[]>this.getChildComponentsByName('ValidatableInput');
             let loginInput = validatableInputs[0];
-            let passwordInput = validatableInputs[1];
             this.validateOnClick(btnSign, validatableInputs, () => {
-                AuthApi.signIn(loginInput.input.value, passwordInput.input.value)
+                let data = validatableInputs.reduce((acc, input) =>
+                    Object.assign(acc, {[input.getInput().name]: input.getInput().value}), {});
+                AuthApi.signIn(data)
                     .then(response => {
                         if (response.ok) {
                             Router.getInstance().push('/chat');

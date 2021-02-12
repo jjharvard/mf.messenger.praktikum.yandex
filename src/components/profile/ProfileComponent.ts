@@ -4,8 +4,10 @@ import {Avatar} from "../_common/Avatar.js";
 import {Router} from "../../abstract/Router.js";
 import {AuthApi} from "../../api/AuthApi.js";
 import {Input} from "../_common/Input.js";
+import {StateUtil} from "../../utils/StateUtil.js";
 
 export class ProfileComponent extends ComponentGroup {
+
     constructor() {
         super([
             new Avatar('flex'),
@@ -34,6 +36,7 @@ export class ProfileComponent extends ComponentGroup {
                     let key = input.name;
                     input.value = userData[key];
                 });
+                StateUtil.saveUserProfile(userData);
             });
     }
 

@@ -3,8 +3,8 @@ import {StateUtil} from "../utils/StateUtil.js";
 
 export class AuthApi {
 
-    static signIn = (login: string, password: string) =>
-        client.post('/auth/signin', {login, password})
+    static signIn = (data: object) =>
+        client.post('/auth/signin', data)
             .then(result => {
                 if (result.ok) {
                     StateUtil.setAuthenticated(true);
