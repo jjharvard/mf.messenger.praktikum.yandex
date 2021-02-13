@@ -9,7 +9,7 @@ export interface RequestOptions {
     url: string,
     headers?: { [k: string]: string },
     queryParams?: object,
-    data?: object,
+    data?: object | FormData,
     timeout: number
 }
 

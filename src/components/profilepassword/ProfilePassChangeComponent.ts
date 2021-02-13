@@ -4,12 +4,14 @@ import {Avatar} from "../_common/Avatar.js";
 import {ValidatableInput} from "../_common/ValidatableInput.js";
 import {Router} from "../../abstract/Router.js";
 import {UsersApi} from "../../api/UsersApi.js";
+import {UserProfile} from "../../abstract/StorageTypes.js";
+import {StateUtil} from "../../utils/StateUtil.js";
 
 export class ProfilePassChangeComponent extends ComponentGroup {
 
     constructor() {
         super([
-            new Avatar('none'),
+            new Avatar('none', ''),
             new ValidatableInput('profile', 'password', 'profile__input', '', 'password', '123456'),
             new ValidatableInput('profile', 'password', 'profile__input', '', 'password', ''),
             new ValidatableInput('profile', 'password', 'profile__input', '', 'password', ''),
@@ -48,6 +50,9 @@ export class ProfilePassChangeComponent extends ComponentGroup {
     onViewCreated(): boolean {
         if (super.onViewCreated()) {
             let signBtn = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
+            let avatar = <Avatar>this.getChildComponentsByName('Avatar')[0];
+            let profileData = StateUtil.getUserProfile();
+            avatar.setAvatar(<string>profileData['avatar' as keyof UserProfile]);
             let validatableInputs = <ValidatableInput[]>this.getChildComponentsByName('ValidatableInput');
             this.validateOnClick(signBtn, validatableInputs, () => {
                 let keys = ['oldPassword', 'newPassword'];

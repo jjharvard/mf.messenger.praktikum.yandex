@@ -121,7 +121,7 @@ export class HTTPTransport {
         return new Promise<RequestResult>((resolve) => {
             this.xhr.open(method, this.withQuery(queryParams));
 
-            if (headers) {
+            if (headers && !(data instanceof FormData)) {
                 Object.keys(headers).forEach(key => {
                     this.xhr.setRequestHeader(key, headers[key]);
                 });
@@ -151,7 +151,11 @@ export class HTTPTransport {
                     break;
                 case METHOD.POST:
                 case METHOD.PUT:
-                    this.xhr.send(JSON.stringify(data));
+                    if(data instanceof FormData) {
+                        this.xhr.send(data);
+                    } else {
+                        this.xhr.send(JSON.stringify(data));
+                    }
                     break;
                 case METHOD.DELETE:
                     this.xhr.send();

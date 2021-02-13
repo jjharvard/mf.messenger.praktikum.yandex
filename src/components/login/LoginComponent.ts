@@ -45,12 +45,18 @@ export class LoginComponent extends ComponentGroup {
                     Object.assign(acc, {[input.getInput().name]: input.getInput().value}), {});
                 AuthApi.signIn(data)
                     .then(response => {
-                        if (response.ok) {
-                            Router.getInstance().push('/chat');
-                        } else {
-                            let message = JSON.parse(response.data)['reason'];
-                            loginInput.showMessage(message);
+                        if (!response.ok) {
+                            loginInput.showMessage(JSON.parse(response.data)['reason']);
+                            return;
                         }
+                        AuthApi.userInfo()
+                            .then(response => {
+                                if (!response.ok) {
+                                    loginInput.showMessage(JSON.parse(response.data)['reason']);
+                                    return;
+                                }
+                                Router.getInstance().push('/chat');
+                            });
                     });
             });
             let btnNoAccount = <HTMLButtonElement>this.getChildElementsByName('Button')[1];

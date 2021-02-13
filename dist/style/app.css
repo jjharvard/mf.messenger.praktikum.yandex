@@ -12,7 +12,7 @@ body {
 }
 
 .-container {
-  height: 90vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,7 +64,7 @@ body {
 }
 
 .auth-container {
-  height: 90vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -147,7 +147,7 @@ body {
 }
 
 .sign-container {
-  height: 90vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -230,7 +230,7 @@ body {
 }
 
 .error-container {
-  height: 90vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -251,7 +251,7 @@ body {
 }
 
 .profile-container {
-  height: 90vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;

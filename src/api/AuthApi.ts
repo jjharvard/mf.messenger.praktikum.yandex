@@ -12,7 +12,13 @@ export class AuthApi {
                 return result;
             });
 
-    static userInfo = () => client.get('/auth/user');
+    static userInfo = () => client.get('/auth/user')
+        .then(result => {
+            if (result.ok) {
+                StateUtil.saveUserProfile(JSON.parse(result.data));
+            }
+            return result;
+        });
 
     static logOut = () => client.post('/auth/logout')
         .then(result => {

@@ -5,12 +5,14 @@ import {Router} from "../../abstract/Router.js";
 import {AuthApi} from "../../api/AuthApi.js";
 import {Input} from "../_common/Input.js";
 import {StateUtil} from "../../utils/StateUtil.js";
+import {Modal} from "../_common/Modal.js";
+import {UserProfile} from "../../abstract/StorageTypes.js";
 
 export class ProfileComponent extends ComponentGroup {
 
     constructor() {
         super([
-            new Avatar('flex'),
+            new Avatar('flex', ''),
             new Input("email", "profile__input", "", "text", "", 'readonly'),
             new Input("login", "profile__input", "", "text", "", 'readonly'),
             new Input("first_name", "profile__input", "", "text", "", 'readonly'),
@@ -20,6 +22,7 @@ export class ProfileComponent extends ComponentGroup {
             new Button("Change user data", "'change__ref'"),
             new Button("Change password", "change__ref"),
             new Button("Exit", "change__ref_alert"),
+            new Modal()
         ]);
     }
 
@@ -27,22 +30,29 @@ export class ProfileComponent extends ComponentGroup {
         return {};
     }
 
-    initInputs() {
-        AuthApi.userInfo()
-            .then(response => {
-                let userData = JSON.parse(response.data);
-                let inputs = <HTMLInputElement[]>this.getChildElementsByName('Input');
-                inputs.forEach((input) => {
-                    let key = input.name;
-                    input.value = userData[key];
-                });
-                StateUtil.saveUserProfile(userData);
-            });
+    initInputs(userProfile: UserProfile) {
+        let inputs = <HTMLInputElement[]>this.getChildElementsByName('Input');
+        inputs.forEach((input) => {
+            let key = input.name;
+            input.value = <string>userProfile[key as keyof UserProfile];
+        });
+        let avatar = <Avatar>this.getChildComponentsByName('Avatar')[0];
+        userProfile['avatar'] && avatar.setAvatar(<string>userProfile['avatar' as keyof UserProfile]);
+
+        let modal = <Modal>this.getChildComponentsByName('Modal')[0];
+        modal.onChangedCallback = () => {
+            console.log('set avatar => ', StateUtil.getUserProfile().avatar!);
+            avatar.setAvatar(StateUtil.getUserProfile().avatar!);
+        };
+        let imgBtn = <HTMLElement>this.getDOMView()!.querySelector('.profile-title__hover-message');
+        imgBtn.onclick = () => {
+            modal.show();
+        };
     }
 
     onViewCreated(): boolean {
         if (super.onViewCreated()) {
-            this.initInputs();
+            this.initInputs(StateUtil.getUserProfile());
             let btnChangeData: HTMLButtonElement = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
             btnChangeData.onclick = () => {
                 Router.getInstance().push('/profile-change-data');
@@ -106,15 +116,7 @@ export class ProfileComponent extends ComponentGroup {
                             {{Button}}
                         </class>
                     </div>
-                
-                    <div class="upload-modal">
-                        <div class="upload-modal__content">
-                            <b class="upload-modal__title">Upload File</b>
-                            <form class="upload-modal__action" method="post" enctype="multipart/form-data"></form>
-                            <button class="upload-modal__btn_submit">Change</button>
-                        </div>
-                    </div>
-                
+                    {{Modal}}
                 </div>`;
     }
 }

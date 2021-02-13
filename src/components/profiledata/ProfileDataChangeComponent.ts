@@ -17,7 +17,7 @@ export class ProfileDataChangeComponent extends ComponentGroup {
             new ValidatableInput("profile", "second_name", "profile__input", "Surname", "text", ""),
             new ValidatableInput("profile", "display_name", "profile__input", "Nickname", "text", ""),
             new ValidatableInput("profile", "phone", "profile__input", "Phone", "text", ""),
-            new Avatar('none'),
+            new Avatar('none', ''),
             new Button("Save", "'profile-save__btn'")
         ]);
     }
@@ -30,10 +30,12 @@ export class ProfileDataChangeComponent extends ComponentGroup {
         if (super.onViewCreated()) {
             let saveBtn = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
             let validatableInputs = <ValidatableInput[]>this.getChildComponentsByName('ValidatableInput');
+            let avatar = <Avatar>this.getChildComponentsByName('Avatar')[0];
             let profileData = StateUtil.getUserProfile();
             validatableInputs.forEach(input => {
-                input.getInput().value = <string>profileData[input.getInput().name as keyof UserProfile]
-            })
+                input.getInput().value = <string>profileData[input.getInput().name as keyof UserProfile];
+            });
+            avatar.setAvatar(<string>profileData['avatar' as keyof UserProfile]);
             this.validateOnClick(saveBtn, validatableInputs, () => {
                 let data = validatableInputs.reduce((acc, input) =>
                     Object.assign(acc, {[input.getInput().name]: input.getInput().value}), {});
