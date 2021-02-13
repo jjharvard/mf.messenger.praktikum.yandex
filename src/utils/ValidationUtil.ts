@@ -39,6 +39,10 @@ export class ValidationUtil {
         'phone': [
             'Should contain valid phone number',
             ValidationUtil.REGEX_PHONE
+        ],
+        'create-chat': [
+            'Chat should contain letters only',
+            ValidationUtil.REGEX_NAME
         ]
     };
 

@@ -8,6 +8,10 @@ export class Input extends Component {
         super();
     }
 
+    getInput(): HTMLInputElement {
+        return <HTMLInputElement>this.getDOMView();
+    }
+
     getKeys(): Keys {
         return {
             'name': this.name,

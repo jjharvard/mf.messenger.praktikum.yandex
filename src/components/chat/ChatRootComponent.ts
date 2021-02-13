@@ -8,7 +8,8 @@ import {EditText} from "./EditText.js";
 import {UploadButton} from "./UploadButton.js";
 import {InputMessage} from "./InputMessage.js";
 import {Button} from "./Button.js";
-import {Modal} from "../_common/Modal.js";
+import {Modal, ModalBuilder} from "../_common/Modal.js";
+import {ChatsApi} from "../../api/ChatsApi.js";
 
 export class ChatRootComponent extends ComponentGroup {
 
@@ -25,13 +26,32 @@ export class ChatRootComponent extends ComponentGroup {
                 new InputMessage(),
                 new Button()
             ]),
-            new Modal()
+            new ModalBuilder()
+                .withTitle('Create Chat')
+                .withUpload('Choose image on your computer')
+                .withInput("create-chat", "create-chat__input", "Chat name", "text")
+                .withButton('Submit')
+                .build()
         ]);
     }
 
     onViewCreated() {
         this.modal = <Modal>(this.getChildComponentsByName('Modal')[0]);
         this.user = <User>this.getChildComponentsByName('User')[0];
+
+        this.modal.onChangedCallback = (files: FileList, chatTitle: string) => {
+            ChatsApi.createChat(chatTitle)
+                .then(response => {
+                    if (response.ok) {
+                        let chatId = JSON.parse(response.data)['id'];
+                        ChatsApi.changeAvatar(chatId, files)
+                            .then(response => {
+                                console.log(response.data);
+                            });
+                    }
+                });
+        };
+
         this.user.btnAddChat.onclick = () => {
             this.modal.show();
         };

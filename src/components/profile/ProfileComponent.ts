@@ -5,24 +5,28 @@ import {Router} from "../../abstract/Router.js";
 import {AuthApi} from "../../api/AuthApi.js";
 import {Input} from "../_common/Input.js";
 import {StateUtil} from "../../utils/StateUtil.js";
-import {Modal} from "../_common/Modal.js";
+import {Modal, ModalBuilder} from "../_common/Modal.js";
 import {UserProfile} from "../../abstract/StorageTypes.js";
+import {UsersApi} from "../../api/UsersApi.js";
 
 export class ProfileComponent extends ComponentGroup {
 
     constructor() {
         super([
             new Avatar('flex', ''),
-            new Input("email", "profile__input", "", "text", "", 'readonly'),
-            new Input("login", "profile__input", "", "text", "", 'readonly'),
-            new Input("first_name", "profile__input", "", "text", "", 'readonly'),
-            new Input("second_name", "profile__input", "", "text", "", 'readonly'),
-            new Input("display_name", "profile__input", "", "text", "", 'readonly'),
-            new Input("phone", "profile__input", "", "text", "", 'readonly'),
+            new Input("email", "profile__input", "", "text", "", "readonly"),
+            new Input("login", "profile__input", "", "text", "", "readonly"),
+            new Input("first_name", "profile__input", "", "text", "", "readonly"),
+            new Input("second_name", "profile__input", "", "text", "", "readonly"),
+            new Input("display_name", "profile__input", "", "text", "", "readonly"),
+            new Input("phone", "profile__input", "", "text", "", "readonly"),
             new Button("Change user data", "'change__ref'"),
             new Button("Change password", "change__ref"),
             new Button("Exit", "change__ref_alert"),
-            new Modal()
+            new ModalBuilder()
+                .withTitle("Change avatar")
+                .withUpload("Choose image on your computer")
+                .withButton('Submit').build()
         ]);
     }
 
@@ -40,8 +44,11 @@ export class ProfileComponent extends ComponentGroup {
         userProfile.avatar && avatar.setAvatar(userProfile.avatar);
         avatar.setName(userProfile.first_name);
         let modal = <Modal>this.getChildComponentsByName('Modal')[0];
-        modal.onChangedCallback = () => {
-            avatar.setAvatar(StateUtil.getUserProfile().avatar!);
+        modal.onChangedCallback = (files: FileList) => {
+            UsersApi.changeAvatar(files)
+                .then(_ => {
+                    avatar.setAvatar(StateUtil.getUserProfile().avatar!);
+                });
         };
         let imgBtn = <HTMLElement>this.getDOMView()!.querySelector('.profile-title__hover-message');
         imgBtn.onclick = () => {
