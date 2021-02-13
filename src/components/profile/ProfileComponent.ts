@@ -37,8 +37,8 @@ export class ProfileComponent extends ComponentGroup {
             input.value = <string>userProfile[key as keyof UserProfile];
         });
         let avatar = <Avatar>this.getChildComponentsByName('Avatar')[0];
-        userProfile['avatar'] && avatar.setAvatar(<string>userProfile['avatar' as keyof UserProfile]);
-
+        userProfile.avatar && avatar.setAvatar(userProfile.avatar);
+        avatar.setName(userProfile.first_name);
         let modal = <Modal>this.getChildComponentsByName('Modal')[0];
         modal.onChangedCallback = () => {
             console.log('set avatar => ', StateUtil.getUserProfile().avatar!);

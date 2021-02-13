@@ -35,7 +35,8 @@ export class ProfileDataChangeComponent extends ComponentGroup {
             validatableInputs.forEach(input => {
                 input.getInput().value = <string>profileData[input.getInput().name as keyof UserProfile];
             });
-            avatar.setAvatar(<string>profileData['avatar' as keyof UserProfile]);
+            profileData.avatar && avatar.setAvatar(profileData.avatar);
+            avatar.setName(profileData.first_name);
             this.validateOnClick(saveBtn, validatableInputs, () => {
                 let data = validatableInputs.reduce((acc, input) =>
                     Object.assign(acc, {[input.getInput().name]: input.getInput().value}), {});

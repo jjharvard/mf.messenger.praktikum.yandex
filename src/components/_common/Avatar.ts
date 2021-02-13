@@ -19,6 +19,11 @@ export class Avatar extends Component {
         img.src = API_HOST + avatar;
     }
 
+    setName(name: string) {
+        let label = <HTMLLabelElement>this.getDOMView()!.querySelector('.profile-title__label');
+        label.textContent = name;
+    }
+
     onViewCreated(): boolean {
         if (super.onViewCreated()) {
             return true;
@@ -32,7 +37,7 @@ export class Avatar extends Component {
                 <div  class="profile-title">
                     <img class="profile-title__icon" src="{{avatar}}" alt=""/>
                     <p class="profile-title__hover-message" style="display: {{display}};">Upload<br>image</p>
-                    <label class="profile-title__label">John</label>
+                    <label class="profile-title__label"></label>
                 </div>`;
     }
 
