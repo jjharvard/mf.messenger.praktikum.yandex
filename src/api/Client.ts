@@ -1,9 +1,10 @@
 import {HTTPTransport, HTTPTransportBuilder} from "../abstract/http/HTTPTransport.js";
 
 export const API_HOST = 'https://ya-praktikum.tech';
+export const API_VERSION = '/api/v2';
 
 export const client: HTTPTransport = new HTTPTransportBuilder()
-    .withBaseUrl(API_HOST + '/api/v2')
+    .withBaseUrl(API_HOST + API_VERSION)
     .withXHR(new XMLHttpRequest())
     .allowInterceptors(true)
     .withRequestInterceptor(request => {

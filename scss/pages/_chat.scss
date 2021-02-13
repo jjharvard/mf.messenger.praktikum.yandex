@@ -20,6 +20,7 @@ $chat__borderLight: 1px solid $app__colorSecondaryLight;
   background: $app__colorSecondary;
   flex-direction: column;
   justify-content: start;
+  cursor: pointer;
 
   &__list {
     list-style-type: none;

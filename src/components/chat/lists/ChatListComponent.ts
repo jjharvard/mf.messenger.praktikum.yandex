@@ -1,8 +1,8 @@
 import {ChatItemComponent} from "./ChatItemComponent.js";
-import {EventBus} from "../../utils/EventBus.js";
-import {ComponentGroup} from "../../abstract/ComponentGroup.js";
-import {Adapter} from "../../abstract/Adapter.js";
-import {Templator} from "../../utils/Templator.js";
+import {EventBus} from "../../../utils/EventBus.js";
+import {ComponentGroup} from "../../../abstract/ComponentGroup.js";
+import {Adapter} from "../../../abstract/Adapter.js";
+import {Templator} from "../../../utils/Templator.js";
 
 export class ChatListComponent extends ComponentGroup {
 

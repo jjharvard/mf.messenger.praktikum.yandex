@@ -1,4 +1,4 @@
-import {Component} from "../../abstract/Component.js";
+import {Component} from "../../../abstract/Component.js";
 
 export class ChatItemComponent extends Component {
 

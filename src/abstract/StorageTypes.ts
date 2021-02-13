@@ -12,3 +12,10 @@ export interface UserProfile {
     email: string,
     phone: string
 }
+
+export interface ChatData {
+    id: number,
+    avatar?: string,
+    created_by: number,
+    title: string
+}

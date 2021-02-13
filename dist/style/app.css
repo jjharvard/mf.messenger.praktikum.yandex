@@ -469,6 +469,7 @@ body {
   background: #dfe3ee;
   flex-direction: column;
   justify-content: start;
+  cursor: pointer;
 }
 .sidebar__list {
   list-style-type: none;
