@@ -11,4 +11,9 @@ export class ChatsApi {
         formData.append('avatar', fileList[0]);
         return formData;
     })());
+
+    static deleteChat = (id: string) => client.delete('/chats', {id})
+
+    static getChats = () => client.get('/chats')
+
 }

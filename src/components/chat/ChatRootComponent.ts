@@ -40,21 +40,25 @@ export class ChatRootComponent extends ComponentGroup {
         this.user = <User>this.getChildComponentsByName('User')[0];
 
         this.modal.onChangedCallback = (files: FileList, chatTitle: string) => {
+            if (!files || files.length === 0) {
+                this.modal.textInput.showMessage('Please, add avatar image');
+                return;
+            }
             ChatsApi.createChat(chatTitle)
                 .then(response => {
                     if (response.ok) {
                         let chatId = JSON.parse(response.data)['id'];
                         ChatsApi.changeAvatar(chatId, files)
-                            .then(response => {
-                                console.log(response.data);
+                            .then(_ => {
+                                this.modal.hide();
                             });
+                    } else {
+                        this.modal.textInput.showMessage(JSON.parse(response.data)['reason']);
                     }
                 });
         };
 
-        this.user.btnAddChat.onclick = () => {
-            this.modal.show();
-        };
+        this.user.btnAddChat.onclick = () => this.modal.show();
     }
 
     getTemplate(): string {

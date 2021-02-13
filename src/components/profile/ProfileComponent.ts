@@ -48,6 +48,7 @@ export class ProfileComponent extends ComponentGroup {
             UsersApi.changeAvatar(files)
                 .then(_ => {
                     avatar.setAvatar(StateUtil.getUserProfile().avatar!);
+                    modal.hide();
                 });
         };
         let imgBtn = <HTMLElement>this.getDOMView()!.querySelector('.profile-title__hover-message');

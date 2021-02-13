@@ -58,6 +58,9 @@ export class Modal extends ComponentGroup {
     showUpload: boolean = false;
     showInput: boolean = false;
 
+    textInput: ValidatableInput;
+
+
     onChangedCallback: (fileList: FileList, inputValue: string) => void | null;
 
     constructor(private title: string, buttonName: string, inputName: string,
@@ -90,8 +93,8 @@ export class Modal extends ComponentGroup {
         let uploadFileInput = <UploadFileInput>this.getChildComponentsByName('UploadFileInput')[0];
         uploadFileInput.getDOMView()!.style.display = this.showUpload ? 'flex' : 'none';
 
-        let textInput = <ValidatableInput>this.getChildComponentsByName('ValidatableInput')[0];
-        textInput.getDOMView()!.style.display = this.showInput ? 'flex' : 'none';
+        this.textInput = <ValidatableInput>this.getChildComponentsByName('ValidatableInput')[0];
+        this.textInput.getDOMView()!.style.display = this.showInput ? 'flex' : 'none';
         window.addEventListener('click', (event: MouseEvent) => {
             if (event.target === this.getDOMView()) {
                 this.hide();
@@ -100,10 +103,9 @@ export class Modal extends ComponentGroup {
 
         this.btnSubmit.onclick = () => {
             let files = uploadFileInput.fileInput.files!;
-            let value = textInput.getInput().value;
+            let value = this.textInput.getInput().value;
             if (this.onChangedCallback) {
                 this.onChangedCallback(files, value);
-                this.hide();
             }
         };
     }
