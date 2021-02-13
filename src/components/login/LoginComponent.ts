@@ -35,38 +35,33 @@ export class LoginComponent extends ComponentGroup {
                 </div>`;
     }
 
-    onViewCreated(): boolean {
-        if (super.onViewCreated()) {
-            let btnSign = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
-            let validatableInputs = <ValidatableInput[]>this.getChildComponentsByName('ValidatableInput');
-            let loginInput = validatableInputs[0];
-            this.validateOnClick(btnSign, validatableInputs, () => {
-                let data = validatableInputs.reduce((acc, input) =>
-                    Object.assign(acc, {[input.getInput().name]: input.getInput().value}), {});
-                AuthApi.signIn(data)
-                    .then(response => {
-                        if (!response.ok) {
-                            loginInput.showMessage(JSON.parse(response.data)['reason']);
-                            return;
-                        }
-                        AuthApi.userInfo()
-                            .then(response => {
-                                if (!response.ok) {
-                                    loginInput.showMessage(JSON.parse(response.data)['reason']);
-                                    return;
-                                }
-                                Router.getInstance().push('/chat');
-                            });
-                    });
-            });
-            let btnNoAccount = <HTMLButtonElement>this.getChildElementsByName('Button')[1];
-            btnNoAccount.onclick = () => {
-                Router.getInstance().push('/sign');
-            };
-            return true;
-        } else {
-            return false;
-        }
+    onViewCreated() {
+        let btnSign = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
+        let validatableInputs = <ValidatableInput[]>this.getChildComponentsByName('ValidatableInput');
+        let loginInput = validatableInputs[0];
+        this.validateOnClick(btnSign, validatableInputs, () => {
+            let data = validatableInputs.reduce((acc, input) =>
+                Object.assign(acc, {[input.getInput().name]: input.getInput().value}), {});
+            AuthApi.signIn(data)
+                .then(response => {
+                    if (!response.ok) {
+                        loginInput.showMessage(JSON.parse(response.data)['reason']);
+                        return;
+                    }
+                    AuthApi.userInfo()
+                        .then(response => {
+                            if (!response.ok) {
+                                loginInput.showMessage(JSON.parse(response.data)['reason']);
+                                return;
+                            }
+                            Router.getInstance().push('/chat');
+                        });
+                });
+        });
+        let btnNoAccount = <HTMLButtonElement>this.getChildElementsByName('Button')[1];
+        btnNoAccount.onclick = () => {
+            Router.getInstance().push('/sign');
+        };
     }
 
 }

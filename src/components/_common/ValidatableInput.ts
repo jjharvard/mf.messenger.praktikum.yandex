@@ -28,20 +28,15 @@ export class ValidatableInput extends ComponentGroup {
         this.setErrorStyle();
     }
 
-    onViewCreated(): boolean {
-        if (super.onViewCreated()) {
-            this.input = <HTMLInputElement>document.getElementById(this.getChildren()[0].id);
-            this.message = <HTMLDivElement>document.getElementById(this.getChildren()[1].id);
-            this.input.onblur = () => {
-                this.check();
-            };
-            this.input.onfocus = () => {
-                this.setValidStyle();
-            };
-            return true;
-        } else {
-            return false;
-        }
+    onViewCreated() {
+        this.input = <HTMLInputElement>document.getElementById(this.getChildren()[0].id);
+        this.message = <HTMLDivElement>document.getElementById(this.getChildren()[1].id);
+        this.input.onblur = () => {
+            this.check();
+        };
+        this.input.onfocus = () => {
+            this.setValidStyle();
+        };
     }
 
     check() {

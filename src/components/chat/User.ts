@@ -1,26 +1,25 @@
-import {ComponentGroup} from "../../abstract/ComponentGroup.js";
 import {Router} from "../../abstract/Router.js";
+import {Component} from "../../abstract/Component.js";
 
-export class User extends ComponentGroup {
+export class User extends Component {
+
+    btnAddChat: HTMLButtonElement;
+
     getKeys(): Keys {
         return {};
     }
 
-    onViewCreated(): boolean {
-        if (super.onViewCreated()) {
-            let btnProfile = <HTMLButtonElement>this.getDOMView()!.querySelector('.user__profile');
-            btnProfile.onclick = () => {
-                Router.getInstance().push('/profile');
-            };
-            return true;
-        } else {
-            return false;
-        }
+    onViewCreated() {
+        let btnProfile = <HTMLButtonElement>this.getDOMView()!.querySelector('.user__profile');
+        btnProfile.onclick = () => {
+            Router.getInstance().push('/profile');
+        };
+        this.btnAddChat = <HTMLButtonElement>this.getDOMView()!.querySelector('.user__chat-add');
     }
 
     getTemplate(): string {
         return `<div class="user">
-                    <button class="user__add">
+                    <button class="user__chat-add">
                         Add
                         <i class="arrow"></i>
                     </button>

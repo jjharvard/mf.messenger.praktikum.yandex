@@ -46,31 +46,26 @@ export class ProfilePassChangeComponent extends ComponentGroup {
                 </div>`;
     }
 
-    onViewCreated(): boolean {
-        if (super.onViewCreated()) {
-            let signBtn = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
-            let avatar = <Avatar>this.getChildComponentsByName('Avatar')[0];
-            let profileData = StateUtil.getUserProfile();
-            profileData.avatar && avatar.setAvatar(profileData.avatar);
-            avatar.setName(profileData.first_name);
-            let validatableInputs = <ValidatableInput[]>this.getChildComponentsByName('ValidatableInput');
-            this.validateOnClick(signBtn, validatableInputs, () => {
-                let keys = ['oldPassword', 'newPassword'];
-                let data = keys.reduce((acc, key, i) =>
-                    Object.assign(acc, {[key]: validatableInputs[i].getInput().value}), {});
-                UsersApi.changePassword(data)
-                    .then(response => {
-                        if (response.ok) {
-                            Router.getInstance().back();
-                        } else {
-                            let message = JSON.parse(response.data)['reason'];
-                            validatableInputs[1].showMessage(message);
-                        }
-                    });
-            });
-            return true;
-        } else {
-            return false;
-        }
+    onViewCreated() {
+        let signBtn = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
+        let avatar = <Avatar>this.getChildComponentsByName('Avatar')[0];
+        let profileData = StateUtil.getUserProfile();
+        profileData.avatar && avatar.setAvatar(profileData.avatar);
+        avatar.setName(profileData.first_name);
+        let validatableInputs = <ValidatableInput[]>this.getChildComponentsByName('ValidatableInput');
+        this.validateOnClick(signBtn, validatableInputs, () => {
+            let keys = ['oldPassword', 'newPassword'];
+            let data = keys.reduce((acc, key, i) =>
+                Object.assign(acc, {[key]: validatableInputs[i].getInput().value}), {});
+            UsersApi.changePassword(data)
+                .then(response => {
+                    if (response.ok) {
+                        Router.getInstance().back();
+                    } else {
+                        let message = JSON.parse(response.data)['reason'];
+                        validatableInputs[1].showMessage(message);
+                    }
+                });
+        });
     }
 }

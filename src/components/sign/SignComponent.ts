@@ -45,31 +45,26 @@ export class SignComponent extends ComponentGroup {
                 </div>`;
     }
 
-    onViewCreated(): boolean {
-        if (super.onViewCreated()) {
-            let btnSign = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
-            let validatableInputs = <ValidatableInput[]>this.getChildComponentsByName('ValidatableInput');
-            this.validateOnClick(btnSign, validatableInputs, () => {
-                let requestData = validatableInputs.reduce((acc, input) =>
-                    Object.assign(acc, {[input.getInput().name]: input.getInput().value}), {});
-                AuthApi.signUp(requestData)
-                    .then(response => {
-                        if (response.ok) {
-                            Router.getInstance().push('/chat');
-                        } else {
-                            let message = JSON.parse(response.data)['reason'];
-                            validatableInputs[0].showMessage(message);
-                        }
-                    });
-            });
-            let btnLogin = <HTMLButtonElement>this.getChildElementsByName('Button')[1];
-            btnLogin.onclick = () => {
-                Router.getInstance().push('/login');
-            };
-            return true;
-        } else {
-            return false;
-        }
+    onViewCreated() {
+        let btnSign = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
+        let validatableInputs = <ValidatableInput[]>this.getChildComponentsByName('ValidatableInput');
+        this.validateOnClick(btnSign, validatableInputs, () => {
+            let requestData = validatableInputs.reduce((acc, input) =>
+                Object.assign(acc, {[input.getInput().name]: input.getInput().value}), {});
+            AuthApi.signUp(requestData)
+                .then(response => {
+                    if (response.ok) {
+                        Router.getInstance().push('/chat');
+                    } else {
+                        let message = JSON.parse(response.data)['reason'];
+                        validatableInputs[0].showMessage(message);
+                    }
+                });
+        });
+        let btnLogin = <HTMLButtonElement>this.getChildElementsByName('Button')[1];
+        btnLogin.onclick = () => {
+            Router.getInstance().push('/login');
+        };
     }
 
 }

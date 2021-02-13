@@ -44,18 +44,20 @@ export abstract class Component {
             .compile(this.merge({}, this.convertKeys(view.getKeys())));
     }
 
-    onMessage(payload: Payload = {}): boolean {
-        if (!payload) {
-            console.log(payload);
-        }
+    isRendered(): boolean {
         return Utils.isRendered(this);
     }
 
-    onViewCreated(payload: Payload = {}): boolean {
+    onMessage(payload: Payload = {}) {
         if (!payload) {
             console.log(payload);
         }
-        return Utils.isRendered(this);
+    }
+
+    onViewCreated(payload: Payload = {}) {
+        if (!payload) {
+            console.log(payload);
+        }
     }
 
 }

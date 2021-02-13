@@ -42,40 +42,35 @@ export class Modal extends Component {
         return fileInput;
     }
 
-    onViewCreated(): boolean {
-        if (super.onViewCreated()) {
-            this.uploadAction = <HTMLDivElement>this.getDOMView()!.querySelector(".upload-modal__action");
-            this.btnSubmit = <HTMLButtonElement>this.getDOMView()!.querySelector(".upload-modal__btn_submit");
-            this.actionLabel = this.createActionLabel();
-            this.fileInput = this.createFileInput();
-            this.fileInput.onchange = (e: Event) => {
-                let files = (e.target as HTMLInputElement).files;
-                files && (this.actionLabel.textContent = files[0].name);
-            };
-            window.addEventListener('click', (event: MouseEvent) => {
-                if (event.target === this.getDOMView()) {
-                    while (this.uploadAction.firstChild) {
-                        this.uploadAction.removeChild(this.uploadAction.lastChild!);
-                    }
-                    this.hide();
+    onViewCreated() {
+        this.uploadAction = <HTMLDivElement>this.getDOMView()!.querySelector(".upload-modal__action");
+        this.btnSubmit = <HTMLButtonElement>this.getDOMView()!.querySelector(".upload-modal__btn_submit");
+        this.actionLabel = this.createActionLabel();
+        this.fileInput = this.createFileInput();
+        this.fileInput.onchange = (e: Event) => {
+            let files = (e.target as HTMLInputElement).files;
+            files && (this.actionLabel.textContent = files[0].name);
+        };
+        window.addEventListener('click', (event: MouseEvent) => {
+            if (event.target === this.getDOMView()) {
+                while (this.uploadAction.firstChild) {
+                    this.uploadAction.removeChild(this.uploadAction.lastChild!);
                 }
-            });
-            this.btnSubmit.onclick = () => {
-                let files = this.fileInput.files;
-                if (files) {
-                    UsersApi.changeAvatar(files)
-                        .then(_ => {
-                            this.hide();
-                            if (this.onChangedCallback) {
-                                this.onChangedCallback();
-                            }
-                        });
-                }
-            };
-            return true;
-        } else {
-            return false;
-        }
+                this.hide();
+            }
+        });
+        this.btnSubmit.onclick = () => {
+            let files = this.fileInput.files;
+            if (files) {
+                UsersApi.changeAvatar(files)
+                    .then(_ => {
+                        this.hide();
+                        if (this.onChangedCallback) {
+                            this.onChangedCallback();
+                        }
+                    });
+            }
+        };
     }
 
     getTemplate(): string {

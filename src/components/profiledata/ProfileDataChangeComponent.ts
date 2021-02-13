@@ -26,31 +26,26 @@ export class ProfileDataChangeComponent extends ComponentGroup {
         return {};
     }
 
-    onViewCreated(): boolean {
-        if (super.onViewCreated()) {
-            let saveBtn = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
-            let validatableInputs = <ValidatableInput[]>this.getChildComponentsByName('ValidatableInput');
-            let avatar = <Avatar>this.getChildComponentsByName('Avatar')[0];
-            let profileData = StateUtil.getUserProfile();
-            validatableInputs.forEach(input => {
-                input.getInput().value = <string>profileData[input.getInput().name as keyof UserProfile];
-            });
-            profileData.avatar && avatar.setAvatar(profileData.avatar);
-            avatar.setName(profileData.first_name);
-            this.validateOnClick(saveBtn, validatableInputs, () => {
-                let data = validatableInputs.reduce((acc, input) =>
-                    Object.assign(acc, {[input.getInput().name]: input.getInput().value}), {});
-                UsersApi.saveProfile(data)
-                    .then(response => {
-                        if (response.ok) {
-                            Router.getInstance().back();
-                        }
-                    });
-            });
-            return true;
-        } else {
-            return false;
-        }
+    onViewCreated() {
+        let saveBtn = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
+        let validatableInputs = <ValidatableInput[]>this.getChildComponentsByName('ValidatableInput');
+        let avatar = <Avatar>this.getChildComponentsByName('Avatar')[0];
+        let profileData = StateUtil.getUserProfile();
+        validatableInputs.forEach(input => {
+            input.getInput().value = <string>profileData[input.getInput().name as keyof UserProfile];
+        });
+        profileData.avatar && avatar.setAvatar(profileData.avatar);
+        avatar.setName(profileData.first_name);
+        this.validateOnClick(saveBtn, validatableInputs, () => {
+            let data = validatableInputs.reduce((acc, input) =>
+                Object.assign(acc, {[input.getInput().name]: input.getInput().value}), {});
+            UsersApi.saveProfile(data)
+                .then(response => {
+                    if (response.ok) {
+                        Router.getInstance().back();
+                    }
+                });
+        });
     }
 
     getTemplate(): string {

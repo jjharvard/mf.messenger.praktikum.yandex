@@ -24,14 +24,6 @@ export class Avatar extends Component {
         label.textContent = name;
     }
 
-    onViewCreated(): boolean {
-        if (super.onViewCreated()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     getTemplate(): string {
         return `
                 <div  class="profile-title">

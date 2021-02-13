@@ -8,8 +8,12 @@ import {EditText} from "./EditText.js";
 import {UploadButton} from "./UploadButton.js";
 import {InputMessage} from "./InputMessage.js";
 import {Button} from "./Button.js";
+import {Modal} from "../_common/Modal.js";
 
 export class ChatRootComponent extends ComponentGroup {
+
+    modal: Modal;
+    user: User;
 
     constructor() {
         super([
@@ -20,8 +24,17 @@ export class ChatRootComponent extends ComponentGroup {
                 new UploadButton(),
                 new InputMessage(),
                 new Button()
-            ])
+            ]),
+            new Modal()
         ]);
+    }
+
+    onViewCreated() {
+        this.modal = <Modal>(this.getChildComponentsByName('Modal')[0]);
+        this.user = <User>this.getChildComponentsByName('User')[0];
+        this.user.btnAddChat.onclick = () => {
+            this.modal.show();
+        };
     }
 
     getTemplate(): string {
@@ -30,6 +43,7 @@ export class ChatRootComponent extends ComponentGroup {
                     {{Sidebar}}
                     {{ChatRoom}}
                     {{EditText}}
+                    {{Modal}}
                 </div>`;
     }
 

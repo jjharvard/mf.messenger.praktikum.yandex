@@ -14,31 +14,26 @@ export class EditText extends ComponentGroup {
             `;
     }
 
-    onViewCreated(): boolean {
-        if (super.onViewCreated()) {
-            EventBus.getInstance().register('onMessage', this);
-            let inputMessage = <HTMLInputElement>this.getChildElementsByName('InputMessage')[0];
-            let button = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
-            let sendMessage = () => {
-                EventBus.getInstance().emit('onMessage', {'message': inputMessage.value});
-                inputMessage.value = '';
-            };
-            inputMessage.onkeypress = (e: KeyboardEvent) => {
-                let eventTarget: HTMLElement = <HTMLElement>e.target;
-                if (inputMessage.value && (e.key === 'Enter' && eventTarget.id === inputMessage.id)) {
-                    sendMessage();
-                }
-            };
-            button.onclick = (e: Event) => {
-                let eventTarget: HTMLElement = <HTMLElement>e.target;
-                if (inputMessage.value && eventTarget.id === button.id) {
-                    sendMessage();
-                }
-            };
-            return true;
-        } else {
-            return false;
-        }
+    onViewCreated() {
+        EventBus.getInstance().register('onMessage', this);
+        let inputMessage = <HTMLInputElement>this.getChildElementsByName('InputMessage')[0];
+        let button = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
+        let sendMessage = () => {
+            EventBus.getInstance().emit('onMessage', {'message': inputMessage.value});
+            inputMessage.value = '';
+        };
+        inputMessage.onkeypress = (e: KeyboardEvent) => {
+            let eventTarget: HTMLElement = <HTMLElement>e.target;
+            if (inputMessage.value && (e.key === 'Enter' && eventTarget.id === inputMessage.id)) {
+                sendMessage();
+            }
+        };
+        button.onclick = (e: Event) => {
+            let eventTarget: HTMLElement = <HTMLElement>e.target;
+            if (inputMessage.value && eventTarget.id === button.id) {
+                sendMessage();
+            }
+        };
     }
 
     getKeys(): Keys {

@@ -41,7 +41,6 @@ export class ProfileComponent extends ComponentGroup {
         avatar.setName(userProfile.first_name);
         let modal = <Modal>this.getChildComponentsByName('Modal')[0];
         modal.onChangedCallback = () => {
-            console.log('set avatar => ', StateUtil.getUserProfile().avatar!);
             avatar.setAvatar(StateUtil.getUserProfile().avatar!);
         };
         let imgBtn = <HTMLElement>this.getDOMView()!.querySelector('.profile-title__hover-message');
@@ -50,29 +49,24 @@ export class ProfileComponent extends ComponentGroup {
         };
     }
 
-    onViewCreated(): boolean {
-        if (super.onViewCreated()) {
-            this.initInputs(StateUtil.getUserProfile());
-            let btnChangeData: HTMLButtonElement = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
-            btnChangeData.onclick = () => {
-                Router.getInstance().push('/profile-change-data');
-            };
-            let btnChangePass: HTMLButtonElement = <HTMLButtonElement>this.getChildElementsByName('Button')[1];
-            btnChangePass.onclick = () => {
-                Router.getInstance().push('/profile-change-password');
-            };
-            let btnExit: HTMLButtonElement = <HTMLButtonElement>this.getChildElementsByName('Button')[2];
-            btnExit.onclick = () => {
-                AuthApi.logOut().then(response => {
-                    if (response.ok) {
-                        Router.getInstance().exit();
-                    }
-                });
-            };
-            return true;
-        } else {
-            return false;
-        }
+    onViewCreated() {
+        this.initInputs(StateUtil.getUserProfile());
+        let btnChangeData: HTMLButtonElement = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
+        btnChangeData.onclick = () => {
+            Router.getInstance().push('/profile-change-data');
+        };
+        let btnChangePass: HTMLButtonElement = <HTMLButtonElement>this.getChildElementsByName('Button')[1];
+        btnChangePass.onclick = () => {
+            Router.getInstance().push('/profile-change-password');
+        };
+        let btnExit: HTMLButtonElement = <HTMLButtonElement>this.getChildElementsByName('Button')[2];
+        btnExit.onclick = () => {
+            AuthApi.logOut().then(response => {
+                if (response.ok) {
+                    Router.getInstance().exit();
+                }
+            });
+        };
     }
 
     getTemplate(): string {
