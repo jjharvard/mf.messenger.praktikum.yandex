@@ -67,7 +67,7 @@ export class ChatRootComponent extends ComponentGroup {
         let action = <CHAT_ACTION>payload['action'];
         switch (action) {
             case 'chatRemove':
-                if (this.sidebarListComponent.currentItem) {
+                if (this.sidebarListComponent.adapter.getItems().length) {
                     this.modalConfirm.onChangedCallback = () => {
                         let activeChat = <ChatData>this.sidebarListComponent.adapter.getItems().filter(item => item.isActive)[0];
                         ChatsApi.deleteChat(activeChat.id)
@@ -82,7 +82,7 @@ export class ChatRootComponent extends ComponentGroup {
                 }
                 break;
             case 'userAdd':
-                if (this.sidebarListComponent.currentItem) {
+                if (this.sidebarListComponent.adapter.getItems().length) {
                     this.modalAddUsers.show();
                     this.modalAddUsers.onSubmitCallback = (usersData: UserData[]) => {
                         ChatsApi.addUsers(usersData.map(item => item.id), this.sidebarListComponent.currentItem.chatData.id)
@@ -95,7 +95,7 @@ export class ChatRootComponent extends ComponentGroup {
                 }
                 break;
             case 'userRemove':
-                this.sidebarListComponent.currentItem && ChatsApi.getUsers(this.sidebarListComponent.currentItem.chatData.id)
+                this.sidebarListComponent.adapter.getItems().length && ChatsApi.getUsers(this.sidebarListComponent.currentItem.chatData.id)
                     .then(response => {
                         if (response.ok) {
                             let usersData = JSON.parse(response.data) as UserData[];

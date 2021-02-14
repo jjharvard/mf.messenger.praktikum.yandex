@@ -6,7 +6,7 @@ export const API_VERSION = '/api/v2';
 export const client: HTTPTransport = new HTTPTransportBuilder()
     .withBaseUrl(API_HOST + API_VERSION)
     .withXHR(new XMLHttpRequest())
-    .allowInterceptors(true)
+    .allowInterceptors(false)
     .withRequestInterceptor(request => {
         console.log(`${request.url} => `, JSON.stringify(request.data));
     })

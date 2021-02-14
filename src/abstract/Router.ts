@@ -30,7 +30,6 @@ export class Router {
             }
             let prevPath = this.currentRoute.path;
             let path = e.state ? e.state.path : '';
-            console.log('ON_POP_STATE1', ' path => ', path, ' prevPath => ', prevPath, 'cookie => ', document.cookie);
             if ((prevPath === '/chat' && path === '/login') || (prevPath === '/chat' && path === '/sign')) { // going back from chat
                 AuthApi.logOut().then(_ => {
                     this._onRoute(e.state.path);

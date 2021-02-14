@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const helmet = require('helmet');
 
-const PORT = 8080;
+const PORT = 3000;
 const STATIC_FILES_DIR = path.join(__dirname, './dist');
 
 app
