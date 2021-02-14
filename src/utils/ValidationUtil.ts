@@ -43,6 +43,10 @@ export class ValidationUtil {
         'create-chat': [
             'Chat should contain letters only',
             ValidationUtil.REGEX_NAME
+        ],
+        'users-modal': [
+            'Login should contain letters only',
+            ValidationUtil.REGEX_NAME
         ]
     };
 

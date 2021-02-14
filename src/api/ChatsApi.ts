@@ -16,7 +16,7 @@ export class ChatsApi {
 
     static getChats = () => client.get('/chats');
 
-    static addUsers = (userIds: string[], chatId: string) => client.put('/chats/users', {
+    static addUsers = (userIds: number[], chatId: number) => client.put('/chats/users', {
         'users': userIds,
         'chatId': chatId
     });

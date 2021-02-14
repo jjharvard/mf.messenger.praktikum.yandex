@@ -7,7 +7,7 @@ export class SidebarItemComponent extends Component {
 
     it: HTMLLIElement;
 
-    constructor(private chatData: ChatData) {
+    constructor(public chatData: ChatData) {
         super();
     }
 

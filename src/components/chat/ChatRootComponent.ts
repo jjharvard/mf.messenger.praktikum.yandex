@@ -9,8 +9,9 @@ import {Button} from "./Button.js";
 import {Modal, ModalBuilder} from "../_common/Modal.js";
 import {ChatsApi} from "../../api/ChatsApi.js";
 import {SidebarListComponent} from "./lists/SidebarListComponent.js";
-import {ChatData} from "../../abstract/StorageTypes.js";
+import {ChatData, UserData} from "../../abstract/StorageTypes.js";
 import {EventBus} from "../../utils/EventBus.js";
+import {UsersModal} from "./lists/users/UsersModal.js";
 
 export class ChatRootComponent extends ComponentGroup {
 
@@ -19,6 +20,7 @@ export class ChatRootComponent extends ComponentGroup {
     chatRoom: ChatRoom;
     user: User;
     sidebarListComponent: SidebarListComponent;
+    modalUsers: UsersModal;
 
     constructor() {
         super([
@@ -39,7 +41,8 @@ export class ChatRootComponent extends ComponentGroup {
             new ModalBuilder()
                 .withTitle('Are you sure?')
                 .withButton('Delete')
-                .build()
+                .build(),
+            new UsersModal()
         ]);
         EventBus.getInstance().register('onChatAction', this);
     }
@@ -51,7 +54,7 @@ export class ChatRootComponent extends ComponentGroup {
         this.sidebarListComponent = <SidebarListComponent>this.getChildComponentsByName('SidebarListComponent')[0];
         this.chatRoom = <ChatRoom>this.getChildComponentsByName('ChatRoom')[0];
         this.user = <User>this.getChildComponentsByName('User')[0];
-        this.sidebarListComponent = <SidebarListComponent>this.getChildComponentsByName('SidebarListComponent')[0];
+        this.modalUsers = <UsersModal>this.getChildComponentsByName('UsersModal')[0];
         this.initModal();
         this.getChats();
     }
@@ -73,6 +76,15 @@ export class ChatRootComponent extends ComponentGroup {
                 this.modalConfirm.show();
                 break;
             case 'userAdd':
+                this.modalUsers.show();
+                this.modalUsers.onSubmitCallback = (usersData: UserData[]) => {
+                    ChatsApi.addUsers(usersData.map(item => item.id), this.sidebarListComponent.currentItem.chatData.id)
+                        .then(response => {
+                            if (response.ok) {
+                                this.modalUsers.hide();
+                            }
+                        });
+                };
                 break;
             case 'userRemove':
                 break;
@@ -101,6 +113,7 @@ export class ChatRootComponent extends ComponentGroup {
                     {{EditText}}
                     {{Modal}}
                     {{Modal}}
+                    {{UsersModal}}
                 </div>`;
     }
 

@@ -100,6 +100,100 @@ body {
   border-radius: 8px;
 }
 
+.users-modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.users-modal__content {
+  padding: 16px;
+  background-color: #fefefe;
+  margin: auto;
+  border: 1px solid #888;
+  width: 240px;
+  height: 340px;
+  border-radius: 8px;
+  display: flex;
+  flex-flow: column wrap;
+}
+.users-modal__title {
+  align-self: center;
+}
+.users-modal__input {
+  margin-bottom: 16px;
+  height: 2rem;
+  border-radius: 8px;
+  border: 2px solid #dfe3ee;
+  padding-left: 8px;
+}
+.users-modal__input:focus {
+  outline: none;
+  border-radius: 8px;
+  border: 2px solid #8b9dc3;
+}
+.users-modal__list-container {
+  height: 190px;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-flow: column wrap;
+}
+.users-modal__list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  overflow: auto;
+}
+.users-modal__item {
+  display: flex;
+  height: 58px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-items: start;
+}
+.users-modal__icon {
+  margin: 0px auto 0px auto;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  border: 2px solid #f1f1f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0;
+  margin-right: 0;
+}
+.users-modal__login {
+  margin-left: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 55%;
+}
+.users-modal__checkbox {
+  margin-right: 16px;
+}
+.users-modal__title {
+  font-weight: bold;
+}
+.users-modal__btn_submit {
+  height: 2rem;
+  background: #3b5998;
+  color: #ffffff;
+  border-radius: 8px;
+  width: 100%;
+  margin-top: auto;
+}
+.users-modal__btn_submit:focus {
+  outline: none;
+  border-radius: 8px;
+}
+
 .create-chat__input {
   margin-bottom: 16px;
   height: 2rem;
@@ -128,6 +222,24 @@ body {
 }
 
 .create-chat__validatable_error {
+  display: none;
+  background: #fa3e3e;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  font-size: 0.8rem;
+  color: white;
+  word-wrap: break-word;
+  text-align: center;
+  width: 340px;
+  position: absolute;
+  right: -350px;
+  bottom: 21px;
+  height: 24px;
+  font-size: 0.9rem;
+}
+
+.users-modal__validatable_error {
   display: none;
   background: #fa3e3e;
   align-items: center;
