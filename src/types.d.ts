@@ -6,4 +6,6 @@ type Keys = { [k: string]: unknown }
 
 type EVENT = 'onChatSelected' | 'onMessage' | 'onViewCreated' | 'onChatAction'
 
-type Payload = { [k: string]: number | string | [] | {} }
+type CHAT_ACTION = 'userRemove' | 'userAdd' | 'chatRemove'
+
+type Payload = { [k: string]: CHAT_ACTION | number | string | [] | {} }

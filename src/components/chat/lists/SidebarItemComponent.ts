@@ -21,6 +21,7 @@ export class SidebarItemComponent extends Component {
 
     onViewCreated() {
         this.it = <HTMLLIElement>this.getDOMView()!;
+        this.setHighlighted(this.chatData.isActive);
     }
 
     setOnItemClickListener(listener: (component: Component, chatData: ChatData) => void) {

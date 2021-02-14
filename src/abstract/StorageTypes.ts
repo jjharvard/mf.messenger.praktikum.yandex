@@ -17,5 +17,6 @@ export interface ChatData {
     id: number,
     avatar?: string,
     created_by: number,
-    title: string
+    title: string,
+    isActive: boolean
 }

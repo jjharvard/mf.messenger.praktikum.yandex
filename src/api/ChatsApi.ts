@@ -5,7 +5,7 @@ export class ChatsApi {
 
     static createChat = (title: string) => client.post('/chats', {title});
 
-    static deleteChat = (chatId: string) => client.delete('/chats', {chatId});
+    static deleteChat = (chatId: number) => client.delete('/chats', {chatId});
 
     static changeAvatar = (id: string, fileList: FileList) => client.put('/chats/avatar', (() => {
         let formData = new FormData();

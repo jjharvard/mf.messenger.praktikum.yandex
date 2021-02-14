@@ -151,14 +151,12 @@ export class HTTPTransport {
                     break;
                 case METHOD.POST:
                 case METHOD.PUT:
-                    if(data instanceof FormData) {
+                case METHOD.DELETE:
+                    if (data instanceof FormData) {
                         this.xhr.send(data);
                     } else {
                         this.xhr.send(JSON.stringify(data));
                     }
-                    break;
-                case METHOD.DELETE:
-                    this.xhr.send();
                     break;
             }
         });

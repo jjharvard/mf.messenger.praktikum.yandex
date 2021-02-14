@@ -56,15 +56,39 @@ export class ChatRootComponent extends ComponentGroup {
         this.getChats();
     }
 
-    onChatAction(_: Payload = {}) {
-        this.modalConfirm.show();
+    onChatAction(payload: Payload = {}) {
+        let action = <CHAT_ACTION>payload['action'];
+        switch (action) {
+            case 'chatRemove':
+                this.modalConfirm.onChangedCallback = () => {
+                    let activeChat = <ChatData>this.sidebarListComponent.adapter.getItems().filter(item => item.isActive)[0];
+                    ChatsApi.deleteChat(activeChat.id)
+                        .then(response => {
+                            if (response.ok) {
+                                this.getChats();
+                                this.modalConfirm.hide();
+                            }
+                        });
+                };
+                this.modalConfirm.show();
+                break;
+            case 'userAdd':
+                break;
+            case 'userRemove':
+                break;
+            default:
+                return;
+        }
     }
 
     getChats() {
         ChatsApi.getChats().then(response => {
             if (response.ok) {
                 let chatData = JSON.parse(response.data) as ChatData[];
-                this.sidebarListComponent.notify(new Adapter<ChatData>(chatData));
+                if (chatData.length) {
+                    chatData[0].isActive = true;
+                    this.sidebarListComponent.notify(new Adapter<ChatData>(chatData));
+                }
             }
         });
     }

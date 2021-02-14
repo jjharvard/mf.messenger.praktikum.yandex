@@ -27,10 +27,16 @@ export class ChatRoomTitle extends ComponentGroup {
     onViewCreated(_: Payload = {}) {
         let buttons = <HTMLButtonElement[]>this.getChildElementsByName('ArrowButton');
         this.btnUserAdd = buttons[0];
+        this.btnUserAdd.onclick = () => {
+            EventBus.getInstance().emit('onChatAction', {'action': 'userAdd'});
+        };
         this.btnUserRemove = buttons[1];
+        this.btnUserRemove.onclick = () => {
+            EventBus.getInstance().emit('onChatAction', {'action': 'userRemove'});
+        };
         this.btnChatRemove = buttons[2];
         this.btnChatRemove.onclick = () => {
-            EventBus.getInstance().emit('onChatAction');
+            EventBus.getInstance().emit('onChatAction', {'action': 'chatRemove'});
         };
     }
 
