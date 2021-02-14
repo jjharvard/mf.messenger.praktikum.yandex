@@ -161,6 +161,11 @@ $chat__borderLight: 1px solid $app__colorSecondaryLight;
   display: flex;
   flex-flow: column nowrap;
 
+  &__user-add, &__user-remove, &__chat-remove {
+    @include transparent();
+    margin-bottom: 1%;
+  }
+
   &__title {
     border-bottom: $chat__border;
     margin-left: 100px;
@@ -175,13 +180,6 @@ $chat__borderLight: 1px solid $app__colorSecondaryLight;
     flex-grow: 1;
     font-size: x-large;
     font-weight: bold;
-  }
-  &__remove {
-    background: url(../img/remove.svg) no-repeat;
-    @include asimage(1.5rem) {
-      outline: none;
-      margin-bottom: 0.2rem;
-    }
   }
   &__list {
     overflow: auto;

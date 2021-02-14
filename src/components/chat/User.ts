@@ -1,9 +1,15 @@
 import {Router} from "../../abstract/Router.js";
-import {Component} from "../../abstract/Component.js";
+import {ArrowButton} from "../_common/ArrowButton.js";
+import {ComponentGroup} from "../../abstract/ComponentGroup.js";
 
-export class User extends Component {
+export class User extends ComponentGroup {
 
     btnAddChat: HTMLButtonElement;
+
+    constructor() {
+        super([new ArrowButton('Add Chat', 'user__chat-add'),
+            new ArrowButton('Profile', 'user__profile')]);
+    }
 
     getKeys(): Keys {
         return {};
@@ -19,14 +25,8 @@ export class User extends Component {
 
     getTemplate(): string {
         return `<div class="user">
-                    <button class="user__chat-add">
-                        Add
-                        <i class="arrow"></i>
-                    </button>
-                    <button class="user__profile">
-                        Profile
-                        <i class="arrow"></i>
-                    </button>
+                    {{ArrowButton}}
+                    {{ArrowButton}}
                     <input id="user__search_id" class="user__search" type="text" placeholder="Search">
                 </div>
             `;

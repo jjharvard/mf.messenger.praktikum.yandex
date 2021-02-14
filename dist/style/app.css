@@ -641,6 +641,15 @@ body {
   display: flex;
   flex-flow: column nowrap;
 }
+.chat__user-add, .chat__user-remove, .chat__chat-remove {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  margin-bottom: 1%;
+}
 .chat__title {
   border-bottom: 1px solid #dfe3ee;
   margin-left: 100px;
@@ -655,15 +664,6 @@ body {
   flex-grow: 1;
   font-size: x-large;
   font-weight: bold;
-}
-.chat__remove {
-  background: url(../img/remove.svg) no-repeat;
-  margin: 0px auto 0px auto;
-  width: 1.5rem;
-  height: 1.5rem;
-  border: none;
-  outline: none;
-  margin-bottom: 0.2rem;
 }
 .chat__list {
   overflow: auto;
