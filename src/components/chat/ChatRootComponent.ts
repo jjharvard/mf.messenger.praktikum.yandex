@@ -12,6 +12,7 @@ import {SidebarListComponent} from "./lists/SidebarListComponent.js";
 import {ChatData, UserData} from "../../abstract/StorageTypes.js";
 import {EventBus} from "../../utils/EventBus.js";
 import {UsersModal} from "./lists/users/UsersModal.js";
+import {StateUtil} from "../../utils/StateUtil.js";
 
 export class ChatRootComponent extends ComponentGroup {
 
@@ -20,7 +21,8 @@ export class ChatRootComponent extends ComponentGroup {
     chatRoom: ChatRoom;
     user: User;
     sidebarListComponent: SidebarListComponent;
-    modalUsers: UsersModal;
+    modalAddUsers: UsersModal;
+    modalRemoveUsers: UsersModal;
 
     constructor() {
         super([
@@ -42,7 +44,8 @@ export class ChatRootComponent extends ComponentGroup {
                 .withTitle('Are you sure?')
                 .withButton('Delete')
                 .build(),
-            new UsersModal()
+            new UsersModal('Select User', "User Login", "Add"),
+            new UsersModal('Remove Users', 'User Login', 'Remove')
         ]);
         EventBus.getInstance().register('onChatAction', this);
     }
@@ -54,7 +57,8 @@ export class ChatRootComponent extends ComponentGroup {
         this.sidebarListComponent = <SidebarListComponent>this.getChildComponentsByName('SidebarListComponent')[0];
         this.chatRoom = <ChatRoom>this.getChildComponentsByName('ChatRoom')[0];
         this.user = <User>this.getChildComponentsByName('User')[0];
-        this.modalUsers = <UsersModal>this.getChildComponentsByName('UsersModal')[0];
+        this.modalAddUsers = <UsersModal>this.getChildComponentsByName('UsersModal')[0];
+        this.modalRemoveUsers = <UsersModal>this.getChildComponentsByName('UsersModal')[1];
         this.initModal();
         this.getChats();
     }
@@ -63,30 +67,53 @@ export class ChatRootComponent extends ComponentGroup {
         let action = <CHAT_ACTION>payload['action'];
         switch (action) {
             case 'chatRemove':
-                this.modalConfirm.onChangedCallback = () => {
-                    let activeChat = <ChatData>this.sidebarListComponent.adapter.getItems().filter(item => item.isActive)[0];
-                    ChatsApi.deleteChat(activeChat.id)
-                        .then(response => {
-                            if (response.ok) {
-                                this.getChats();
-                                this.modalConfirm.hide();
-                            }
-                        });
-                };
-                this.modalConfirm.show();
+                if (this.sidebarListComponent.currentItem) {
+                    this.modalConfirm.onChangedCallback = () => {
+                        let activeChat = <ChatData>this.sidebarListComponent.adapter.getItems().filter(item => item.isActive)[0];
+                        ChatsApi.deleteChat(activeChat.id)
+                            .then(response => {
+                                if (response.ok) {
+                                    this.getChats();
+                                    this.modalConfirm.hide();
+                                }
+                            });
+                    };
+                    this.modalConfirm.show();
+                }
                 break;
             case 'userAdd':
-                this.modalUsers.show();
-                this.modalUsers.onSubmitCallback = (usersData: UserData[]) => {
-                    ChatsApi.addUsers(usersData.map(item => item.id), this.sidebarListComponent.currentItem.chatData.id)
-                        .then(response => {
-                            if (response.ok) {
-                                this.modalUsers.hide();
-                            }
-                        });
-                };
+                if (this.sidebarListComponent.currentItem) {
+                    this.modalAddUsers.show();
+                    this.modalAddUsers.onSubmitCallback = (usersData: UserData[]) => {
+                        ChatsApi.addUsers(usersData.map(item => item.id), this.sidebarListComponent.currentItem.chatData.id)
+                            .then(response => {
+                                if (response.ok) {
+                                    this.modalAddUsers.hide();
+                                }
+                            });
+                    };
+                }
                 break;
             case 'userRemove':
+                this.sidebarListComponent.currentItem && ChatsApi.getUsers(this.sidebarListComponent.currentItem.chatData.id)
+                    .then(response => {
+                        if (response.ok) {
+                            let usersData = JSON.parse(response.data) as UserData[];
+                            this.modalRemoveUsers.notifyUserList(usersData);
+                            this.modalRemoveUsers.onSubmitCallback = (usersData: UserData[]) => {
+                                ChatsApi.deleteUsers(usersData.map(item => item.id), this.sidebarListComponent.currentItem.chatData.id)
+                                    .then(response => {
+                                        if (response.ok) {
+                                            this.modalRemoveUsers.hide();
+                                            let profileData = StateUtil.getUserProfile();
+                                            if (!usersData || usersData.length! || usersData.some(data => profileData.id === data.id)) {
+                                                this.getChats();
+                                            }
+                                        }
+                                    });
+                            };
+                        }
+                    });
                 break;
             default:
                 return;
@@ -99,8 +126,8 @@ export class ChatRootComponent extends ComponentGroup {
                 let chatData = JSON.parse(response.data) as ChatData[];
                 if (chatData.length) {
                     chatData[0].isActive = true;
-                    this.sidebarListComponent.notify(new Adapter<ChatData>(chatData));
                 }
+                this.sidebarListComponent.notify(new Adapter<ChatData>(chatData));
             }
         });
     }
@@ -113,6 +140,7 @@ export class ChatRootComponent extends ComponentGroup {
                     {{EditText}}
                     {{Modal}}
                     {{Modal}}
+                    {{UsersModal}}
                     {{UsersModal}}
                 </div>`;
     }
@@ -134,6 +162,7 @@ export class ChatRootComponent extends ComponentGroup {
                         ChatsApi.changeAvatar(chatId, files)
                             .then(_ => {
                                 this.modalChatAdd.hide();
+                                this.modalChatAdd.clear();
                                 this.getChats();
                             });
                     } else {

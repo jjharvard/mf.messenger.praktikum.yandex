@@ -21,9 +21,11 @@ export class ChatsApi {
         'chatId': chatId
     });
 
-    static deleteUsers = (userIds: string[], chatId: string) => client.delete('/chats/users', {
+    static deleteUsers = (userIds: number[], chatId: number) => client.delete('/chats/users', {
         'users': userIds,
         'chatId': chatId
     });
+
+    static getUsers = (chatId: number) => client.get('/chats/' + chatId + '/users');
 
 }

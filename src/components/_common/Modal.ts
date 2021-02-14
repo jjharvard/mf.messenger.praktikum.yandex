@@ -61,6 +61,7 @@ export class Modal extends ComponentGroup {
     showInput: boolean = false;
 
     textInput: ValidatableInput;
+    uploadFileInput: UploadFileInput;
 
 
     onChangedCallback: (fileList: FileList, inputValue: string) => void | null;
@@ -89,11 +90,15 @@ export class Modal extends ComponentGroup {
         this.getDOMView()!.style.display = 'none';
     }
 
+    clear() {
+        this.textInput.getInput().value = '';
+    }
+
     onViewCreated() {
         this.btnSubmit = <HTMLButtonElement>this.getDOMView()!.querySelector(".common-modal__btn_submit");
 
-        let uploadFileInput = <UploadFileInput>this.getChildComponentsByName('UploadFileInput')[0];
-        uploadFileInput.getDOMView()!.style.display = this.showUpload ? 'flex' : 'none';
+        this.uploadFileInput = <UploadFileInput>this.getChildComponentsByName('UploadFileInput')[0];
+        this.uploadFileInput.getDOMView()!.style.display = this.showUpload ? 'flex' : 'none';
 
         this.textInput = <ValidatableInput>this.getChildComponentsByName('ValidatableInput')[0];
         this.textInput.getDOMView()!.style.display = this.showInput ? 'flex' : 'none';
@@ -104,7 +109,7 @@ export class Modal extends ComponentGroup {
         });
 
         this.btnSubmit.onclick = () => {
-            let files = uploadFileInput.fileInput.files!;
+            let files = this.uploadFileInput.fileInput.files!;
             let value = this.textInput.getInput().value;
             if (this.onChangedCallback) {
                 this.onChangedCallback(files, value);

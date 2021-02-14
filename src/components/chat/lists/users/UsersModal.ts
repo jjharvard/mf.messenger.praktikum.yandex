@@ -14,11 +14,11 @@ export class UsersModal extends ComponentGroup {
 
     onSubmitCallback: (userData: UserData[]) => void;
 
-    constructor() {
+    constructor(private title: string, inputPlaceholder: string, btnName: string) {
         super([
-            new ValidatableInput("users-modal", "users-modal", "users-modal__input", "User Login", "text", ""),
+            new ValidatableInput("users-modal", "users-modal", "users-modal__input", inputPlaceholder, "text", ""),
             new UsersListComponent(),
-            new Button("Submit", "users-modal__btn_submit")
+            new Button(btnName, "users-modal__btn_submit")
         ]);
     }
 
@@ -34,8 +34,14 @@ export class UsersModal extends ComponentGroup {
 
     getKeys(): Keys {
         return {
-            'title': 'List Modal'
+            'title': this.title
         };
+    }
+
+    notifyUserList(users: UserData[]) {
+        this.userListComponent.notify(new Adapter<UserData>(users));
+        this.textInput.getDOMView()!.style.display = 'none';
+        this.show();
     }
 
     onViewCreated() {
