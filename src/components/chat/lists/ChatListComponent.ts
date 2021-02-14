@@ -28,8 +28,7 @@ export class ChatListComponent extends ComponentGroup {
         this.addViews(this.adapter.getItems().map(item => {
             return new ChatItemComponent(item);
         }));
-        let element = document.getElementById(this.id);
-        element!.innerHTML = this.render();
+        this.getDOMView()!.outerHTML = this.render();
         return true;
     }
 

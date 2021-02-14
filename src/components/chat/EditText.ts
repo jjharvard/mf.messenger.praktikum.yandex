@@ -15,7 +15,6 @@ export class EditText extends ComponentGroup {
     }
 
     onViewCreated() {
-        EventBus.getInstance().register('onMessage', this);
         let inputMessage = <HTMLInputElement>this.getChildElementsByName('InputMessage')[0];
         let button = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
         let sendMessage = () => {

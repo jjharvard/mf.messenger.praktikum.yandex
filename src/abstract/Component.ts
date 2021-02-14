@@ -48,16 +48,13 @@ export abstract class Component {
         return Utils.isRendered(this);
     }
 
-    onMessage(payload: Payload = {}) {
-        if (!payload) {
-            console.log(payload);
-        }
+    onChatSelected(_: Payload = {}) {
     }
 
-    onViewCreated(payload: Payload = {}) {
-        if (!payload) {
-            console.log(payload);
-        }
+    onMessage(_: Payload = {}) {
+    }
+
+    onViewCreated(_: Payload = {}) {
     }
 
 }

@@ -1,7 +1,6 @@
 import {ComponentGroup} from "../../abstract/ComponentGroup.js";
 import {User} from "./User.js";
 import {ChatRoom} from "./ChatRoom.js";
-import {ChatListComponent} from "./lists/ChatListComponent.js";
 import {Adapter} from "../../abstract/Adapter.js";
 import {EditText} from "./EditText.js";
 import {UploadButton} from "./UploadButton.js";
@@ -22,7 +21,7 @@ export class ChatRootComponent extends ComponentGroup {
         super([
             new User(),
             new SidebarListComponent(),
-            new ChatRoom([new ChatListComponent(new Adapter(ChatListComponent.initialData()))]),
+            new ChatRoom(),
             new EditText([
                 new UploadButton(),
                 new InputMessage(),
@@ -44,6 +43,10 @@ export class ChatRootComponent extends ComponentGroup {
 
         this.sidebarListComponent = <SidebarListComponent>this.getChildComponentsByName('SidebarListComponent')[0];
 
+        this.getChats();
+    }
+
+    getChats() {
         ChatsApi.getChats().then(response => {
             if (response.ok) {
                 let chatData = JSON.parse(response.data) as ChatData[];
@@ -79,6 +82,7 @@ export class ChatRootComponent extends ComponentGroup {
                         ChatsApi.changeAvatar(chatId, files)
                             .then(_ => {
                                 this.modal.hide();
+                                this.getChats();
                             });
                     } else {
                         this.modal.textInput.showMessage(JSON.parse(response.data)['reason']);
