@@ -1,13 +1,12 @@
 import {Templator} from "../utils/Templator.js";
 import {EventBus} from "../utils/EventBus.js";
-import {EventsListener} from "./EventsListener.js";
+import {Utils} from "../utils/Utils.js";
 
-export abstract class Component extends EventsListener {
+export abstract class Component {
 
     id: string = Templator.uuidv4();
 
     constructor() {
-        super();
         EventBus.getInstance().register('onViewCreated', this);
     }
 
@@ -43,6 +42,22 @@ export abstract class Component extends EventsListener {
         return Templator.getInstance()
             .withTemplate(view.getTemplate())
             .compile(this.merge({}, this.convertKeys(view.getKeys())));
+    }
+
+    isRendered(): boolean {
+        return Utils.isRendered(this);
+    }
+
+    onChatSelected(_: Payload = {}) {
+    }
+
+    onChatAction(_: Payload = {}) {
+    }
+
+    onMessage(_: Payload = {}) {
+    }
+
+    onViewCreated(_: Payload = {}) {
     }
 
 }

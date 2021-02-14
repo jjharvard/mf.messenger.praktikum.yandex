@@ -2,16 +2,19 @@ import {ComponentGroup} from "../../abstract/ComponentGroup.js";
 import {Button} from "../_common/Button.js";
 import {Avatar} from "../_common/Avatar.js";
 import {ValidatableInput} from "../_common/ValidatableInput.js";
+import {Router} from "../../abstract/Router.js";
+import {UsersApi} from "../../api/UsersApi.js";
+import {StateUtil} from "../../utils/StateUtil.js";
 
 export class ProfilePassChangeComponent extends ComponentGroup {
 
     constructor() {
         super([
-            new Avatar('none'),
-            new ValidatableInput('profile','password', 'profile__input', '', 'password', '123456'),
+            new Avatar('none', ''),
             new ValidatableInput('profile', 'password', 'profile__input', '', 'password', ''),
             new ValidatableInput('profile', 'password', 'profile__input', '', 'password', ''),
-            new Button("'/profile.html'", "Save", "'profile-save__btn'")
+            new ValidatableInput('profile', 'password', 'profile__input', '', 'password', ''),
+            new Button("Save", "'profile-save__btn'")
         ]);
     }
 
@@ -45,9 +48,24 @@ export class ProfilePassChangeComponent extends ComponentGroup {
 
     onViewCreated() {
         let signBtn = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
+        let avatar = <Avatar>this.getChildComponentsByName('Avatar')[0];
+        let profileData = StateUtil.getUserProfile();
+        profileData.avatar && avatar.setAvatar(profileData.avatar);
+        avatar.setName(profileData.first_name);
         let validatableInputs = <ValidatableInput[]>this.getChildComponentsByName('ValidatableInput');
         this.validateOnClick(signBtn, validatableInputs, () => {
-            location.href = '/profile.html';
+            let keys = ['oldPassword', 'newPassword'];
+            let data = keys.reduce((acc, key, i) =>
+                Object.assign(acc, {[key]: validatableInputs[i].getInput().value}), {});
+            UsersApi.changePassword(data)
+                .then(response => {
+                    if (response.ok) {
+                        Router.getInstance().back();
+                    } else {
+                        let message = JSON.parse(response.data)['reason'];
+                        validatableInputs[1].showMessage(message);
+                    }
+                });
         });
     }
 }

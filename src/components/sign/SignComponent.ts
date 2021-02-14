@@ -1,6 +1,8 @@
 import {ComponentGroup} from "../../abstract/ComponentGroup.js";
 import {Button} from "../_common/Button.js";
 import {ValidatableInput} from "../_common/ValidatableInput.js";
+import {Router} from "../../abstract/Router.js";
+import {AuthApi} from "../../api/AuthApi.js";
 
 export class SignComponent extends ComponentGroup {
 
@@ -8,13 +10,13 @@ export class SignComponent extends ComponentGroup {
         super([
             new ValidatableInput('auth', 'email', 'auth__input', 'Email', 'text', ''),
             new ValidatableInput('auth', 'login', 'auth__input', 'Login', 'text', ''),
-            new ValidatableInput('auth', 'name', 'auth__input', 'Name', 'text', ''),
-            new ValidatableInput('auth', 'surname', 'auth__input', 'Surname', 'text', ''),
+            new ValidatableInput('auth', 'first_name', 'auth__input', 'Name', 'text', ''),
+            new ValidatableInput('auth', 'second_name', 'auth__input', 'Surname', 'text', ''),
             new ValidatableInput('auth', 'phone', 'auth__input', 'Phone', 'text', ''),
             new ValidatableInput('auth', 'password', 'auth__input', 'Password', 'password', ''),
             new ValidatableInput('auth', 'confirm_password', 'auth__input', 'Confirm Password', 'password', ''),
-            new Button("'/chat.html'", "Registration", "'sign__btn_main'"),
-            new Button("'/index.html'", "Login", "sign__btn_secondary"),
+            new Button("Registration", "'sign__btn_main'"),
+            new Button("Login", "sign__btn_secondary"),
         ]);
     }
 
@@ -44,11 +46,25 @@ export class SignComponent extends ComponentGroup {
     }
 
     onViewCreated() {
-        let signBtn = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
+        let btnSign = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
         let validatableInputs = <ValidatableInput[]>this.getChildComponentsByName('ValidatableInput');
-        this.validateOnClick(signBtn, validatableInputs, () => {
-            console.log('registration');
+        this.validateOnClick(btnSign, validatableInputs, () => {
+            let requestData = validatableInputs.reduce((acc, input) =>
+                Object.assign(acc, {[input.getInput().name]: input.getInput().value}), {});
+            AuthApi.signUp(requestData)
+                .then(response => {
+                    if (response.ok) {
+                        Router.getInstance().push('/chat');
+                    } else {
+                        let message = JSON.parse(response.data)['reason'];
+                        validatableInputs[0].showMessage(message);
+                    }
+                });
         });
+        let btnLogin = <HTMLButtonElement>this.getChildElementsByName('Button')[1];
+        btnLogin.onclick = () => {
+            Router.getInstance().push('/login');
+        };
     }
 
 }

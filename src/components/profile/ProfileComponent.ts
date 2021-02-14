@@ -1,20 +1,80 @@
 import {ComponentGroup} from "../../abstract/ComponentGroup.js";
 import {Button} from "../_common/Button.js";
 import {Avatar} from "../_common/Avatar.js";
+import {Router} from "../../abstract/Router.js";
+import {AuthApi} from "../../api/AuthApi.js";
+import {Input} from "../_common/Input.js";
+import {StateUtil} from "../../utils/StateUtil.js";
+import {Modal, ModalBuilder} from "../_common/Modal.js";
+import {UserProfile} from "../../abstract/StorageTypes.js";
+import {UsersApi} from "../../api/UsersApi.js";
 
 export class ProfileComponent extends ComponentGroup {
 
     constructor() {
         super([
-            new Avatar('flex'),
-            new Button("'/profile-change-data.html'", "Change user data", "'change__ref'"),
-            new Button("'/profile-change-password.html'", "Change password", "change__ref"),
-            new Button("'/index.html'", "Exit", "change__ref_alert"),
+            new Avatar('flex', ''),
+            new Input("email", "profile__input", "", "text", "", "readonly"),
+            new Input("login", "profile__input", "", "text", "", "readonly"),
+            new Input("first_name", "profile__input", "", "text", "", "readonly"),
+            new Input("second_name", "profile__input", "", "text", "", "readonly"),
+            new Input("display_name", "profile__input", "", "text", "", "readonly"),
+            new Input("phone", "profile__input", "", "text", "", "readonly"),
+            new Button("Change user data", "'change__ref'"),
+            new Button("Change password", "change__ref"),
+            new Button("Exit", "change__ref_alert"),
+            new ModalBuilder()
+                .withTitle("Change avatar")
+                .withUpload("Choose image on your computer")
+                .withButton('Submit').build()
         ]);
     }
 
     getKeys(): Keys {
         return {};
+    }
+
+    initInputs(userProfile: UserProfile) {
+        let inputs = <HTMLInputElement[]>this.getChildElementsByName('Input');
+        inputs.forEach((input) => {
+            let key = input.name;
+            input.value = <string>userProfile[key as keyof UserProfile];
+        });
+        let avatar = <Avatar>this.getChildComponentsByName('Avatar')[0];
+        userProfile.avatar && avatar.setAvatar(userProfile.avatar);
+        avatar.setName(userProfile.first_name);
+        let modal = <Modal>this.getChildComponentsByName('Modal')[0];
+        modal.onChangedCallback = (files: FileList) => {
+            UsersApi.changeAvatar(files)
+                .then(_ => {
+                    avatar.setAvatar(StateUtil.getUserProfile().avatar!);
+                    modal.hide();
+                });
+        };
+        let imgBtn = <HTMLElement>this.getDOMView()!.querySelector('.profile-title__hover-message');
+        imgBtn.onclick = () => {
+            modal.show();
+        };
+    }
+
+    onViewCreated() {
+        this.initInputs(StateUtil.getUserProfile());
+        let btnChangeData: HTMLButtonElement = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
+        btnChangeData.onclick = () => {
+            Router.getInstance().push('/profile-change-data');
+        };
+        let btnChangePass: HTMLButtonElement = <HTMLButtonElement>this.getChildElementsByName('Button')[1];
+        btnChangePass.onclick = () => {
+            Router.getInstance().push('/profile-change-password');
+        };
+        let btnExit: HTMLButtonElement = <HTMLButtonElement>this.getChildElementsByName('Button')[2];
+        btnExit.onclick = () => {
+            AuthApi.logOut().then(response => {
+                if (response.ok) {
+                    Router.getInstance().exit();
+                }
+            });
+        };
     }
 
     getTemplate(): string {
@@ -23,27 +83,27 @@ export class ProfileComponent extends ComponentGroup {
                     <form class="profile">
                         <div class="profile__field">
                             <label class="profile__label" for="form__email">Email</label>
-                            <input class="profile__input" id="form__email" value="john@yandex.ru" readonly>
+                            {{Input}}
                         </div>
                         <div class="profile__field">
                             <label class="profile__label" for="form__login">Login</label>
-                            <input class="profile__input" id="form__login" value="john" readonly>
+                            {{Input}}
                         </div>
                         <div class="profile__field">
                             <label class="profile__label" for="form__name">Name</label>
-                            <input class="profile__input" id="form__name" value="John" readonly>
+                            {{Input}}
                         </div>
                         <div class="profile__field">
                             <label class="profile__label" for="form__surname">Surname</label>
-                            <input class="profile__input" id="form__surname" value="Doe" readonly>
+                            {{Input}}
                         </div>
                         <div class="profile__field">
                             <label class="profile__label" for="form__nickname">Chat Nickname</label>
-                            <input class="profile__input" id="form__nickname" value="Johnny" readonly>
+                            {{Input}}
                         </div>
                         <div class="profile__field">
                             <label class="profile__label" for="form__phone">Phone</label>
-                            <input class="profile__input" id="form__phone" value="8(900)909-99-00" readonly>
+                            {{Input}}
                         </div>
                     </form>
                 
@@ -58,15 +118,7 @@ export class ProfileComponent extends ComponentGroup {
                             {{Button}}
                         </class>
                     </div>
-                
-                    <div class="upload-modal">
-                        <div class="upload-modal__content">
-                            <b class="upload-modal__title">Upload File</b>
-                            <form class="upload-modal__action" method="post" enctype="multipart/form-data"></form>
-                            <button class="upload-modal__btn_submit">Change</button>
-                        </div>
-                    </div>
-                
+                    {{Modal}}
                 </div>`;
     }
 }

@@ -1,20 +1,32 @@
+import {Router} from "../../abstract/Router.js";
+import {ArrowButton} from "../_common/ArrowButton.js";
 import {ComponentGroup} from "../../abstract/ComponentGroup.js";
 
 export class User extends ComponentGroup {
+
+    btnAddChat: HTMLButtonElement;
+
+    constructor() {
+        super([new ArrowButton('Add Chat', 'user__chat-add'),
+            new ArrowButton('Profile', 'user__profile')]);
+    }
+
     getKeys(): Keys {
         return {};
     }
 
+    onViewCreated() {
+        let btnProfile = <HTMLButtonElement>this.getDOMView()!.querySelector('.user__profile');
+        btnProfile.onclick = () => {
+            Router.getInstance().push('/profile');
+        };
+        this.btnAddChat = <HTMLButtonElement>this.getDOMView()!.querySelector('.user__chat-add');
+    }
+
     getTemplate(): string {
         return `<div class="user">
-                    <button class="user__add">
-                        Add
-                        <i class="arrow"></i>
-                    </button>
-                    <button class="user__profile" onclick="location.href='/profile.html'">
-                        Profile
-                        <i class="arrow"></i>
-                    </button>
+                    {{ArrowButton}}
+                    {{ArrowButton}}
                     <input id="user__search_id" class="user__search" type="text" placeholder="Search">
                 </div>
             `;

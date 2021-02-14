@@ -9,7 +9,7 @@ export class ValidationMessage extends Component {
 
     getKeys(): Keys {
         return {
-            'message': ValidationUtil.VALIDATION_DATA[this.name][0],
+            'message': this.name ? ValidationUtil.VALIDATION_DATA[this.name][0] : '',
             'prefix': this.prefix
         };
     }

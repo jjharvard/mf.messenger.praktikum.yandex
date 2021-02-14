@@ -12,7 +12,7 @@ export class ValidationUtil {
             'Should contain valid email',
             ValidationUtil.REGEX_EMAIL
         ],
-        'name': [
+        'first_name': [
             'Name should contain letters only',
             ValidationUtil.REGEX_NAME
         ],
@@ -20,11 +20,11 @@ export class ValidationUtil {
             'Login should contain letters only',
             ValidationUtil.REGEX_NAME
         ],
-        'surname': [
+        'second_name': [
             'Surname should contain letters only',
             ValidationUtil.REGEX_NAME
         ],
-        'nickname': [
+        'display_name': [
             'Nickname should contain letters only',
             ValidationUtil.REGEX_NAME
         ],
@@ -39,6 +39,14 @@ export class ValidationUtil {
         'phone': [
             'Should contain valid phone number',
             ValidationUtil.REGEX_PHONE
+        ],
+        'create-chat': [
+            'Chat should contain letters only',
+            ValidationUtil.REGEX_NAME
+        ],
+        'users-modal': [
+            'Login should contain letters only',
+            ValidationUtil.REGEX_NAME
         ]
     };
 
