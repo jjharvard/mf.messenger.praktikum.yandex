@@ -51,6 +51,9 @@ export abstract class Component {
     onChatSelected(_: Payload = {}) {
     }
 
+    onChatAction(_: Payload = {}) {
+    }
+
     onMessage(_: Payload = {}) {
     }
 

@@ -1,11 +1,14 @@
 import {ComponentGroup} from "../../abstract/ComponentGroup.js";
-import {ChatData} from "../../abstract/StorageTypes.js";
 import {EventBus} from "../../utils/EventBus.js";
 import {ArrowButton} from "../_common/ArrowButton.js";
+import {ChatData} from "../../abstract/StorageTypes.js";
 
 export class ChatRoomTitle extends ComponentGroup {
 
     chatTitle: string = '';
+    btnUserAdd: HTMLButtonElement;
+    btnUserRemove: HTMLButtonElement;
+    btnChatRemove: HTMLButtonElement;
 
     constructor() {
         super([new ArrowButton('Add User', 'chat__user-add'),
@@ -22,17 +25,19 @@ export class ChatRoomTitle extends ComponentGroup {
     }
 
     onViewCreated(_: Payload = {}) {
-        let btnUserAdd = <HTMLButtonElement>this.getDOMView()!.querySelector('.chat__user-add');
-        btnUserAdd.onclick = () => {
-        };
-        let btnUserRemove = <HTMLButtonElement>this.getDOMView()!.querySelector('.chat__user-remove');
-        btnUserRemove.onclick = () => {
+        let buttons = <HTMLButtonElement[]>this.getChildElementsByName('ArrowButton');
+        this.btnUserAdd = buttons[0];
+        this.btnUserRemove = buttons[1];
+        this.btnChatRemove = buttons[2];
+        this.btnChatRemove.onclick = () => {
+            EventBus.getInstance().emit('onChatAction');
         };
     }
 
     onChatSelected(payload: Payload = {}) {
         this.chatTitle = (payload['chatData'] as ChatData).title;
         this.getDOMView()!.outerHTML = this.render();
+        this.onViewCreated();
     }
 
     getTemplate(): string {

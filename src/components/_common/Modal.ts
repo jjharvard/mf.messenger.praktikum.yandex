@@ -11,6 +11,7 @@ export class ModalBuilder {
     private inputPlaceholder: string = "";
     private inputType: string = "";
     private uploadLabel: string = "";
+    private validationClassPrefix: string = "";
 
     private showUpload: boolean = false;
     private showInput: boolean = false;
@@ -31,8 +32,9 @@ export class ModalBuilder {
         return this;
     }
 
-    withInput(name: string, clazz: string, placeholder: string, type: string) {
+    withInput(validationClassPrefix: string, name: string, clazz: string, placeholder: string, type: string) {
         this.showInput = true;
+        this.validationClassPrefix = validationClassPrefix;
         this.inputName = name;
         this.inputClass = clazz;
         this.inputPlaceholder = placeholder;
@@ -43,7 +45,7 @@ export class ModalBuilder {
     build() {
         let modal = new Modal(this.title, this.buttonName,
             this.inputName, this.inputClass,
-            this.inputPlaceholder, this.inputType, this.uploadLabel);
+            this.inputPlaceholder, this.inputType, this.uploadLabel, this.validationClassPrefix);
         modal.showInput = this.showInput;
         modal.showUpload = this.showUpload;
         return modal;
@@ -65,10 +67,10 @@ export class Modal extends ComponentGroup {
 
     constructor(private title: string, buttonName: string, inputName: string,
                 inputClass: string, inputPlaceholder: string, inputType: string,
-                uploadLabel: string) {
+                uploadLabel: string, validationClassPrefix: string) {
         super([
             new UploadFileInput(uploadLabel),
-            new ValidatableInput("create-chat", inputName, inputClass, inputPlaceholder, inputType, ""),
+            new ValidatableInput(validationClassPrefix, inputName, inputClass, inputPlaceholder, inputType, ""),
             new Button(buttonName, "common-modal__btn_submit")
         ]);
     }

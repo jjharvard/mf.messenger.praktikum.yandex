@@ -5,6 +5,8 @@ import {ChatRoomTitle} from "./ChatRoomTitle.js";
 
 export class ChatRoom extends ComponentGroup {
 
+    chatRoomTitle: ChatRoomTitle;
+
     constructor() {
         super([new ChatRoomTitle(),
             new ChatListComponent(new Adapter(ChatListComponent.initialData()))]);
@@ -12,6 +14,10 @@ export class ChatRoom extends ComponentGroup {
 
     getKeys(): Keys {
         return {};
+    }
+
+    onViewCreated() {
+        this.chatRoomTitle = <ChatRoomTitle>this.getChildComponentsByName('ChatRoomTitle')[0];
     }
 
     getTemplate(): string {

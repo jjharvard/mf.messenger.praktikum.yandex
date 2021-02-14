@@ -25,4 +25,5 @@ export class UsersApi {
             return result;
         });
 
+    static findUser = (login: string) => client.post('/user/search', {login});
 }

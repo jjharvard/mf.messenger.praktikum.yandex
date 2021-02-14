@@ -10,10 +10,13 @@ import {Modal, ModalBuilder} from "../_common/Modal.js";
 import {ChatsApi} from "../../api/ChatsApi.js";
 import {SidebarListComponent} from "./lists/SidebarListComponent.js";
 import {ChatData} from "../../abstract/StorageTypes.js";
+import {EventBus} from "../../utils/EventBus.js";
 
 export class ChatRootComponent extends ComponentGroup {
 
-    modal: Modal;
+    modalChatAdd: Modal;
+    modalConfirm: Modal;
+    chatRoom: ChatRoom;
     user: User;
     sidebarListComponent: SidebarListComponent;
 
@@ -30,20 +33,31 @@ export class ChatRootComponent extends ComponentGroup {
             new ModalBuilder()
                 .withTitle('Create Chat')
                 .withUpload('Choose image on your computer')
-                .withInput("create-chat", "create-chat__input", "Chat name", "text")
+                .withInput("create-chat", "create-chat", "create-chat__input", "Chat name", "text")
                 .withButton('Submit')
+                .build(),
+            new ModalBuilder()
+                .withTitle('Are you sure?')
+                .withButton('Delete')
                 .build()
         ]);
+        EventBus.getInstance().register('onChatAction', this);
     }
 
     onViewCreated() {
-        this.modal = <Modal>(this.getChildComponentsByName('Modal')[0]);
-        this.user = <User>this.getChildComponentsByName('User')[0];
-        this.initModal();
-
+        let modals = <Modal[]>this.getChildComponentsByName('Modal');
+        this.modalChatAdd = modals[0];
+        this.modalConfirm = modals[1];
         this.sidebarListComponent = <SidebarListComponent>this.getChildComponentsByName('SidebarListComponent')[0];
-
+        this.chatRoom = <ChatRoom>this.getChildComponentsByName('ChatRoom')[0];
+        this.user = <User>this.getChildComponentsByName('User')[0];
+        this.sidebarListComponent = <SidebarListComponent>this.getChildComponentsByName('SidebarListComponent')[0];
+        this.initModal();
         this.getChats();
+    }
+
+    onChatAction(_: Payload = {}) {
+        this.modalConfirm.show();
     }
 
     getChats() {
@@ -62,6 +76,7 @@ export class ChatRootComponent extends ComponentGroup {
                     {{ChatRoom}}
                     {{EditText}}
                     {{Modal}}
+                    {{Modal}}
                 </div>`;
     }
 
@@ -70,9 +85,9 @@ export class ChatRootComponent extends ComponentGroup {
     }
 
     initModal() {
-        this.modal.onChangedCallback = (files: FileList, chatTitle: string) => {
+        this.modalChatAdd.onChangedCallback = (files: FileList, chatTitle: string) => {
             if (!files || files.length === 0) {
-                this.modal.textInput.showMessage('Please, add avatar image');
+                this.modalChatAdd.textInput.showMessage('Please, add avatar image');
                 return;
             }
             ChatsApi.createChat(chatTitle)
@@ -81,14 +96,14 @@ export class ChatRootComponent extends ComponentGroup {
                         let chatId = JSON.parse(response.data)['id'];
                         ChatsApi.changeAvatar(chatId, files)
                             .then(_ => {
-                                this.modal.hide();
+                                this.modalChatAdd.hide();
                                 this.getChats();
                             });
                     } else {
-                        this.modal.textInput.showMessage(JSON.parse(response.data)['reason']);
+                        this.modalChatAdd.textInput.showMessage(JSON.parse(response.data)['reason']);
                     }
                 });
         };
-        this.user.btnAddChat.onclick = () => this.modal.show();
+        this.user.btnAddChat.onclick = () => this.modalChatAdd.show();
     }
 }
