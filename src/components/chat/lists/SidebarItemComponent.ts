@@ -1,7 +1,7 @@
 import {Component} from "../../../content/Component";
 import {ChatData} from "../../../content/StorageTypes";
-import {API_HOST} from "../../../api/Client";
 import {Consts} from "../../../utils/Consts";
+import {API_HOST} from "../../../content/HTTPTransport";
 
 export class SidebarItemComponent extends Component {
 

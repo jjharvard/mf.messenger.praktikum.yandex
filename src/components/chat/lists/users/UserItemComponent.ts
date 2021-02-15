@@ -1,7 +1,7 @@
 import {Component} from "../../../../content/Component";
 import {UserData} from "../../../../content/StorageTypes";
-import {API_HOST} from "../../../../api/Client";
 import {Consts} from "../../../../utils/Consts";
+import {API_HOST} from "../../../../content/HTTPTransport";
 
 export class UserItemComponent extends Component {
 

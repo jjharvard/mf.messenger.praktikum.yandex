@@ -1,6 +1,5 @@
 import {HTTPTransport} from "../content/HTTPTransport";
 
-
 export class ChatsApi {
 
     static createChat = (title: string) => HTTPTransport.getInstance().post('/chats', {title});

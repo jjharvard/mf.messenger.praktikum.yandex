@@ -1,5 +1,7 @@
 import {DEFAULT_REQUEST_OPTIONS, METHOD, RequestOptions, RequestResult} from "./HTTPTypes";
-import {API_HOST, API_VERSION} from "../api/Client";
+
+export const API_HOST = 'https://ya-praktikum.tech';
+export const API_VERSION = '/api/v2';
 
 export class HTTPTransport {
 

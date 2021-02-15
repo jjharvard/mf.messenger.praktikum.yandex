@@ -1,5 +1,5 @@
 import {Component} from "../../content/Component";
-import {API_HOST} from "../../api/Client";
+import {API_HOST} from "../../content/HTTPTransport";
 
 export class Avatar extends Component {
 

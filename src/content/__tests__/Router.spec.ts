@@ -63,6 +63,5 @@ describe("Router", () => {
             .then(_ => expect(router.currentRoute.path).equal('login'));
     });
 
-
 });
 
