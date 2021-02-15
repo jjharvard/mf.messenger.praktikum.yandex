@@ -1,12 +1,12 @@
-import {Router} from "./_std/Router.js";
-import {Page} from "./_std/Page.js";
-import {ChatRootComponent} from "./components/chat/ChatRootComponent.js";
-import {ErrorComponent} from "./components/error/ErrorComponent.js";
-import {LoginComponent} from "./components/login/LoginComponent.js";
-import {ProfileComponent} from "./components/profile/ProfileComponent.js";
-import {SignComponent} from "./components/sign/SignComponent.js";
-import {ProfilePassChangeComponent} from "./components/profilepassword/ProfilePassChangeComponent.js";
-import {ProfileDataChangeComponent} from "./components/profiledata/ProfileDataChangeComponent.js";
+import {Router} from "./content/Router";
+import {Page} from "./content/Page";
+import {ChatRootComponent} from "./components/chat/ChatRootComponent";
+import {ErrorComponent} from "./components/error/ErrorComponent";
+import {LoginComponent} from "./components/login/LoginComponent";
+import {ProfileComponent} from "./components/profile/ProfileComponent";
+import {SignComponent} from "./components/sign/SignComponent";
+import {ProfilePassChangeComponent} from "./components/profilepassword/ProfilePassChangeComponent";
+import {ProfileDataChangeComponent} from "./components/profiledata/ProfileDataChangeComponent";
 
 export const signPage = new Page(new SignComponent());
 export const loginPage = new Page(new LoginComponent());

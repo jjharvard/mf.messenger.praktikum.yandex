@@ -1,5 +1,5 @@
-import { Router } from "./_std/Router.js";
-import { Page } from "./_std/Page.js";
+import { Router } from "./content/Router.js";
+import { Page } from "./content/Page.js";
 import { ChatRootComponent } from "./components/chat/ChatRootComponent.js";
 import { ErrorComponent } from "./components/error/ErrorComponent.js";
 import { LoginComponent } from "./components/login/LoginComponent.js";

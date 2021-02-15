@@ -1,4 +1,4 @@
-import { Component } from "../../_std/Component.js";
+import { Component } from "../../content/Component.js";
 export class UploadButton extends Component {
     getTemplate() {
         return `<form class="input__attach-form" method="post" enctype="multipart/form-data">

@@ -1,6 +1,6 @@
-import { ComponentGroup } from "../../../_std/ComponentGroup.js";
+import { ComponentGroup } from "../../../content/ComponentGroup.js";
 import { Templator } from "../../../utils/Templator.js";
-import { Adapter } from "../../../_std/Adapter.js";
+import { Adapter } from "../../../content/Adapter.js";
 import { SidebarItemComponent } from "./SidebarItemComponent.js";
 import { EventBus } from "../../../utils/EventBus.js";
 export class SidebarListComponent extends ComponentGroup {

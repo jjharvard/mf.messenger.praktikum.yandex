@@ -1,4 +1,4 @@
-import {HistoryState, UserProfile} from "../_std/StorageTypes.js";
+import {HistoryState, UserProfile} from "../content/StorageTypes";
 
 export class StateUtil {
 

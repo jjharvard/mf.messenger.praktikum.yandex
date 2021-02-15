@@ -1,31 +1,31 @@
-import {client} from "./Client.js";
+import {HTTPTransport} from "../content/HTTPTransport";
 
 
 export class ChatsApi {
 
-    static createChat = (title: string) => client.post('/chats', {title});
+    static createChat = (title: string) => HTTPTransport.getInstance().post('/chats', {title});
 
-    static deleteChat = (chatId: number) => client.delete('/chats', {chatId});
+    static deleteChat = (chatId: number) => HTTPTransport.getInstance().delete('/chats', {chatId});
 
-    static changeAvatar = (id: string, fileList: FileList) => client.put('/chats/avatar', (() => {
+    static changeAvatar = (id: string, fileList: FileList) => HTTPTransport.getInstance().put('/chats/avatar', (() => {
         let formData = new FormData();
         formData.append('chatId', id);
         formData.append('avatar', fileList[0]);
         return formData;
     })());
 
-    static getChats = () => client.get('/chats');
+    static getChats = () => HTTPTransport.getInstance().get('/chats');
 
-    static addUsers = (userIds: number[], chatId: number) => client.put('/chats/users', {
+    static addUsers = (userIds: number[], chatId: number) => HTTPTransport.getInstance().put('/chats/users', {
         'users': userIds,
         'chatId': chatId
     });
 
-    static deleteUsers = (userIds: number[], chatId: number) => client.delete('/chats/users', {
+    static deleteUsers = (userIds: number[], chatId: number) => HTTPTransport.getInstance().delete('/chats/users', {
         'users': userIds,
         'chatId': chatId
     });
 
-    static getUsers = (chatId: number) => client.get('/chats/' + chatId + '/users');
+    static getUsers = (chatId: number) => HTTPTransport.getInstance().get('/chats/' + chatId + '/users');
 
 }

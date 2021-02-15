@@ -1,9 +1,9 @@
+import { expect } from "chai.js";
 import { Templator } from "../Templator.js";
 describe("Templator", () => {
     it("should be created once", () => {
         let res1 = Templator.getInstance();
         let res2 = Templator.getInstance();
-        console.log('Hi!')
         expect(res1 === res2).equal(true);
     });
     it("should parse keys", () => {

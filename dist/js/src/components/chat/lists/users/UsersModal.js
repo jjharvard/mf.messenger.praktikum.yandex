@@ -1,9 +1,9 @@
-import { ComponentGroup } from "../../../../_std/ComponentGroup.js";
+import { ComponentGroup } from "../../../../content/ComponentGroup.js";
 import { UsersListComponent } from "./UsersListComponent.js";
 import { ValidatableInput } from "../../../_common/ValidatableInput.js";
 import { Button } from "../../../_common/Button.js";
 import { UsersApi } from "../../../../api/UsersApi.js";
-import { Adapter } from "../../../../_std/Adapter.js";
+import { Adapter } from "../../../../content/Adapter.js";
 export class UsersModal extends ComponentGroup {
     constructor(title, inputPlaceholder, btnName) {
         super([

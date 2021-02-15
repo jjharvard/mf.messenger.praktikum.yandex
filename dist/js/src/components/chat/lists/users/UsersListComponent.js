@@ -1,6 +1,6 @@
-import { ComponentGroup } from "../../../../_std/ComponentGroup.js";
+import { ComponentGroup } from "../../../../content/ComponentGroup.js";
 import { Templator } from "../../../../utils/Templator.js";
-import { Adapter } from "../../../../_std/Adapter.js";
+import { Adapter } from "../../../../content/Adapter.js";
 import { UserItemComponent } from "./UserItemComponent.js";
 export class UsersListComponent extends ComponentGroup {
     constructor() {

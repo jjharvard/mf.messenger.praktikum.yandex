@@ -1,6 +1,6 @@
-import {Router} from "../../_std/Router.js";
-import {ArrowButton} from "../_common/ArrowButton.js";
-import {ComponentGroup} from "../../_std/ComponentGroup.js";
+import {Router} from "../../content/Router";
+import {ArrowButton} from "../_common/ArrowButton";
+import {ComponentGroup} from "../../content/ComponentGroup";
 
 export class User extends ComponentGroup {
 

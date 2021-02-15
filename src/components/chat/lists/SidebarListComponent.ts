@@ -1,10 +1,10 @@
-import {ComponentGroup} from "../../../_std/ComponentGroup.js";
-import {Templator} from "../../../utils/Templator.js";
-import {Adapter} from "../../../_std/Adapter.js";
-import {ChatData} from "../../../_std/StorageTypes.js";
-import {SidebarItemComponent} from "./SidebarItemComponent.js";
-import {Component} from "../../../_std/Component.js";
-import {EventBus} from "../../../utils/EventBus.js";
+import {ComponentGroup} from "../../../content/ComponentGroup";
+import {Templator} from "../../../utils/Templator";
+import {Adapter} from "../../../content/Adapter";
+import {ChatData} from "../../../content/StorageTypes";
+import {SidebarItemComponent} from "./SidebarItemComponent";
+import {Component} from "../../../content/Component";
+import {EventBus} from "../../../utils/EventBus";
 
 export class SidebarListComponent extends ComponentGroup {
 

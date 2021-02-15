@@ -1,7 +1,7 @@
-import {ComponentGroup} from "../../_std/ComponentGroup.js";
-import {Input} from "./Input.js";
-import {ValidationMessage} from "./ValidationMessage.js";
-import {ValidationUtil} from "../../utils/ValidationUtil.js";
+import {ComponentGroup} from "../../content/ComponentGroup";
+import {Input} from "./Input";
+import {ValidationMessage} from "./ValidationMessage";
+import {ValidationUtil} from "../../utils/ValidationUtil";
 
 export class ValidatableInput extends ComponentGroup {
 

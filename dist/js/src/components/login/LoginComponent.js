@@ -1,7 +1,7 @@
-import { ComponentGroup } from "../../_std/ComponentGroup.js";
+import { ComponentGroup } from "../../content/ComponentGroup.js";
 import { Button } from "../_common/Button.js";
 import { ValidatableInput } from "../_common/ValidatableInput.js";
-import { Router } from "../../_std/Router.js";
+import { Router } from "../../content/Router.js";
 import { AuthApi } from "../../api/AuthApi.js";
 export class LoginComponent extends ComponentGroup {
     constructor() {

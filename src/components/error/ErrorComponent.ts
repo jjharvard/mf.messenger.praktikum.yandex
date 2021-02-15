@@ -1,4 +1,4 @@
-import {ComponentGroup} from "../../_std/ComponentGroup.js";
+import {ComponentGroup} from "../../content/ComponentGroup";
 
 export class ErrorComponent extends ComponentGroup {
 

@@ -1,6 +1,6 @@
-import { Router } from "../../_std/Router.js";
+import { Router } from "../../content/Router.js";
 import { ArrowButton } from "../_common/ArrowButton.js";
-import { ComponentGroup } from "../../_std/ComponentGroup.js";
+import { ComponentGroup } from "../../content/ComponentGroup.js";
 export class User extends ComponentGroup {
     constructor() {
         super([new ArrowButton('Add Chat', 'user__chat-add'),

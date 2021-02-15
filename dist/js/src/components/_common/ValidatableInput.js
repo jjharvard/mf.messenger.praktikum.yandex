@@ -1,4 +1,4 @@
-import { ComponentGroup } from "../../_std/ComponentGroup.js";
+import { ComponentGroup } from "../../content/ComponentGroup.js";
 import { Input } from "./Input.js";
 import { ValidationMessage } from "./ValidationMessage.js";
 import { ValidationUtil } from "../../utils/ValidationUtil.js";

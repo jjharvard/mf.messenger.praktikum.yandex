@@ -1,4 +1,4 @@
-import { ComponentGroup } from "../../_std/ComponentGroup.js";
+import { ComponentGroup } from "../../content/ComponentGroup.js";
 export class ErrorComponent extends ComponentGroup {
     constructor(errorNumber, errorMessage) {
         super();

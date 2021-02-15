@@ -16,7 +16,7 @@
   },
   "scripts": {
     "sass": "sass --watch scss:dist/style --style expanded --sourcemap=none",
-    "build": "tsc",
+    "build": "if [ -d './dist/js' ]; then rm -Rf './dist/js'; fi && rm -rf ./dist/js && tsc && node addjsext.js './dist/js'",
     "serve": "nodemon server.js --watch",
     "test": "./node_modules/.bin/mocha"
   },
@@ -26,13 +26,15 @@
     "@babel/plugin-proposal-class-properties": "^7.12.13",
     "@babel/plugin-transform-runtime": "^7.12.15",
     "@babel/preset-env": "^7.12.13",
-    "@babel/preset-typescript": "^7.12.13",
+    "@babel/preset-typescript": "^7.12.16",
     "@babel/register": "^7.12.13",
     "@babel/runtime": "^7.12.13",
     "@types/chai": "^4.2.15",
     "@types/mocha": "^8.2.0",
+    "@types/node": "^14.14.28",
     "chai": "^4.3.0",
-    "mocha": "^8.2.1"
+    "mocha": "^8.2.1",
+    "mocha-jsdom": "^2.0.0"
   },
   "engines": {
     "node": ">=12.0.0"

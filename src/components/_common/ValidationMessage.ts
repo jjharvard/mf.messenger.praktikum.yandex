@@ -1,5 +1,5 @@
-import {Component} from "../../_std/Component.js";
-import {ValidationUtil} from "../../utils/ValidationUtil.js";
+import {Component} from "../../content/Component";
+import {ValidationUtil} from "../../utils/ValidationUtil";
 
 export class ValidationMessage extends Component {
 

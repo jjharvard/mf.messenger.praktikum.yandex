@@ -1,7 +1,7 @@
-import {ComponentGroup} from "../../_std/ComponentGroup.js";
-import {EventBus} from "../../utils/EventBus.js";
-import {ArrowButton} from "../_common/ArrowButton.js";
-import {ChatData} from "../../_std/StorageTypes.js";
+import {ComponentGroup} from "../../content/ComponentGroup";
+import {EventBus} from "../../utils/EventBus";
+import {ArrowButton} from "../_common/ArrowButton";
+import {ChatData} from "../../content/StorageTypes";
 
 export class ChatRoomTitle extends ComponentGroup {
 

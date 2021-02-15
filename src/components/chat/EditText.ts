@@ -1,5 +1,5 @@
-import {ComponentGroup} from "../../_std/ComponentGroup.js";
-import {EventBus} from "../../utils/EventBus.js";
+import {ComponentGroup} from "../../content/ComponentGroup";
+import {EventBus} from "../../utils/EventBus";
 
 export class EditText extends ComponentGroup {
 

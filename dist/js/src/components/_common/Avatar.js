@@ -1,4 +1,4 @@
-import { Component } from "../../_std/Component.js";
+import { Component } from "../../content/Component.js";
 import { API_HOST } from "../../api/Client.js";
 export class Avatar extends Component {
     constructor(paragraphDisplay, avatarUrl) {

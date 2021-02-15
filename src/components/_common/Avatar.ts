@@ -1,5 +1,5 @@
-import {Component} from "../../_std/Component.js";
-import {API_HOST} from "../../api/Client.js";
+import {Component} from "../../content/Component";
+import {API_HOST} from "../../api/Client";
 
 export class Avatar extends Component {
 

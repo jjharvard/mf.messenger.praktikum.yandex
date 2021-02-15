@@ -1,10 +1,10 @@
-import {client} from "./Client.js";
-import {StateUtil} from "../utils/StateUtil.js";
+import {StateUtil} from "../utils/StateUtil";
+import {HTTPTransport} from "../content/HTTPTransport";
 
 export class AuthApi {
 
     static signIn = (data: object) =>
-        client.post('/auth/signin', data)
+        HTTPTransport.getInstance().post('/auth/signin', data)
             .then(result => {
                 if (result.ok) {
                     StateUtil.setAuthenticated(true);
@@ -12,7 +12,7 @@ export class AuthApi {
                 return result;
             });
 
-    static userInfo = () => client.get('/auth/user')
+    static userInfo = () => HTTPTransport.getInstance().get('/auth/user')
         .then(result => {
             if (result.ok) {
                 StateUtil.saveUserProfile(JSON.parse(result.data));
@@ -20,7 +20,7 @@ export class AuthApi {
             return result;
         });
 
-    static logOut = () => client.post('/auth/logout')
+    static logOut = () => HTTPTransport.getInstance().post('/auth/logout')
         .then(result => {
             if (result.ok) {
                 StateUtil.setAuthenticated(false);
@@ -28,7 +28,7 @@ export class AuthApi {
             return result;
         });
 
-    static signUp = (data: object) => client.post('/auth/signup', data)
+    static signUp = (data: object) => HTTPTransport.getInstance().post('/auth/signup', data)
         .then(result => {
             if (result.ok) {
                 StateUtil.setAuthenticated(true);

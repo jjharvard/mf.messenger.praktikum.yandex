@@ -1,7 +1,7 @@
-import {Button} from "./Button.js";
-import {ComponentGroup} from "../../_std/ComponentGroup.js";
-import {UploadFileInput} from "./UploadFileInput.js";
-import {ValidatableInput} from "./ValidatableInput.js";
+import {Button} from "./Button";
+import {ComponentGroup} from "../../content/ComponentGroup";
+import {UploadFileInput} from "./UploadFileInput";
+import {ValidatableInput} from "./ValidatableInput";
 
 export class ModalBuilder {
     private buttonName: string = "";

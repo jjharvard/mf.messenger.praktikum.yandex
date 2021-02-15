@@ -1,29 +1,29 @@
-import { client } from "./Client.js";
 import { StateUtil } from "../utils/StateUtil.js";
+import { HTTPTransport } from "../content/HTTPTransport.js";
 export class AuthApi {
 }
-AuthApi.signIn = (data) => client.post('/auth/signin', data)
+AuthApi.signIn = (data) => HTTPTransport.getInstance().post('/auth/signin', data)
     .then(result => {
     if (result.ok) {
         StateUtil.setAuthenticated(true);
     }
     return result;
 });
-AuthApi.userInfo = () => client.get('/auth/user')
+AuthApi.userInfo = () => HTTPTransport.getInstance().get('/auth/user')
     .then(result => {
     if (result.ok) {
         StateUtil.saveUserProfile(JSON.parse(result.data));
     }
     return result;
 });
-AuthApi.logOut = () => client.post('/auth/logout')
+AuthApi.logOut = () => HTTPTransport.getInstance().post('/auth/logout')
     .then(result => {
     if (result.ok) {
         StateUtil.setAuthenticated(false);
     }
     return result;
 });
-AuthApi.signUp = (data) => client.post('/auth/signup', data)
+AuthApi.signUp = (data) => HTTPTransport.getInstance().post('/auth/signup', data)
     .then(result => {
     if (result.ok) {
         StateUtil.setAuthenticated(true);

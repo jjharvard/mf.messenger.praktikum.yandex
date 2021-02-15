@@ -1,4 +1,4 @@
-import { Component } from "../../_std/Component.js";
+import { Component } from "../../content/Component.js";
 import { ValidationUtil } from "../../utils/ValidationUtil.js";
 export class ValidationMessage extends Component {
     constructor(prefix, name) {

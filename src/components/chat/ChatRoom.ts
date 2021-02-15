@@ -1,7 +1,7 @@
-import {ComponentGroup} from "../../_std/ComponentGroup.js";
-import {ChatListComponent} from "./lists/ChatListComponent.js";
-import {Adapter} from "../../_std/Adapter.js";
-import {ChatRoomTitle} from "./ChatRoomTitle.js";
+import {ComponentGroup} from "../../content/ComponentGroup";
+import {ChatListComponent} from "./lists/ChatListComponent";
+import {Adapter} from "../../content/Adapter";
+import {ChatRoomTitle} from "./ChatRoomTitle";
 
 export class ChatRoom extends ComponentGroup {
 

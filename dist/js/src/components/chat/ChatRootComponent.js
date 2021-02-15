@@ -1,7 +1,7 @@
-import { ComponentGroup } from "../../_std/ComponentGroup.js";
+import { ComponentGroup } from "../../content/ComponentGroup.js";
 import { User } from "./User.js";
 import { ChatRoom } from "./ChatRoom.js";
-import { Adapter } from "../../_std/Adapter.js";
+import { Adapter } from "../../content/Adapter.js";
 import { EditText } from "./EditText.js";
 import { UploadButton } from "./UploadButton.js";
 import { InputMessage } from "./InputMessage.js";
@@ -11,7 +11,7 @@ import { SidebarListComponent } from "./lists/SidebarListComponent.js";
 import { EventBus } from "../../utils/EventBus.js";
 import { UsersModal } from "./lists/users/UsersModal.js";
 import { StateUtil } from "../../utils/StateUtil.js";
-import { Button } from "../_common/Button";
+import { Button } from "../_common/Button.js";
 export class ChatRootComponent extends ComponentGroup {
     constructor() {
         super([

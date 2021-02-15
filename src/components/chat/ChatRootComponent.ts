@@ -1,17 +1,17 @@
-import {ComponentGroup} from "../../_std/ComponentGroup.js";
-import {User} from "./User.js";
-import {ChatRoom} from "./ChatRoom.js";
-import {Adapter} from "../../_std/Adapter.js";
-import {EditText} from "./EditText.js";
-import {UploadButton} from "./UploadButton.js";
-import {InputMessage} from "./InputMessage.js";
-import {Modal, ModalBuilder} from "../_common/Modal.js";
-import {ChatsApi} from "../../api/ChatsApi.js";
-import {SidebarListComponent} from "./lists/SidebarListComponent.js";
-import {ChatData, UserData} from "../../_std/StorageTypes.js";
-import {EventBus} from "../../utils/EventBus.js";
-import {UsersModal} from "./lists/users/UsersModal.js";
-import {StateUtil} from "../../utils/StateUtil.js";
+import {ComponentGroup} from "../../content/ComponentGroup";
+import {User} from "./User";
+import {ChatRoom} from "./ChatRoom";
+import {Adapter} from "../../content/Adapter";
+import {EditText} from "./EditText";
+import {UploadButton} from "./UploadButton";
+import {InputMessage} from "./InputMessage";
+import {Modal, ModalBuilder} from "../_common/Modal";
+import {ChatsApi} from "../../api/ChatsApi";
+import {SidebarListComponent} from "./lists/SidebarListComponent";
+import {ChatData, UserData} from "../../content/StorageTypes";
+import {EventBus} from "../../utils/EventBus";
+import {UsersModal} from "./lists/users/UsersModal";
+import {StateUtil} from "../../utils/StateUtil";
 import {Button} from "../_common/Button";
 
 export class ChatRootComponent extends ComponentGroup {

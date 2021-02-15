@@ -1,7 +1,7 @@
-import {Component} from "../../../_std/Component.js";
-import {ChatData} from "../../../_std/StorageTypes.js";
-import {API_HOST} from "../../../api/Client.js";
-import {Consts} from "../../../utils/Consts.js";
+import {Component} from "../../../content/Component";
+import {ChatData} from "../../../content/StorageTypes";
+import {API_HOST} from "../../../api/Client";
+import {Consts} from "../../../utils/Consts";
 
 export class SidebarItemComponent extends Component {
 

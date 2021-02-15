@@ -1,7 +1,7 @@
-import {Component} from "../../../../_std/Component.js";
-import {UserData} from "../../../../_std/StorageTypes.js";
-import {API_HOST} from "../../../../api/Client.js";
-import {Consts} from "../../../../utils/Consts.js";
+import {Component} from "../../../../content/Component";
+import {UserData} from "../../../../content/StorageTypes";
+import {API_HOST} from "../../../../api/Client";
+import {Consts} from "../../../../utils/Consts";
 
 export class UserItemComponent extends Component {
 

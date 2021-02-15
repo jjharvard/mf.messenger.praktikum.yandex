@@ -1,4 +1,4 @@
-import { ComponentGroup } from "../../_std/ComponentGroup.js";
+import { ComponentGroup } from "../../content/ComponentGroup.js";
 import { EventBus } from "../../utils/EventBus.js";
 export class EditText extends ComponentGroup {
     getTemplate() {

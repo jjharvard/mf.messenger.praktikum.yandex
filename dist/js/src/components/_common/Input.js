@@ -1,4 +1,4 @@
-import { Component } from "../../_std/Component.js";
+import { Component } from "../../content/Component.js";
 export class Input extends Component {
     constructor(name, clazz, placeholder, type, value, readOnly) {
         super();

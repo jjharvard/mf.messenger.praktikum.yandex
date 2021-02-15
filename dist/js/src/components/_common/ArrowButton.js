@@ -1,4 +1,4 @@
-import { Component } from "../../_std/Component.js";
+import { Component } from "../../content/Component.js";
 export class ArrowButton extends Component {
     constructor(name, clazz) {
         super();

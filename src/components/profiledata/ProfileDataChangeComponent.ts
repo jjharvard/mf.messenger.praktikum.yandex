@@ -1,11 +1,11 @@
-import {ComponentGroup} from "../../_std/ComponentGroup.js";
-import {Button} from "../_common/Button.js";
-import {Avatar} from "../_common/Avatar.js";
-import {ValidatableInput} from "../_common/ValidatableInput.js";
-import {Router} from "../../_std/Router.js";
-import {UsersApi} from "../../api/UsersApi.js";
-import {StateUtil} from "../../utils/StateUtil.js";
-import {UserProfile} from "../../_std/StorageTypes.js";
+import {ComponentGroup} from "../../content/ComponentGroup";
+import {Button} from "../_common/Button";
+import {Avatar} from "../_common/Avatar";
+import {ValidatableInput} from "../_common/ValidatableInput";
+import {Router} from "../../content/Router";
+import {UsersApi} from "../../api/UsersApi";
+import {StateUtil} from "../../utils/StateUtil";
+import {UserProfile} from "../../content/StorageTypes";
 
 export class ProfileDataChangeComponent extends ComponentGroup {
 

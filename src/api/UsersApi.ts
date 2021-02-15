@@ -1,11 +1,11 @@
-import {client} from "./Client.js";
-import {StateUtil} from "../utils/StateUtil.js";
+import {StateUtil} from "../utils/StateUtil";
+import {HTTPTransport} from "../content/HTTPTransport";
 
 export class UsersApi {
 
-    static changePassword = (data: object) => client.put('/user/password', data);
+    static changePassword = (data: object) => HTTPTransport.getInstance().put('/user/password', data);
 
-    static saveProfile = (data: object) => client.put('/user/profile', data)
+    static saveProfile = (data: object) => HTTPTransport.getInstance().put('/user/profile', data)
         .then(result => {
             if (result.ok) {
                 StateUtil.saveUserProfile(JSON.parse(result.data));
@@ -13,7 +13,7 @@ export class UsersApi {
             return result;
         });
 
-    static changeAvatar = (fileList: FileList) => client.put('/user/profile/avatar', (() => {
+    static changeAvatar = (fileList: FileList) => HTTPTransport.getInstance().put('/user/profile/avatar', (() => {
         let formData = new FormData();
         formData.append('avatar', fileList[0]);
         return formData;
@@ -25,5 +25,5 @@ export class UsersApi {
             return result;
         });
 
-    static findUser = (login: string) => client.post('/user/search', {login});
+    static findUser = (login: string) => HTTPTransport.getInstance().post('/user/search', {login});
 }
