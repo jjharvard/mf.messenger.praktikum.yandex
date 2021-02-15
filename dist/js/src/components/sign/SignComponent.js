@@ -48,7 +48,12 @@ export class SignComponent extends ComponentGroup {
             AuthApi.signUp(requestData)
                 .then(response => {
                 if (response.ok) {
-                    Router.getInstance().push('/chat');
+                    AuthApi.userInfo()
+                        .then(response => {
+                        if (response.ok) {
+                            Router.getInstance().push('/chat');
+                        }
+                    });
                 }
                 else {
                     let message = JSON.parse(response.data)['reason'];
