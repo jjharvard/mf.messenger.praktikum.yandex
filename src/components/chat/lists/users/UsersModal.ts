@@ -1,10 +1,10 @@
-import {ComponentGroup} from "../../../../abstract/ComponentGroup.js";
+import {ComponentGroup} from "../../../../_std/ComponentGroup.js";
 import {UsersListComponent} from "./UsersListComponent.js";
 import {ValidatableInput} from "../../../_common/ValidatableInput.js";
 import {Button} from "../../../_common/Button.js";
 import {UsersApi} from "../../../../api/UsersApi.js";
-import {UserData} from "../../../../abstract/StorageTypes.js";
-import {Adapter} from "../../../../abstract/Adapter.js";
+import {UserData} from "../../../../_std/StorageTypes.js";
+import {Adapter} from "../../../../_std/Adapter.js";
 
 export class UsersModal extends ComponentGroup {
 

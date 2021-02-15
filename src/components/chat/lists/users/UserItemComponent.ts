@@ -1,5 +1,5 @@
-import {Component} from "../../../../abstract/Component.js";
-import {UserData} from "../../../../abstract/StorageTypes.js";
+import {Component} from "../../../../_std/Component.js";
+import {UserData} from "../../../../_std/StorageTypes.js";
 import {API_HOST} from "../../../../api/Client.js";
 import {Consts} from "../../../../utils/Consts.js";
 

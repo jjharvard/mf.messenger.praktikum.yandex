@@ -1,4 +1,4 @@
-import { Component } from "../../abstract/Component.js";
+import { Component } from "../../_std/Component.js";
 export class UploadFileInput extends Component {
     constructor(label) {
         super();

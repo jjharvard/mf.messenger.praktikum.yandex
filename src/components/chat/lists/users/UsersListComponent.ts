@@ -1,7 +1,7 @@
-import {ComponentGroup} from "../../../../abstract/ComponentGroup.js";
+import {ComponentGroup} from "../../../../_std/ComponentGroup.js";
 import {Templator} from "../../../../utils/Templator.js";
-import {UserData} from "../../../../abstract/StorageTypes.js";
-import {Adapter} from "../../../../abstract/Adapter.js";
+import {UserData} from "../../../../_std/StorageTypes.js";
+import {Adapter} from "../../../../_std/Adapter.js";
 import {UserItemComponent} from "./UserItemComponent.js";
 
 export class UsersListComponent extends ComponentGroup {

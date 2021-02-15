@@ -1,7 +1,7 @@
-import {ComponentGroup} from "../../abstract/ComponentGroup.js";
+import {ComponentGroup} from "../../_std/ComponentGroup.js";
 import {User} from "./User.js";
 import {ChatRoom} from "./ChatRoom.js";
-import {Adapter} from "../../abstract/Adapter.js";
+import {Adapter} from "../../_std/Adapter.js";
 import {EditText} from "./EditText.js";
 import {UploadButton} from "./UploadButton.js";
 import {InputMessage} from "./InputMessage.js";
@@ -9,7 +9,7 @@ import {Button} from "./Button.js";
 import {Modal, ModalBuilder} from "../_common/Modal.js";
 import {ChatsApi} from "../../api/ChatsApi.js";
 import {SidebarListComponent} from "./lists/SidebarListComponent.js";
-import {ChatData, UserData} from "../../abstract/StorageTypes.js";
+import {ChatData, UserData} from "../../_std/StorageTypes.js";
 import {EventBus} from "../../utils/EventBus.js";
 import {UsersModal} from "./lists/users/UsersModal.js";
 import {StateUtil} from "../../utils/StateUtil.js";

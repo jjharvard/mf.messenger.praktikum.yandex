@@ -1,7 +1,7 @@
-import { ComponentGroup } from "../../abstract/ComponentGroup.js";
+import { ComponentGroup } from "../../_std/ComponentGroup.js";
 import { Button } from "../_common/Button.js";
 import { Avatar } from "../_common/Avatar.js";
-import { Router } from "../../abstract/Router.js";
+import { Router } from "../../_std/Router.js";
 import { AuthApi } from "../../api/AuthApi.js";
 import { Input } from "../_common/Input.js";
 import { StateUtil } from "../../utils/StateUtil.js";

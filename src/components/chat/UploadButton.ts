@@ -1,4 +1,4 @@
-import {Component} from "../../abstract/Component.js";
+import {Component} from "../../_std/Component.js";
 
 export class UploadButton extends Component {
 

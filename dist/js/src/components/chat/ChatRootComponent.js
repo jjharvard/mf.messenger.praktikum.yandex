@@ -1,7 +1,7 @@
-import { ComponentGroup } from "../../abstract/ComponentGroup.js";
+import { ComponentGroup } from "../../_std/ComponentGroup.js";
 import { User } from "./User.js";
 import { ChatRoom } from "./ChatRoom.js";
-import { Adapter } from "../../abstract/Adapter.js";
+import { Adapter } from "../../_std/Adapter.js";
 import { EditText } from "./EditText.js";
 import { UploadButton } from "./UploadButton.js";
 import { InputMessage } from "./InputMessage.js";

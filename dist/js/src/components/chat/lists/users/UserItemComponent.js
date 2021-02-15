@@ -1,4 +1,4 @@
-import { Component } from "../../../../abstract/Component.js";
+import { Component } from "../../../../_std/Component.js";
 import { API_HOST } from "../../../../api/Client.js";
 import { Consts } from "../../../../utils/Consts.js";
 export class UserItemComponent extends Component {

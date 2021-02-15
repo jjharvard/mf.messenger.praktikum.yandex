@@ -1,4 +1,4 @@
-import { ComponentGroup } from "../../abstract/ComponentGroup.js";
+import { ComponentGroup } from "../../_std/ComponentGroup.js";
 import { EventBus } from "../../utils/EventBus.js";
 import { ArrowButton } from "../_common/ArrowButton.js";
 export class ChatRoomTitle extends ComponentGroup {

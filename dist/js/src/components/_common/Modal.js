@@ -1,5 +1,5 @@
 import { Button } from "./Button.js";
-import { ComponentGroup } from "../../abstract/ComponentGroup.js";
+import { ComponentGroup } from "../../_std/ComponentGroup.js";
 import { UploadFileInput } from "./UploadFileInput.js";
 import { ValidatableInput } from "./ValidatableInput.js";
 export class ModalBuilder {

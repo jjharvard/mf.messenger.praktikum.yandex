@@ -1,4 +1,4 @@
-import { HTTPTransportBuilder } from "../abstract/http/HTTPTransport.js";
+import { HTTPTransportBuilder } from "../_std/http/HTTPTransport.js";
 export const API_HOST = 'https://ya-praktikum.tech';
 export const API_VERSION = '/api/v2';
 export const client = new HTTPTransportBuilder()

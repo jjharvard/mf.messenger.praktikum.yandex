@@ -1,11 +1,11 @@
-import {ComponentGroup} from "../../abstract/ComponentGroup.js";
+import {ComponentGroup} from "../../_std/ComponentGroup.js";
 import {Button} from "../_common/Button.js";
 import {Avatar} from "../_common/Avatar.js";
 import {ValidatableInput} from "../_common/ValidatableInput.js";
-import {Router} from "../../abstract/Router.js";
+import {Router} from "../../_std/Router.js";
 import {UsersApi} from "../../api/UsersApi.js";
 import {StateUtil} from "../../utils/StateUtil.js";
-import {UserProfile} from "../../abstract/StorageTypes.js";
+import {UserProfile} from "../../_std/StorageTypes.js";
 
 export class ProfileDataChangeComponent extends ComponentGroup {
 
