@@ -5,13 +5,13 @@ import { Adapter } from "../../_std/Adapter.js";
 import { EditText } from "./EditText.js";
 import { UploadButton } from "./UploadButton.js";
 import { InputMessage } from "./InputMessage.js";
-import { Button } from "./Button.js";
 import { ModalBuilder } from "../_common/Modal.js";
 import { ChatsApi } from "../../api/ChatsApi.js";
 import { SidebarListComponent } from "./lists/SidebarListComponent.js";
 import { EventBus } from "../../utils/EventBus.js";
 import { UsersModal } from "./lists/users/UsersModal.js";
 import { StateUtil } from "../../utils/StateUtil.js";
+import { Button } from "../_common/Button";
 export class ChatRootComponent extends ComponentGroup {
     constructor() {
         super([
@@ -21,7 +21,7 @@ export class ChatRootComponent extends ComponentGroup {
             new EditText([
                 new UploadButton(),
                 new InputMessage(),
-                new Button()
+                new Button('', 'input__send')
             ]),
             new ModalBuilder()
                 .withTitle('Create Chat')
