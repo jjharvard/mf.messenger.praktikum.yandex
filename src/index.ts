@@ -1,3 +1,4 @@
+import "./scss/app.scss";
 import {Router} from "./content/Router";
 import {Page} from "./content/Page";
 import {ChatRootComponent} from "./components/chat/ChatRootComponent";
