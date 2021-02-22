@@ -1,13 +1,13 @@
-import "./scss/app.scss";
-import {Router} from "./content/Router";
-import {Page} from "./content/Page";
-import {ChatRootComponent} from "./components/chat/ChatRootComponent";
-import {ErrorComponent} from "./components/error/ErrorComponent";
-import {LoginComponent} from "./components/login/LoginComponent";
-import {ProfileComponent} from "./components/profile/ProfileComponent";
-import {SignComponent} from "./components/sign/SignComponent";
-import {ProfilePassChangeComponent} from "./components/profilepassword/ProfilePassChangeComponent";
-import {ProfileDataChangeComponent} from "./components/profiledata/ProfileDataChangeComponent";
+import './scss/app.scss';
+import {Router} from './content/Router';
+import {Page} from './content/Page';
+import {ChatRootComponent} from './components/chat/ChatRootComponent';
+import {ErrorComponent} from './components/error/ErrorComponent';
+import {LoginComponent} from './components/login/LoginComponent';
+import {ProfileComponent} from './components/profile/ProfileComponent';
+import {SignComponent} from './components/sign/SignComponent';
+import {ProfilePassChangeComponent} from './components/profilepassword/ProfilePassChangeComponent';
+import {ProfileDataChangeComponent} from './components/profiledata/ProfileDataChangeComponent';
 
 export const signPage = new Page(new SignComponent());
 export const loginPage = new Page(new LoginComponent());
@@ -22,40 +22,40 @@ const router = Router.getInstance();
 
 router.addRoutes([
     {
-        path: "/login",
-        page: loginPage
+        path: '/login',
+        page: loginPage,
     },
     {
-        path: "/sign",
-        page: signPage
+        path: '/sign',
+        page: signPage,
     },
     {
-        path: "/chat",
-        page: chatPage
+        path: '/chat',
+        page: chatPage,
     },
     {
-        path: "/profile",
-        page: profilePage
+        path: '/profile',
+        page: profilePage,
     },
     {
-        path: "/profile-change-data",
-        page: profileDataChange
+        path: '/profile-change-data',
+        page: profileDataChange,
     },
     {
-        path: "/profile-change-password",
-        page: profilePasswordChange
+        path: '/profile-change-password',
+        page: profilePasswordChange,
     },
     {
-        path: "/error-404",
-        page: errorPage404
+        path: '/error-404',
+        page: errorPage404,
     },
     {
-        path: "/error-500",
-        page: errorPage500
-    }
+        path: '/error-500',
+        page: errorPage500,
+    },
 ]);
 
 window.onload = () => {
-    router.start("/login");
+    router.start('/login');
 };
 
