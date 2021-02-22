@@ -1,17 +1,16 @@
-import {ComponentGroup} from "../../content/ComponentGroup";
-import {Button} from "../_common/Button";
-import {ValidatableInput} from "../_common/ValidatableInput";
-import {Router} from "../../content/Router";
-import {AuthApi} from "../../api/AuthApi";
+import {ComponentGroup} from '../../content/ComponentGroup';
+import {Button} from '../_common/Button';
+import {ValidatableInput} from '../_common/ValidatableInput';
+import {Router} from '../../content/Router';
+import {AuthApi} from '../../api/AuthApi';
 
 export class LoginComponent extends ComponentGroup {
-
     constructor() {
         super([
-            new ValidatableInput("auth", "login", "auth__input", "Login", "text", ''),
-            new ValidatableInput("auth", "password", "auth__input", "Password", "password", ''),
-            new Button("Authorise", "auth__btn_main"),
-            new Button("No Account?", "'auth__btn_secondary'"),
+            new ValidatableInput('auth', 'login', 'auth__input', 'Login', 'text', ''),
+            new ValidatableInput('auth', 'password', 'auth__input', 'Password', 'password', ''),
+            new Button('Authorise', 'auth__btn_main'),
+            new Button('No Account?', '\'auth__btn_secondary\''),
         ]);
     }
 
@@ -36,11 +35,11 @@ export class LoginComponent extends ComponentGroup {
     }
 
     onViewCreated() {
-        let btnSign = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
-        let validatableInputs = <ValidatableInput[]>this.getChildComponentsByName('ValidatableInput');
-        let loginInput = validatableInputs[0];
+        const btnSign = <HTMLButtonElement> this.getChildElementsByName('Button')[0];
+        const validatableInputs = <ValidatableInput[]> this.getChildComponentsByName('ValidatableInput');
+        const loginInput = validatableInputs[0];
         this.validateOnClick(btnSign, validatableInputs, () => {
-            let data = validatableInputs.reduce((acc, input) =>
+            const data = validatableInputs.reduce((acc, input) =>
                 Object.assign(acc, {[input.getInput().name]: input.getInput().value}), {});
             AuthApi.signIn(data)
                 .then(response => {
@@ -58,10 +57,9 @@ export class LoginComponent extends ComponentGroup {
                         });
                 });
         });
-        let btnNoAccount = <HTMLButtonElement>this.getChildElementsByName('Button')[1];
+        const btnNoAccount = <HTMLButtonElement> this.getChildElementsByName('Button')[1];
         btnNoAccount.onclick = () => {
             Router.getInstance().push('/sign');
         };
     }
-
 }

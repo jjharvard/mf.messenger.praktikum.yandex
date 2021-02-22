@@ -1,11 +1,10 @@
-import {ChatItemComponent} from "./ChatItemComponent";
-import {EventBus} from "../../../utils/EventBus";
-import {ComponentGroup} from "../../../content/ComponentGroup";
-import {Adapter} from "../../../content/Adapter";
-import {Templator} from "../../../utils/Templator";
+import {ChatItemComponent} from './ChatItemComponent';
+import {EventBus} from '../../../utils/EventBus';
+import {ComponentGroup} from '../../../content/ComponentGroup';
+import {Adapter} from '../../../content/Adapter';
+import {Templator} from '../../../utils/Templator';
 
 export class ChatListComponent extends ComponentGroup {
-
     static initialData(): string[] {
         return [
             `I can't get no satisfaction, I can't get no satisfaction 'cause I try and I try and I try and I try

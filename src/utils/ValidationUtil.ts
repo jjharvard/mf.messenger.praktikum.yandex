@@ -1,5 +1,4 @@
 export class ValidationUtil {
-
     static hasError = (input: HTMLInputElement): boolean => !ValidationUtil.VALIDATION_DATA[input.name][1].test(input.value);
 
     static REGEX_EMAIL = /^\S+@\S+\.[a-z]{2,5}$/;
@@ -49,5 +48,4 @@ export class ValidationUtil {
             ValidationUtil.REGEX_NAME
         ]
     };
-
 }

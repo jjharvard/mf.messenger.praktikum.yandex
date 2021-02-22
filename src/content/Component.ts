@@ -1,9 +1,8 @@
-import {Templator} from "../utils/Templator";
-import {EventBus} from "../utils/EventBus";
-import {Utils} from "../utils/Utils";
+import {Templator} from '../utils/Templator';
+import {EventBus} from '../utils/EventBus';
+import {Utils} from '../utils/Utils';
 
 export abstract class Component {
-
     id: string = Templator.uuidv4();
 
     constructor() {
@@ -20,9 +19,9 @@ export abstract class Component {
 
     protected convertKeys(keys: Keys): FlatKeys {
         let result: FlatKeys = {};
-        for (let key in keys) {
+        for (const key in keys) {
             if (typeof keys !== 'string') {
-                result[key] = "" + keys[key];
+                result[key] = '' + keys[key];
             } else {
                 result[key] = keys[key];
             }
@@ -32,7 +31,7 @@ export abstract class Component {
     }
 
     merge(a: ArrayKeys, argObj: FlatKeys): ArrayKeys {
-        for (let key in argObj) {
+        for (const key in argObj) {
             a[key] = a[key] ? [...a[key], argObj[key]] : [argObj[key]];
         }
         return a;
@@ -59,5 +58,4 @@ export abstract class Component {
 
     onViewCreated(_: Payload = {}) {
     }
-
 }

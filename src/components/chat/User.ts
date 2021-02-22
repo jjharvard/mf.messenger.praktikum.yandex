@@ -1,9 +1,8 @@
-import {Router} from "../../content/Router";
-import {ArrowButton} from "../_common/ArrowButton";
-import {ComponentGroup} from "../../content/ComponentGroup";
+import {Router} from '../../content/Router';
+import {ArrowButton} from '../_common/ArrowButton';
+import {ComponentGroup} from '../../content/ComponentGroup';
 
 export class User extends ComponentGroup {
-
     btnAddChat: HTMLButtonElement;
 
     constructor() {
@@ -16,11 +15,11 @@ export class User extends ComponentGroup {
     }
 
     onViewCreated() {
-        let btnProfile = <HTMLButtonElement>this.getDOMView()!.querySelector('.user__profile');
+        const btnProfile = <HTMLButtonElement> this.getDOMView()!.querySelector('.user__profile');
         btnProfile.onclick = () => {
             Router.getInstance().push('/profile');
         };
-        this.btnAddChat = <HTMLButtonElement>this.getDOMView()!.querySelector('.user__chat-add');
+        this.btnAddChat = <HTMLButtonElement> this.getDOMView()!.querySelector('.user__chat-add');
     }
 
     getTemplate(): string {
@@ -31,5 +30,4 @@ export class User extends ComponentGroup {
                 </div>
             `;
     }
-
 }

@@ -1,8 +1,7 @@
-import {StateUtil} from "../utils/StateUtil";
-import {HTTPTransport} from "../content/HTTPTransport";
+import {StateUtil} from '../utils/StateUtil';
+import {HTTPTransport} from '../content/HTTPTransport';
 
 export class UsersApi {
-
     static changePassword = (data: object) => HTTPTransport.getInstance().put('/user/password', data);
 
     static saveProfile = (data: object) => HTTPTransport.getInstance().put('/user/profile', data)
@@ -14,7 +13,7 @@ export class UsersApi {
         });
 
     static changeAvatar = (fileList: FileList) => HTTPTransport.getInstance().put('/user/profile/avatar', (() => {
-        let formData = new FormData();
+        const formData = new FormData();
         formData.append('avatar', fileList[0]);
         return formData;
     })())

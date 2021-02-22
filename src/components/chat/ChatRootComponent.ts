@@ -1,21 +1,20 @@
-import {ComponentGroup} from "../../content/ComponentGroup";
-import {User} from "./User";
-import {ChatRoom} from "./ChatRoom";
-import {Adapter} from "../../content/Adapter";
-import {EditText} from "./EditText";
-import {UploadButton} from "./UploadButton";
-import {InputMessage} from "./InputMessage";
-import {Modal, ModalBuilder} from "../_common/Modal";
-import {ChatsApi} from "../../api/ChatsApi";
-import {SidebarListComponent} from "./lists/SidebarListComponent";
-import {ChatData, UserData} from "../../content/StorageTypes";
-import {EventBus} from "../../utils/EventBus";
-import {UsersModal} from "./lists/users/UsersModal";
-import {StateUtil} from "../../utils/StateUtil";
-import {Button} from "../_common/Button";
+import {ComponentGroup} from '../../content/ComponentGroup';
+import {User} from './User';
+import {ChatRoom} from './ChatRoom';
+import {Adapter} from '../../content/Adapter';
+import {EditText} from './EditText';
+import {UploadButton} from './UploadButton';
+import {InputMessage} from './InputMessage';
+import {Modal, ModalBuilder} from '../_common/Modal';
+import {ChatsApi} from '../../api/ChatsApi';
+import {SidebarListComponent} from './lists/SidebarListComponent';
+import {ChatData, UserData} from '../../content/StorageTypes';
+import {EventBus} from '../../utils/EventBus';
+import {UsersModal} from './lists/users/UsersModal';
+import {StateUtil} from '../../utils/StateUtil';
+import {Button} from '../_common/Button';
 
 export class ChatRootComponent extends ComponentGroup {
-
     modalChatAdd: Modal;
     modalConfirm: Modal;
     chatRoom: ChatRoom;
@@ -37,39 +36,39 @@ export class ChatRootComponent extends ComponentGroup {
             new ModalBuilder()
                 .withTitle('Create Chat')
                 .withUpload('Choose image on your computer')
-                .withInput("create-chat", "create-chat", "create-chat__input", "Chat name", "text")
+                .withInput('create-chat', 'create-chat', 'create-chat__input', 'Chat name', 'text')
                 .withButton('Submit')
                 .build(),
             new ModalBuilder()
                 .withTitle('Are you sure?')
                 .withButton('Delete')
                 .build(),
-            new UsersModal('Select User', "User Login", "Add"),
+            new UsersModal('Select User', 'User Login', 'Add'),
             new UsersModal('Remove Users', 'User Login', 'Remove')
         ]);
         EventBus.getInstance().register('onChatAction', this);
     }
 
     onViewCreated() {
-        let modals = <Modal[]>this.getChildComponentsByName('Modal');
+        const modals = <Modal[]> this.getChildComponentsByName('Modal');
         this.modalChatAdd = modals[0];
         this.modalConfirm = modals[1];
-        this.sidebarListComponent = <SidebarListComponent>this.getChildComponentsByName('SidebarListComponent')[0];
-        this.chatRoom = <ChatRoom>this.getChildComponentsByName('ChatRoom')[0];
-        this.user = <User>this.getChildComponentsByName('User')[0];
-        this.modalAddUsers = <UsersModal>this.getChildComponentsByName('UsersModal')[0];
-        this.modalRemoveUsers = <UsersModal>this.getChildComponentsByName('UsersModal')[1];
+        this.sidebarListComponent = <SidebarListComponent> this.getChildComponentsByName('SidebarListComponent')[0];
+        this.chatRoom = <ChatRoom> this.getChildComponentsByName('ChatRoom')[0];
+        this.user = <User> this.getChildComponentsByName('User')[0];
+        this.modalAddUsers = <UsersModal> this.getChildComponentsByName('UsersModal')[0];
+        this.modalRemoveUsers = <UsersModal> this.getChildComponentsByName('UsersModal')[1];
         this.initModal();
         this.getChats();
     }
 
     onChatAction(payload: Payload = {}) {
-        let action = <CHAT_ACTION>payload['action'];
+        const action = <CHAT_ACTION>payload['action'];
         switch (action) {
             case 'chatRemove':
                 if (this.sidebarListComponent.adapter.getItems().length) {
                     this.modalConfirm.onChangedCallback = () => {
-                        let activeChat = <ChatData>this.sidebarListComponent.adapter.getItems().filter(item => item.isActive)[0];
+                        const activeChat = <ChatData> this.sidebarListComponent.adapter.getItems().filter(item => item.isActive)[0];
                         ChatsApi.deleteChat(activeChat.id)
                             .then(response => {
                                 if (response.ok) {
@@ -98,14 +97,14 @@ export class ChatRootComponent extends ComponentGroup {
                 this.sidebarListComponent.adapter.getItems().length && ChatsApi.getUsers(this.sidebarListComponent.currentItem.chatData.id)
                     .then(response => {
                         if (response.ok) {
-                            let usersData = JSON.parse(response.data) as UserData[];
+                            const usersData = JSON.parse(response.data) as UserData[];
                             this.modalRemoveUsers.notifyUserList(usersData);
                             this.modalRemoveUsers.onSubmitCallback = (usersData: UserData[]) => {
                                 ChatsApi.deleteUsers(usersData.map(item => item.id), this.sidebarListComponent.currentItem.chatData.id)
                                     .then(response => {
                                         if (response.ok) {
                                             this.modalRemoveUsers.hide();
-                                            let profileData = StateUtil.getUserProfile();
+                                            const profileData = StateUtil.getUserProfile();
                                             if (!usersData || usersData.length! || usersData.some(data => profileData.id === data.id)) {
                                                 this.getChats();
                                             }
@@ -123,7 +122,7 @@ export class ChatRootComponent extends ComponentGroup {
     getChats() {
         ChatsApi.getChats().then(response => {
             if (response.ok) {
-                let chatData = JSON.parse(response.data) as ChatData[];
+                const chatData = JSON.parse(response.data) as ChatData[];
                 if (chatData.length) {
                     chatData[0].isActive = true;
                 }
@@ -158,7 +157,7 @@ export class ChatRootComponent extends ComponentGroup {
             ChatsApi.createChat(chatTitle)
                 .then(response => {
                     if (response.ok) {
-                        let chatId = JSON.parse(response.data)['id'];
+                        const chatId = JSON.parse(response.data)['id'];
                         ChatsApi.changeAvatar(chatId, files)
                             .then(_ => {
                                 this.modalChatAdd.hide();

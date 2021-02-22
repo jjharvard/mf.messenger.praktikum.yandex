@@ -1,14 +1,13 @@
-import {DEFAULT_REQUEST_OPTIONS, METHOD, RequestOptions, RequestResult} from "./HTTPTypes";
+import {DEFAULT_REQUEST_OPTIONS, METHOD, RequestOptions, RequestResult} from './HTTPTypes';
 
 export const API_HOST = 'https://ya-praktikum.tech';
 export const API_VERSION = '/api/v2';
 
 export class HTTPTransport {
-
     public static instance: HTTPTransport
 
     public static getInstance(): HTTPTransport {
-        if(!this.instance) {
+        if (!this.instance) {
             this.instance = new HTTPTransport();
         }
         return this.instance;
@@ -33,7 +32,7 @@ export class HTTPTransport {
     }
 
     private parseXHRResult(xhr: XMLHttpRequest): RequestResult {
-        let response = {
+        const response = {
             url: this.url,
             ok: xhr.status >= 200 && xhr.status < 300,
             status: xhr.status,
@@ -49,7 +48,7 @@ export class HTTPTransport {
     }
 
     private errorResponse(xhr: XMLHttpRequest, message: string | null = null): RequestResult {
-        let response = {
+        const response = {
             url: this.url,
             ok: false,
             status: xhr.status,

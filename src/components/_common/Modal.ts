@@ -1,17 +1,17 @@
-import {Button} from "./Button";
-import {ComponentGroup} from "../../content/ComponentGroup";
-import {UploadFileInput} from "./UploadFileInput";
-import {ValidatableInput} from "./ValidatableInput";
+import {Button} from './Button';
+import {ComponentGroup} from '../../content/ComponentGroup';
+import {UploadFileInput} from './UploadFileInput';
+import {ValidatableInput} from './ValidatableInput';
 
 export class ModalBuilder {
-    private buttonName: string = "";
-    private title: string = "";
-    private inputName: string = "";
-    private inputClass: string = "";
-    private inputPlaceholder: string = "";
-    private inputType: string = "";
-    private uploadLabel: string = "";
-    private validationClassPrefix: string = "";
+    private buttonName: string = '';
+    private title: string = '';
+    private inputName: string = '';
+    private inputClass: string = '';
+    private inputPlaceholder: string = '';
+    private inputType: string = '';
+    private uploadLabel: string = '';
+    private validationClassPrefix: string = '';
 
     private showUpload: boolean = false;
     private showInput: boolean = false;
@@ -43,18 +43,16 @@ export class ModalBuilder {
     }
 
     build() {
-        let modal = new Modal(this.title, this.buttonName,
+        const modal = new Modal(this.title, this.buttonName,
             this.inputName, this.inputClass,
             this.inputPlaceholder, this.inputType, this.uploadLabel, this.validationClassPrefix);
         modal.showInput = this.showInput;
         modal.showUpload = this.showUpload;
         return modal;
     }
-
 }
 
 export class Modal extends ComponentGroup {
-
     btnSubmit: HTMLButtonElement;
 
     showUpload: boolean = false;
@@ -71,14 +69,14 @@ export class Modal extends ComponentGroup {
                 uploadLabel: string, validationClassPrefix: string) {
         super([
             new UploadFileInput(uploadLabel),
-            new ValidatableInput(validationClassPrefix, inputName, inputClass, inputPlaceholder, inputType, ""),
-            new Button(buttonName, "common-modal__btn_submit")
+            new ValidatableInput(validationClassPrefix, inputName, inputClass, inputPlaceholder, inputType, ''),
+            new Button(buttonName, 'common-modal__btn_submit')
         ]);
     }
 
     getKeys(): Keys {
         return {
-            "title": this.title
+            'title': this.title
         };
     }
 
@@ -95,12 +93,12 @@ export class Modal extends ComponentGroup {
     }
 
     onViewCreated() {
-        this.btnSubmit = <HTMLButtonElement>this.getDOMView()!.querySelector(".common-modal__btn_submit");
+        this.btnSubmit = <HTMLButtonElement> this.getDOMView()!.querySelector('.common-modal__btn_submit');
 
-        this.uploadFileInput = <UploadFileInput>this.getChildComponentsByName('UploadFileInput')[0];
+        this.uploadFileInput = <UploadFileInput> this.getChildComponentsByName('UploadFileInput')[0];
         this.uploadFileInput.getDOMView()!.style.display = this.showUpload ? 'flex' : 'none';
 
-        this.textInput = <ValidatableInput>this.getChildComponentsByName('ValidatableInput')[0];
+        this.textInput = <ValidatableInput> this.getChildComponentsByName('ValidatableInput')[0];
         this.textInput.getDOMView()!.style.display = this.showInput ? 'flex' : 'none';
         window.addEventListener('click', (event: MouseEvent) => {
             if (event.target === this.getDOMView()) {
@@ -109,8 +107,8 @@ export class Modal extends ComponentGroup {
         });
 
         this.btnSubmit.onclick = () => {
-            let files = this.uploadFileInput.fileInput.files!;
-            let value = this.textInput.getInput().value;
+            const files = this.uploadFileInput.fileInput.files!;
+            const value = this.textInput.getInput().value;
             if (this.onChangedCallback) {
                 this.onChangedCallback(files, value);
             }
@@ -129,5 +127,4 @@ export class Modal extends ComponentGroup {
             </div>
             `;
     }
-
 }

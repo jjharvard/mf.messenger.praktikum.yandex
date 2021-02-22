@@ -1,13 +1,12 @@
-import {HTTPTransport} from "../content/HTTPTransport";
+import {HTTPTransport} from '../content/HTTPTransport';
 
 export class ChatsApi {
-
     static createChat = (title: string) => HTTPTransport.getInstance().post('/chats', {title});
 
     static deleteChat = (chatId: number) => HTTPTransport.getInstance().delete('/chats', {chatId});
 
     static changeAvatar = (id: string, fileList: FileList) => HTTPTransport.getInstance().put('/chats/avatar', (() => {
-        let formData = new FormData();
+        const formData = new FormData();
         formData.append('chatId', id);
         formData.append('avatar', fileList[0]);
         return formData;
@@ -26,5 +25,4 @@ export class ChatsApi {
     });
 
     static getUsers = (chatId: number) => HTTPTransport.getInstance().get('/chats/' + chatId + '/users');
-
 }

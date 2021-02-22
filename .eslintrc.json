@@ -14,6 +14,14 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "indent": "off"
+        "indent": "off",
+        "max-len": "off",
+        "require-jsdoc": "off",
+        "comma-dangle": "off",
+        "camelcase": "off",
+        "no-unused-vars": "off",
+        "arrow-parens": "off",
+        "guard-for-in": "off",
+        "new-cap": "off"
     }
 }

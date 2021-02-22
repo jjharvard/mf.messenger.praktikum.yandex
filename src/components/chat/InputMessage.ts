@@ -1,7 +1,6 @@
-import {Component} from "../../content/Component";
+import {Component} from '../../content/Component';
 
 export class InputMessage extends Component {
-
     getTemplate(): string {
         return `<input name="message" class="input__edit" type="text" placeholder="Message">`;
     }
@@ -9,5 +8,4 @@ export class InputMessage extends Component {
     getKeys(): Keys {
         return {};
     }
-
 }

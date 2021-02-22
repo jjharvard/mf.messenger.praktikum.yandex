@@ -1,8 +1,7 @@
-import {Component} from "../../content/Component";
-import {ValidationUtil} from "../../utils/ValidationUtil";
+import {Component} from '../../content/Component';
+import {ValidationUtil} from '../../utils/ValidationUtil';
 
 export class ValidationMessage extends Component {
-
     constructor(private prefix: string, private name: string) {
         super();
     }
@@ -17,5 +16,4 @@ export class ValidationMessage extends Component {
     getTemplate(): string {
         return `<div class="{{prefix}}__validatable_error">{{message}}</div>`;
     }
-
 }

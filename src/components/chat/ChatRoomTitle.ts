@@ -1,10 +1,9 @@
-import {ComponentGroup} from "../../content/ComponentGroup";
-import {EventBus} from "../../utils/EventBus";
-import {ArrowButton} from "../_common/ArrowButton";
-import {ChatData} from "../../content/StorageTypes";
+import {ComponentGroup} from '../../content/ComponentGroup';
+import {EventBus} from '../../utils/EventBus';
+import {ArrowButton} from '../_common/ArrowButton';
+import {ChatData} from '../../content/StorageTypes';
 
 export class ChatRoomTitle extends ComponentGroup {
-
     chatTitle: string = '';
     btnUserAdd: HTMLButtonElement;
     btnUserRemove: HTMLButtonElement;
@@ -25,7 +24,7 @@ export class ChatRoomTitle extends ComponentGroup {
     }
 
     onViewCreated(_: Payload = {}) {
-        let buttons = <HTMLButtonElement[]>this.getChildElementsByName('ArrowButton');
+        const buttons = <HTMLButtonElement[]> this.getChildElementsByName('ArrowButton');
         this.btnUserAdd = buttons[0];
         this.btnUserAdd.onclick = () => {
             EventBus.getInstance().emit('onChatAction', {'action': 'userAdd'});
@@ -54,5 +53,4 @@ export class ChatRoomTitle extends ComponentGroup {
                     {{ArrowButton}}
                 </div>`;
     }
-
 }

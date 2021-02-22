@@ -1,11 +1,10 @@
-import {ComponentGroup} from "../../content/ComponentGroup";
-import {Button} from "../_common/Button";
-import {ValidatableInput} from "../_common/ValidatableInput";
-import {Router} from "../../content/Router";
-import {AuthApi} from "../../api/AuthApi";
+import {ComponentGroup} from '../../content/ComponentGroup';
+import {Button} from '../_common/Button';
+import {ValidatableInput} from '../_common/ValidatableInput';
+import {Router} from '../../content/Router';
+import {AuthApi} from '../../api/AuthApi';
 
 export class SignComponent extends ComponentGroup {
-
     constructor() {
         super([
             new ValidatableInput('auth', 'email', 'auth__input', 'Email', 'text', ''),
@@ -15,8 +14,8 @@ export class SignComponent extends ComponentGroup {
             new ValidatableInput('auth', 'phone', 'auth__input', 'Phone', 'text', ''),
             new ValidatableInput('auth', 'password', 'auth__input', 'Password', 'password', ''),
             new ValidatableInput('auth', 'confirm_password', 'auth__input', 'Confirm Password', 'password', ''),
-            new Button("Registration", "'sign__btn_main'"),
-            new Button("Login", "sign__btn_secondary"),
+            new Button('Registration', '\'sign__btn_main\''),
+            new Button('Login', 'sign__btn_secondary'),
         ]);
     }
 
@@ -46,10 +45,10 @@ export class SignComponent extends ComponentGroup {
     }
 
     onViewCreated() {
-        let btnSign = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
-        let validatableInputs = <ValidatableInput[]>this.getChildComponentsByName('ValidatableInput');
+        const btnSign = <HTMLButtonElement> this.getChildElementsByName('Button')[0];
+        const validatableInputs = <ValidatableInput[]> this.getChildComponentsByName('ValidatableInput');
         this.validateOnClick(btnSign, validatableInputs, () => {
-            let requestData = validatableInputs.reduce((acc, input) =>
+            const requestData = validatableInputs.reduce((acc, input) =>
                 Object.assign(acc, {[input.getInput().name]: input.getInput().value}), {});
             AuthApi.signUp(requestData)
                 .then(response => {
@@ -61,15 +60,14 @@ export class SignComponent extends ComponentGroup {
                                 }
                             });
                     } else {
-                        let message = JSON.parse(response.data)['reason'];
+                        const message = JSON.parse(response.data)['reason'];
                         validatableInputs[0].showMessage(message);
                     }
                 });
         });
-        let btnLogin = <HTMLButtonElement>this.getChildElementsByName('Button')[1];
+        const btnLogin = <HTMLButtonElement> this.getChildElementsByName('Button')[1];
         btnLogin.onclick = () => {
             Router.getInstance().push('/login');
         };
     }
-
 }

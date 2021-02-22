@@ -1,5 +1,4 @@
 export class Adapter<T> {
-
     constructor(protected items: T[] = []) {
     }
 
@@ -10,5 +9,4 @@ export class Adapter<T> {
     addItem(item: T) {
         this.items.unshift(item);
     }
-
 }

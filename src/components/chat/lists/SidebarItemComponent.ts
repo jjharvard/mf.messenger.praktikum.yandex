@@ -1,10 +1,9 @@
-import {Component} from "../../../content/Component";
-import {ChatData} from "../../../content/StorageTypes";
-import {Consts} from "../../../utils/Consts";
-import {API_HOST} from "../../../content/HTTPTransport";
+import {Component} from '../../../content/Component';
+import {ChatData} from '../../../content/StorageTypes';
+import {Consts} from '../../../utils/Consts';
+import {API_HOST} from '../../../content/HTTPTransport';
 
 export class SidebarItemComponent extends Component {
-
     it: HTMLLIElement;
 
     constructor(public chatData: ChatData) {
@@ -20,7 +19,7 @@ export class SidebarItemComponent extends Component {
     }
 
     onViewCreated() {
-        this.it = <HTMLLIElement>this.getDOMView()!;
+        this.it = <HTMLLIElement> this.getDOMView()!;
         this.setHighlighted(this.chatData.isActive);
     }
 

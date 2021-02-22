@@ -1,10 +1,9 @@
-import {Component} from "./Component";
-import {Templator} from "../utils/Templator";
-import {ValidatableInput} from "../components/_common/ValidatableInput";
-import {Router} from "./Router";
+import {Component} from './Component';
+import {Templator} from '../utils/Templator';
+import {ValidatableInput} from '../components/_common/ValidatableInput';
+import {Router} from './Router';
 
 export abstract class ComponentGroup extends Component {
-
     children: Component[] = [];
 
     constructor(views: Component[] = []) {
@@ -29,8 +28,8 @@ export abstract class ComponentGroup extends Component {
     }
 
     getChildComponentsByName(name: string): Component[] {
-        let result = [];
-        for (let c of this.children) {
+        const result = [];
+        for (const c of this.children) {
             if (name === c.constructor.name) {
                 result.push(c);
             }
@@ -39,8 +38,8 @@ export abstract class ComponentGroup extends Component {
     }
 
     getChildElementsByName(name: string): HTMLElement[] {
-        let result = [];
-        for (let c of this.children) {
+        const result = [];
+        for (const c of this.children) {
             if (name === c.constructor.name) {
                 result.push(<HTMLElement>document.getElementById(c.id));
             }
@@ -56,11 +55,11 @@ export abstract class ComponentGroup extends Component {
                     hasError = vi.check();
                 }
             });
-            if(Router.getInstance().currentRoute.path === '/profile-change-password' && validatableInputs[1].getInput().value !== validatableInputs[2].getInput().value) {
-                validatableInputs[2].showMessage("Passwords do not match");
+            if (Router.getInstance().currentRoute.path === '/profile-change-password' && validatableInputs[1].getInput().value !== validatableInputs[2].getInput().value) {
+                validatableInputs[2].showMessage('Passwords do not match');
             }
             if (Router.getInstance().currentRoute.path === '/sign' && validatableInputs[5].getInput().value !== validatableInputs[6].getInput().value) {
-                validatableInputs[6].showMessage("Passwords do not match");
+                validatableInputs[6].showMessage('Passwords do not match');
             }
             if (!hasError) {
                 onNext();
@@ -71,14 +70,13 @@ export abstract class ComponentGroup extends Component {
     render(view: Component = this): string {
         let result = '';
         let renderedChildKeys: ArrayKeys = {};
-        for (let c of this.children) {
-            let childTemplate = c.render(c);
+        for (const c of this.children) {
+            const childTemplate = c.render(c);
             renderedChildKeys = this.merge(renderedChildKeys, {[c.constructor.name]: childTemplate});
             result += childTemplate;
         }
-        let mergedKeys = this.merge(renderedChildKeys, this.convertKeys(view.getKeys()));
+        const mergedKeys = this.merge(renderedChildKeys, this.convertKeys(view.getKeys()));
         result = Templator.getInstance().withTemplate(view.getTemplate()).compile(mergedKeys);
         return result;
     }
-
 }

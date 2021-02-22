@@ -1,5 +1,4 @@
 export class Templator {
-
     static instance: Templator;
 
     static REGEXP_KEY = /\{\{(.*?)\}\}/gi;
@@ -25,8 +24,8 @@ export class Templator {
             if (key[1]) {
                 const tmplKey = key[1].trim();
                 const data = ctx[tmplKey];
-                let value = <string>data.shift();
-                this.template = this.template.replace(new RegExp(key[0], "i"), value);
+                const value = <string>data.shift();
+                this.template = this.template.replace(new RegExp(key[0], 'i'), value);
             }
             Templator.REGEXP_KEY.lastIndex = 0;
         }
@@ -40,8 +39,8 @@ export class Templator {
     }
 
     static uuidv4(): string {
-        return 'xxxxxxxx'.replace(/[xy]/g, function (c) {
-            var r = Math.random() * 8 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return 'xxxxxxxx'.replace(/[xy]/g, function(c) {
+            const r = Math.random() * 8 | 0; const v = c == 'x' ? r : (r & 0x3 | 0x8);
             return v.toString(8);
         });
     }

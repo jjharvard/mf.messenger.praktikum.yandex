@@ -1,7 +1,6 @@
-import {Component} from "../../../content/Component";
+import {Component} from '../../../content/Component';
 
 export class ChatItemComponent extends Component {
-
     constructor(private message: string) {
         super();
     }

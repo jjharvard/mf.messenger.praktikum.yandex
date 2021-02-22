@@ -1,5 +1,4 @@
 export class Consts {
-
     static DEFAULT_AVATAR = 'img/cat_eyes.png';
 
     static MESSAGE = () => ([`I can't get no satisfaction, I can't get no satisfaction 'cause I try and I try and I try and I try

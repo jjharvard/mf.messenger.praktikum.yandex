@@ -1,8 +1,7 @@
-import {ComponentGroup} from "../../content/ComponentGroup";
-import {EventBus} from "../../utils/EventBus";
+import {ComponentGroup} from '../../content/ComponentGroup';
+import {EventBus} from '../../utils/EventBus';
 
 export class EditText extends ComponentGroup {
-
     getTemplate(): string {
         return `
                 <div class="input">
@@ -15,20 +14,20 @@ export class EditText extends ComponentGroup {
     }
 
     onViewCreated() {
-        let inputMessage = <HTMLInputElement>this.getChildElementsByName('InputMessage')[0];
-        let button = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
-        let sendMessage = () => {
+        const inputMessage = <HTMLInputElement> this.getChildElementsByName('InputMessage')[0];
+        const button = <HTMLButtonElement> this.getChildElementsByName('Button')[0];
+        const sendMessage = () => {
             EventBus.getInstance().emit('onMessage', {'message': inputMessage.value});
             inputMessage.value = '';
         };
         inputMessage.onkeypress = (e: KeyboardEvent) => {
-            let eventTarget: HTMLElement = <HTMLElement>e.target;
+            const eventTarget: HTMLElement = <HTMLElement>e.target;
             if (inputMessage.value && (e.key === 'Enter' && eventTarget.id === inputMessage.id)) {
                 sendMessage();
             }
         };
         button.onclick = (e: Event) => {
-            let eventTarget: HTMLElement = <HTMLElement>e.target;
+            const eventTarget: HTMLElement = <HTMLElement>e.target;
             if (inputMessage.value && eventTarget.id === button.id) {
                 sendMessage();
             }
@@ -38,5 +37,4 @@ export class EditText extends ComponentGroup {
     getKeys(): Keys {
         return {};
     }
-
 }

@@ -1,7 +1,6 @@
-import {Component} from "../../content/Component";
+import {Component} from '../../content/Component';
 
 export class Button extends Component {
-
     constructor(private name: string, private clazz: string) {
         super();
     }
@@ -16,5 +15,4 @@ export class Button extends Component {
     getTemplate(): string {
         return `<button class={{clazz}}>{{name}}</button>`;
     }
-
 }

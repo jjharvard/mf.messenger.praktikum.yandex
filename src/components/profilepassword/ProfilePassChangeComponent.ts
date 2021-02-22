@@ -1,20 +1,19 @@
-import {ComponentGroup} from "../../content/ComponentGroup";
-import {Button} from "../_common/Button";
-import {Avatar} from "../_common/Avatar";
-import {ValidatableInput} from "../_common/ValidatableInput";
-import {Router} from "../../content/Router";
-import {UsersApi} from "../../api/UsersApi";
-import {StateUtil} from "../../utils/StateUtil";
+import {ComponentGroup} from '../../content/ComponentGroup';
+import {Button} from '../_common/Button';
+import {Avatar} from '../_common/Avatar';
+import {ValidatableInput} from '../_common/ValidatableInput';
+import {Router} from '../../content/Router';
+import {UsersApi} from '../../api/UsersApi';
+import {StateUtil} from '../../utils/StateUtil';
 
 export class ProfilePassChangeComponent extends ComponentGroup {
-
     constructor() {
         super([
             new Avatar('none', ''),
             new ValidatableInput('profile', 'password', 'profile__input', '', 'password', ''),
             new ValidatableInput('profile', 'password', 'profile__input', '', 'password', ''),
             new ValidatableInput('profile', 'password', 'profile__input', '', 'password', ''),
-            new Button("Save", "'profile-save__btn'")
+            new Button('Save', '\'profile-save__btn\'')
         ]);
     }
 
@@ -47,22 +46,22 @@ export class ProfilePassChangeComponent extends ComponentGroup {
     }
 
     onViewCreated() {
-        let signBtn = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
-        let avatar = <Avatar>this.getChildComponentsByName('Avatar')[0];
-        let profileData = StateUtil.getUserProfile();
+        const signBtn = <HTMLButtonElement> this.getChildElementsByName('Button')[0];
+        const avatar = <Avatar> this.getChildComponentsByName('Avatar')[0];
+        const profileData = StateUtil.getUserProfile();
         profileData.avatar && avatar.setAvatar(profileData.avatar);
         avatar.setName(profileData.first_name);
-        let validatableInputs = <ValidatableInput[]>this.getChildComponentsByName('ValidatableInput');
+        const validatableInputs = <ValidatableInput[]> this.getChildComponentsByName('ValidatableInput');
         this.validateOnClick(signBtn, validatableInputs, () => {
-            let keys = ['oldPassword', 'newPassword'];
-            let data = keys.reduce((acc, key, i) =>
+            const keys = ['oldPassword', 'newPassword'];
+            const data = keys.reduce((acc, key, i) =>
                 Object.assign(acc, {[key]: validatableInputs[i].getInput().value}), {});
             UsersApi.changePassword(data)
                 .then(response => {
                     if (response.ok) {
                         Router.getInstance().back();
                     } else {
-                        let message = JSON.parse(response.data)['reason'];
+                        const message = JSON.parse(response.data)['reason'];
                         validatableInputs[1].showMessage(message);
                     }
                 });

@@ -1,8 +1,7 @@
-import {StateUtil} from "../utils/StateUtil";
-import {HTTPTransport} from "../content/HTTPTransport";
+import {StateUtil} from '../utils/StateUtil';
+import {HTTPTransport} from '../content/HTTPTransport';
 
 export class AuthApi {
-
     static signIn = (data: object) =>
         HTTPTransport.getInstance().post('/auth/signin', data)
             .then(result => {
@@ -35,5 +34,4 @@ export class AuthApi {
             }
             return result;
         });
-
 }

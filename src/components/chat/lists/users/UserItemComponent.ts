@@ -1,10 +1,9 @@
-import {Component} from "../../../../content/Component";
-import {UserData} from "../../../../content/StorageTypes";
-import {Consts} from "../../../../utils/Consts";
-import {API_HOST} from "../../../../content/HTTPTransport";
+import {Component} from '../../../../content/Component';
+import {UserData} from '../../../../content/StorageTypes';
+import {Consts} from '../../../../utils/Consts';
+import {API_HOST} from '../../../../content/HTTPTransport';
 
 export class UserItemComponent extends Component {
-
     checkbox: HTMLInputElement;
 
     constructor(private userData: UserData) {
@@ -13,13 +12,13 @@ export class UserItemComponent extends Component {
 
     getKeys(): Keys {
         return {
-            "avatar": this.userData.avatar ? API_HOST + this.userData.avatar : Consts.DEFAULT_AVATAR,
-            "login": this.userData.login
+            'avatar': this.userData.avatar ? API_HOST + this.userData.avatar : Consts.DEFAULT_AVATAR,
+            'login': this.userData.login
         };
     }
 
     onViewCreated() {
-        this.checkbox = <HTMLInputElement>(<HTMLDivElement>this.getDOMView())!.querySelector('.users-modal__checkbox');
+        this.checkbox = <HTMLInputElement>(<HTMLDivElement> this.getDOMView())!.querySelector('.users-modal__checkbox');
     }
 
     getTemplate(): string {

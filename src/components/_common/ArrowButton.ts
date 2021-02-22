@@ -1,7 +1,6 @@
-import {Component} from "../../content/Component";
+import {Component} from '../../content/Component';
 
 export class ArrowButton extends Component {
-
     constructor(private name: string, private clazz: string) {
         super();
     }

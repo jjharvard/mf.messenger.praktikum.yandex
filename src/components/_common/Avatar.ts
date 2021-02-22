@@ -1,8 +1,7 @@
-import {Component} from "../../content/Component";
-import {API_HOST} from "../../content/HTTPTransport";
+import {Component} from '../../content/Component';
+import {API_HOST} from '../../content/HTTPTransport';
 
 export class Avatar extends Component {
-
     constructor(private paragraphDisplay: string, private avatarUrl: string) {
         super();
     }
@@ -15,12 +14,12 @@ export class Avatar extends Component {
     }
 
     setAvatar(avatar: string) {
-        let img = <HTMLImageElement>this.getDOMView()!.querySelector('.profile-title__icon');
+        const img = <HTMLImageElement> this.getDOMView()!.querySelector('.profile-title__icon');
         img.src = API_HOST + avatar;
     }
 
     setName(name: string) {
-        let label = <HTMLLabelElement>this.getDOMView()!.querySelector('.profile-title__label');
+        const label = <HTMLLabelElement> this.getDOMView()!.querySelector('.profile-title__label');
         label.textContent = name;
     }
 
@@ -32,5 +31,4 @@ export class Avatar extends Component {
                     <label class="profile-title__label"></label>
                 </div>`;
     }
-
 }

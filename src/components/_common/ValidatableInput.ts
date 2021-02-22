@@ -1,10 +1,9 @@
-import {ComponentGroup} from "../../content/ComponentGroup";
-import {Input} from "./Input";
-import {ValidationMessage} from "./ValidationMessage";
-import {ValidationUtil} from "../../utils/ValidationUtil";
+import {ComponentGroup} from '../../content/ComponentGroup';
+import {Input} from './Input';
+import {ValidationMessage} from './ValidationMessage';
+import {ValidationUtil} from '../../utils/ValidationUtil';
 
 export class ValidatableInput extends ComponentGroup {
-
     input: HTMLInputElement;
     message: HTMLDivElement;
 
@@ -40,7 +39,7 @@ export class ValidatableInput extends ComponentGroup {
     }
 
     check() {
-        let hasError = ValidationUtil.hasError(this.input);
+        const hasError = ValidationUtil.hasError(this.input);
         if (hasError) {
             this.setErrorStyle();
         }
@@ -64,5 +63,4 @@ export class ValidatableInput extends ComponentGroup {
                 </div>
                 `;
     }
-
 }

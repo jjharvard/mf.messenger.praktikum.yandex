@@ -1,8 +1,7 @@
-import {Component} from "./Component";
-import {EventBus} from "../utils/EventBus";
+import {Component} from './Component';
+import {EventBus} from '../utils/EventBus';
 
 export class Page {
-
     view: Component;
     root: HTMLElement;
     inner: string;
@@ -13,7 +12,7 @@ export class Page {
     }
 
     hide() {
-        this.root.innerHTML = "";
+        this.root.innerHTML = '';
     }
 
     show() {
@@ -23,5 +22,4 @@ export class Page {
         this.root.innerHTML = this.inner;
         EventBus.getInstance().emit('onViewCreated');
     }
-
 }

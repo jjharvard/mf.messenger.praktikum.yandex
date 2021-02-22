@@ -1,7 +1,6 @@
-import {Component} from "../../content/Component";
+import {Component} from '../../content/Component';
 
 export class Input extends Component {
-
     constructor(private name: string, private clazz: string,
                 private placeholder: string, private type: string,
                 private value: string, private readOnly: string) {
@@ -9,7 +8,7 @@ export class Input extends Component {
     }
 
     getInput(): HTMLInputElement {
-        return <HTMLInputElement>this.getDOMView();
+        return <HTMLInputElement> this.getDOMView();
     }
 
     getKeys(): Keys {
@@ -26,5 +25,4 @@ export class Input extends Component {
     getTemplate(): string {
         return `<input name="{{name}}" class="{{clazz}}" text="" placeholder="{{placeholder}}" type="{{type}}" value="{{value}}" {{readonly}}>`;
     }
-
 }

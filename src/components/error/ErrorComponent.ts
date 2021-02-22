@@ -1,7 +1,6 @@
-import {ComponentGroup} from "../../content/ComponentGroup";
+import {ComponentGroup} from '../../content/ComponentGroup';
 
 export class ErrorComponent extends ComponentGroup {
-
     constructor(private errorNumber: string, private errorMessage: string) {
         super();
     }
@@ -19,5 +18,4 @@ export class ErrorComponent extends ComponentGroup {
                     </div>
                 </div>`;
     }
-
 }

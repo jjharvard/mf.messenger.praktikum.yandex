@@ -1,9 +1,8 @@
-import {Route} from "./Route";
-import {StateUtil} from "../utils/StateUtil";
-import {AuthApi} from "../api/AuthApi";
+import {Route} from './Route';
+import {StateUtil} from '../utils/StateUtil';
+import {AuthApi} from '../api/AuthApi';
 
 export class Router {
-
     private static instance: Router;
 
     private shouldExit = false;
@@ -31,8 +30,8 @@ export class Router {
                 }
                 return;
             }
-            let prevPath = this.currentRoute.path;
-            let path = e.state ? e.state.path : '';
+            const prevPath = this.currentRoute.path;
+            const path = e.state ? e.state.path : '';
             if ((prevPath === '/chat' && path === '/login') || (prevPath === '/chat' && path === '/sign')) { // going back from chat
                 this.logout(e.state.path);
             } else if ((prevPath === '/login' && path !== '/sign') || (prevPath === '/sign' && path !== '/login')) { // going forward from login or sign
@@ -61,12 +60,12 @@ export class Router {
     }
 
     push(path: string) {
-        history.pushState({path}, "", path);
+        history.pushState({path}, '', path);
         this._onRoute(path);
     }
 
     replace(path: string) {
-        history.replaceState({path}, "", path);
+        history.replaceState({path}, '', path);
         this._onRoute(path);
     }
 
@@ -80,7 +79,7 @@ export class Router {
     }
 
     start(path: string) {
-        let state = StateUtil.getRouterState();
+        const state = StateUtil.getRouterState();
         if (state && state.length === history.length) {
             this.replace(state.currUri);
         } else {

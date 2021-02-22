@@ -1,13 +1,12 @@
-import {ComponentGroup} from "../../../../content/ComponentGroup";
-import {UsersListComponent} from "./UsersListComponent";
-import {ValidatableInput} from "../../../_common/ValidatableInput";
-import {Button} from "../../../_common/Button";
-import {UsersApi} from "../../../../api/UsersApi";
-import {UserData} from "../../../../content/StorageTypes";
-import {Adapter} from "../../../../content/Adapter";
+import {ComponentGroup} from '../../../../content/ComponentGroup';
+import {UsersListComponent} from './UsersListComponent';
+import {ValidatableInput} from '../../../_common/ValidatableInput';
+import {Button} from '../../../_common/Button';
+import {UsersApi} from '../../../../api/UsersApi';
+import {UserData} from '../../../../content/StorageTypes';
+import {Adapter} from '../../../../content/Adapter';
 
 export class UsersModal extends ComponentGroup {
-
     userListComponent: UsersListComponent;
     textInput: ValidatableInput;
     btnSubmit: HTMLButtonElement;
@@ -16,9 +15,9 @@ export class UsersModal extends ComponentGroup {
 
     constructor(private title: string, inputPlaceholder: string, btnName: string) {
         super([
-            new ValidatableInput("users-modal", "users-modal", "users-modal__input", inputPlaceholder, "text", ""),
+            new ValidatableInput('users-modal', 'users-modal', 'users-modal__input', inputPlaceholder, 'text', ''),
             new UsersListComponent(),
-            new Button(btnName, "users-modal__btn_submit")
+            new Button(btnName, 'users-modal__btn_submit')
         ]);
     }
 
@@ -45,18 +44,18 @@ export class UsersModal extends ComponentGroup {
     }
 
     onViewCreated() {
-        this.userListComponent = <UsersListComponent>this.getChildComponentsByName('UsersListComponent')[0];
-        this.textInput = <ValidatableInput>this.getChildComponentsByName('ValidatableInput')[0];
-        this.btnSubmit = <HTMLButtonElement>this.getDOMView()!.querySelector(".users-modal__btn_submit");
+        this.userListComponent = <UsersListComponent> this.getChildComponentsByName('UsersListComponent')[0];
+        this.textInput = <ValidatableInput> this.getChildComponentsByName('ValidatableInput')[0];
+        this.btnSubmit = <HTMLButtonElement> this.getDOMView()!.querySelector('.users-modal__btn_submit');
         this.btnSubmit.onclick = () => {
-            let data: UserData[] = this.userListComponent.getCheckedUserData();
+            const data: UserData[] = this.userListComponent.getCheckedUserData();
             this.onSubmitCallback && this.onSubmitCallback(data);
         };
         this.textInput.getInput().oninput = (e: Event) => {
-            let value = (e.target as HTMLInputElement).value;
+            const value = (e.target as HTMLInputElement).value;
             UsersApi.findUser(value).then(response => {
                 if (response.ok) {
-                    let userData = JSON.parse(response.data) as UserData[];
+                    const userData = JSON.parse(response.data) as UserData[];
                     if (userData.length) {
                         this.userListComponent.notify(new Adapter<UserData>(userData));
                     }
@@ -82,5 +81,4 @@ export class UsersModal extends ComponentGroup {
                     </div>
                 </div>`;
     }
-
 }

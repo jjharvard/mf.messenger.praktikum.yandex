@@ -1,7 +1,6 @@
-import {Component} from "../../content/Component";
+import {Component} from '../../content/Component';
 
 export class UploadFileInput extends Component {
-
     uploadAction: HTMLDivElement;
     actionLabel: HTMLLabelElement;
     fileInput: HTMLInputElement;
@@ -17,11 +16,11 @@ export class UploadFileInput extends Component {
     }
 
     onViewCreated() {
-        this.uploadAction = <HTMLDivElement>this.getDOMView()!.querySelector(".upload-input__action");
-        this.actionLabel = <HTMLLabelElement>this.getDOMView()!.querySelector(".upload-input__label");
-        this.fileInput = <HTMLInputElement>this.getDOMView()!.querySelector(".upload-input__file-input");
+        this.uploadAction = <HTMLDivElement> this.getDOMView()!.querySelector('.upload-input__action');
+        this.actionLabel = <HTMLLabelElement> this.getDOMView()!.querySelector('.upload-input__label');
+        this.fileInput = <HTMLInputElement> this.getDOMView()!.querySelector('.upload-input__file-input');
         this.fileInput.onchange = (e: Event) => {
-            let files = (e.target as HTMLInputElement).files;
+            const files = (e.target as HTMLInputElement).files;
             files && (this.actionLabel.textContent = files[0].name);
         };
     }
@@ -34,5 +33,4 @@ export class UploadFileInput extends Component {
                     <form class="upload-input__action" method="post" enctype="multipart/form-data"></form>
                 </div>`;
     }
-
 }

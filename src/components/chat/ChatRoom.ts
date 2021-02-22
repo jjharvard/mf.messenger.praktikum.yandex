@@ -1,10 +1,9 @@
-import {ComponentGroup} from "../../content/ComponentGroup";
-import {ChatListComponent} from "./lists/ChatListComponent";
-import {Adapter} from "../../content/Adapter";
-import {ChatRoomTitle} from "./ChatRoomTitle";
+import {ComponentGroup} from '../../content/ComponentGroup';
+import {ChatListComponent} from './lists/ChatListComponent';
+import {Adapter} from '../../content/Adapter';
+import {ChatRoomTitle} from './ChatRoomTitle';
 
 export class ChatRoom extends ComponentGroup {
-
     chatRoomTitle: ChatRoomTitle;
 
     constructor() {
@@ -17,7 +16,7 @@ export class ChatRoom extends ComponentGroup {
     }
 
     onViewCreated() {
-        this.chatRoomTitle = <ChatRoomTitle>this.getChildComponentsByName('ChatRoomTitle')[0];
+        this.chatRoomTitle = <ChatRoomTitle> this.getChildComponentsByName('ChatRoomTitle')[0];
     }
 
     getTemplate(): string {
@@ -26,5 +25,4 @@ export class ChatRoom extends ComponentGroup {
                         {{ChatListComponent}}
                 </div>`;
     }
-
 }
