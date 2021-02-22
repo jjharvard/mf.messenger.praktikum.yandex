@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "rootDir": "./",
-    "outDir": "./dist/js",
     "target": "ES2018",
     "strict": true,
     "noImplicitAny": true,
@@ -13,9 +12,6 @@
     "strictPropertyInitialization": false,
     "skipLibCheck": true
   },
-  "include": [
-    "./src/**/*"
-  ],
   "exclude": [
     "node_modules"
   ]

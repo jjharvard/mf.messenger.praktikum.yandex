@@ -17,8 +17,9 @@
   "scripts": {
     "dev": "webpack -- --mode development",
     "prod": "webpack -- --mode production",
-    "serve": "nodemon server.js --watch",
-    "test": "./node_modules/.bin/mocha"
+    "serve": "PORT=3000 nodemon server.js --watch",
+    "test": "./node_modules/.bin/mocha",
+    "deploy": "heroku login && heroku container:login && heroku container:push web --app=yandex-praktikum-messenger && heroku container:release web --app=yandex-praktikum-messenger"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.13",
