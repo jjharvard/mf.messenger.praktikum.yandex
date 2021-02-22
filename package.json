@@ -23,6 +23,11 @@
     "test": "./node_modules/.bin/mocha",
     "deploy": "heroku login && heroku container:login && heroku container:push web --app=yandex-praktikum-messenger && heroku container:release web --app=yandex-praktikum-messenger"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
+  },
   "devDependencies": {
     "@babel/cli": "^7.12.13",
     "@babel/core": "^7.12.13",
@@ -42,6 +47,7 @@
     "eslint": "^7.20.0",
     "eslint-config-google": "^0.14.0",
     "html-webpack-plugin": "^5.2.0",
+    "husky": "4",
     "mocha": "^8.2.1",
     "mocha-jsdom": "^2.0.0",
     "node-sass": "^5.0.0",
