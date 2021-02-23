@@ -4,7 +4,7 @@ type ArrayKeys = { [k: string]: string[] }
 
 type Keys = { [k: string]: unknown }
 
-type EVENT = 'onChatSelected' | 'onMessage' | 'onViewCreated' | 'onChatAction'
+type EVENT = 'onChatSelected' | 'onChatRefresh' | 'onViewCreated' | 'onChatAction'
 
 type CHAT_ACTION = 'userRemove' | 'userAdd' | 'chatRemove'
 

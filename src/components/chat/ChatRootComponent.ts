@@ -26,13 +26,6 @@ export class ChatRootComponent extends ComponentGroup {
 
     socket: WebSocket;
 
-    getOld = () => {
-        this.socket.send(JSON.stringify({
-            content: '0',
-            type: 'get old'
-        }));
-    };
-
     constructor() {
         super([
             new User(),
@@ -58,6 +51,7 @@ export class ChatRootComponent extends ComponentGroup {
         ]);
         EventBus.getInstance().register('onChatAction', this);
         EventBus.getInstance().register('onChatSelected', this);
+        EventBus.getInstance().register('onChatRefresh', this);
     }
 
     onViewCreated() {
@@ -77,7 +71,6 @@ export class ChatRootComponent extends ComponentGroup {
 
     initEditText() {
         this.editText.onBtnSendCallback = (message: string) => {
-            console.log('message => ', message);
             const sendMessage = () => this.socket.send(JSON.stringify({
                 content: message,
                 type: 'message'
@@ -85,30 +78,24 @@ export class ChatRootComponent extends ComponentGroup {
             if (this.socket.readyState === WebSocket.OPEN) {
                 sendMessage();
             } else {
-                this.openWebSocket(this.sidebarListComponent.currentItem.chatData, sendMessage);
+                this.openWebSocket(this.sidebarListComponent.currentItem.chatData, () => this.getHistory(0).then(messageData => {
+                    this.chatRoom.notifyChatListAll(new Adapter<MessageData>(messageData));
+                    sendMessage();
+                }));
             }
         };
     }
 
-    openWebSocket(chatData: ChatData,
-                  onGetOld: () => void = () => {
-                  }) {
+    openWebSocket(chatData: ChatData, onOpened: () => void) {
         const userProfile = StateUtil.getUserProfile();
         ChatsApi.getToken(chatData.id)
             .then(response => {
                 if (response.ok) {
                     const token = JSON.parse(response.data)['token'];
                     this.socket = new WebSocket('wss://ya-praktikum.tech/ws/chats/' + userProfile.id + '/' + chatData.id + '/' + token);
-                    this.socket.addEventListener('open', () => {
-                        console.log('socket for chat ' + chatData.id + ' is opened');
-                        this.getOld();
-                    });
+                    this.socket.addEventListener('open', onOpened);
                     this.socket.addEventListener('message', event => {
-                        if (Array.isArray(JSON.parse(event.data))) {
-                            const messageData = JSON.parse(event.data) as MessageData[];
-                            this.chatRoom.notifyChatListAll(new Adapter<MessageData>(messageData));
-                            onGetOld();
-                        } else {
+                        if (!Array.isArray(JSON.parse(event.data))) {
                             const messageData = JSON.parse(event.data) as MessageData;
                             this.chatRoom.notifyChatList(messageData);
                         }
@@ -120,13 +107,47 @@ export class ChatRootComponent extends ComponentGroup {
             });
     }
 
+    getHistory = (from: number = 0) => new Promise<MessageData[]>((resolve) => {
+        if (!this.socket) {
+            resolve([]);
+        } else {
+            const listener = (event: MessageEvent) => {
+                this.socket.removeEventListener('message', listener);
+                if (Array.isArray(JSON.parse(event.data))) {
+                    const messageData = JSON.parse(event.data) as MessageData[];
+                    resolve(messageData);
+                } else {
+                    resolve([]);
+                }
+            };
+            this.socket.addEventListener('message', listener);
+            this.socket.send(JSON.stringify({
+                content: from,
+                type: 'get old'
+            }));
+        }
+    });
+
+    onChatRefresh() {
+        const items = this.chatRoom.chatListComponent.adapter.getItems();
+        this.getHistory(items.length).then(messageData => {
+            if (messageData.length) {
+                const all = [...items, ...messageData];
+                const previousPos = this.chatRoom.chatListComponent.list.scrollTop;
+                this.chatRoom.notifyChatListAll(new Adapter<MessageData>(all));
+                this.chatRoom.chatListComponent.list.scrollTop = previousPos;
+            }
+        });
+    }
+
     onChatSelected(payload: Payload = {}) {
         if (this.socket) {
             this.socket.close();
         }
         const chatData = payload['chatData'] as ChatData;
-        this.openWebSocket(chatData);
-        this.chatRoom.notifyChatListAll(new Adapter<MessageData>());
+        this.openWebSocket(chatData, () => this.getHistory(0).then(messageData => {
+            this.chatRoom.notifyChatListAll(new Adapter<MessageData>(messageData));
+        }));
     }
 
     onChatAction(payload: Payload = {}) {

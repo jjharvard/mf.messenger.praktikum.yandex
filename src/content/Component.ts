@@ -53,9 +53,9 @@ export abstract class Component {
     onChatAction(_: Payload = {}) {
     }
 
-    onMessage(_: Payload = {}) {
+    onViewCreated(_: Payload = {}) {
     }
 
-    onViewCreated(_: Payload = {}) {
+    onChatRefresh(_: Payload = {}) {
     }
 }
