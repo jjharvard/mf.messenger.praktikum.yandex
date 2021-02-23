@@ -25,4 +25,6 @@ export class ChatsApi {
     });
 
     static getUsers = (chatId: number) => HTTPTransport.getInstance().get('/chats/' + chatId + '/users');
+
+    static getToken = (chatId: number) => HTTPTransport.getInstance().post('/chats/token/' + chatId);
 }

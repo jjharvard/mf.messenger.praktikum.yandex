@@ -1,7 +1,11 @@
 import {ComponentGroup} from '../../content/ComponentGroup';
-import {EventBus} from '../../utils/EventBus';
 
 export class EditText extends ComponentGroup {
+    inputMessage: HTMLInputElement;
+    btnSend: HTMLButtonElement;
+
+    onBtnSendCallback: (message: string) => void;
+
     getTemplate(): string {
         return `
                 <div class="input">
@@ -14,22 +18,21 @@ export class EditText extends ComponentGroup {
     }
 
     onViewCreated() {
-        const inputMessage = <HTMLInputElement> this.getChildElementsByName('InputMessage')[0];
-        const button = <HTMLButtonElement> this.getChildElementsByName('Button')[0];
-        const sendMessage = () => {
-            EventBus.getInstance().emit('onMessage', {'message': inputMessage.value});
-            inputMessage.value = '';
-        };
-        inputMessage.onkeypress = (e: KeyboardEvent) => {
+        this.inputMessage = <HTMLInputElement>this.getChildElementsByName('InputMessage')[0];
+        this.btnSend = <HTMLButtonElement>this.getChildElementsByName('Button')[0];
+
+        this.inputMessage.onkeypress = (e: KeyboardEvent) => {
             const eventTarget: HTMLElement = <HTMLElement>e.target;
-            if (inputMessage.value && (e.key === 'Enter' && eventTarget.id === inputMessage.id)) {
-                sendMessage();
+            if (this.inputMessage.value && (e.key === 'Enter' && eventTarget.id === this.inputMessage.id)) {
+                this.onBtnSendCallback(this.inputMessage.value);
+                this.inputMessage.value = '';
             }
         };
-        button.onclick = (e: Event) => {
+        this.btnSend.onclick = (e: Event) => {
             const eventTarget: HTMLElement = <HTMLElement>e.target;
-            if (inputMessage.value && eventTarget.id === button.id) {
-                sendMessage();
+            if (this.inputMessage.value && eventTarget.id === this.btnSend.id) {
+                this.onBtnSendCallback(this.inputMessage.value);
+                this.inputMessage.value = '';
             }
         };
     }

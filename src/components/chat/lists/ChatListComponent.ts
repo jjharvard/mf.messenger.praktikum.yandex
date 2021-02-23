@@ -3,32 +3,29 @@ import {EventBus} from '../../../utils/EventBus';
 import {ComponentGroup} from '../../../content/ComponentGroup';
 import {Adapter} from '../../../content/Adapter';
 import {Templator} from '../../../utils/Templator';
+import {MessageData} from '../../../content/StorageTypes';
 
 export class ChatListComponent extends ComponentGroup {
-    static initialData(): string[] {
-        return [
-            `I can't get no satisfaction, I can't get no satisfaction 'cause I try and I try and I try and I try
-                    I can't get no, I can't get no`,
-            'hello',
-            'How are you'
-        ];
-    }
+    adapter: Adapter<MessageData> = new Adapter<MessageData>();
 
-    constructor(private adapter: Adapter<string>) {
-        super(adapter.getItems().map(item => {
-            return new ChatItemComponent(item);
-        }));
+    constructor() {
+        super();
         EventBus.getInstance().register('onMessage', this);
     }
 
-    onMessage(payload: Payload) {
+    notifyAll(adapter: Adapter<MessageData> = this.adapter) {
+        this.adapter = adapter;
         this.removeAllChildren();
-        this.adapter.addItem(payload['message'] as string);
         this.addViews(this.adapter.getItems().map(item => {
             return new ChatItemComponent(item);
         }));
         this.getDOMView()!.outerHTML = this.render();
         return true;
+    }
+
+    notify(message: MessageData) {
+        this.adapter.addItem(message);
+        this.notifyAll();
     }
 
     getTemplate(): string {

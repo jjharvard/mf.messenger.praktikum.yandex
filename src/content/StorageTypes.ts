@@ -33,3 +33,10 @@ export interface UserData {
     phone: string,
     isActive: boolean
 }
+
+export interface MessageData {
+    userId: number,
+    chatId: number,
+    content: string,
+    time: string
+}

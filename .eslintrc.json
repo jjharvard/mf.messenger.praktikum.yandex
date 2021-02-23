@@ -22,6 +22,7 @@
         "no-unused-vars": "off",
         "arrow-parens": "off",
         "guard-for-in": "off",
-        "new-cap": "off"
+        "new-cap": "off",
+        "keyword-spacing": "off"
     }
 }

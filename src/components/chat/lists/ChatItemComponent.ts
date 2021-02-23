@@ -1,13 +1,14 @@
 import {Component} from '../../../content/Component';
+import {MessageData} from '../../../content/StorageTypes';
 
 export class ChatItemComponent extends Component {
-    constructor(private message: string) {
+    constructor(private messageData: MessageData) {
         super();
     }
 
     getKeys(): Keys {
         return {
-            'message': this.message
+            'message': this.messageData.content
         };
     }
 
