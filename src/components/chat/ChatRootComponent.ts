@@ -26,6 +26,13 @@ export class ChatRootComponent extends ComponentGroup {
 
     socket: WebSocket;
 
+    getOld = () => {
+        this.socket.send(JSON.stringify({
+            content: '0',
+            type: 'get old'
+        }));
+    };
+
     constructor() {
         super([
             new User(),
@@ -83,8 +90,9 @@ export class ChatRootComponent extends ComponentGroup {
         };
     }
 
-    openWebSocket(chatData: ChatData, onOpen: () => void = () => {
-    }) {
+    openWebSocket(chatData: ChatData,
+                  onGetOld: () => void = () => {
+                  }) {
         const userProfile = StateUtil.getUserProfile();
         ChatsApi.getToken(chatData.id)
             .then(response => {
@@ -93,12 +101,17 @@ export class ChatRootComponent extends ComponentGroup {
                     this.socket = new WebSocket('wss://ya-praktikum.tech/ws/chats/' + userProfile.id + '/' + chatData.id + '/' + token);
                     this.socket.addEventListener('open', () => {
                         console.log('socket for chat ' + chatData.id + ' is opened');
-                        onOpen();
+                        this.getOld();
                     });
                     this.socket.addEventListener('message', event => {
-                        const messageData = JSON.parse(event.data) as MessageData;
-                        console.log('message received => ', messageData);
-                        this.chatRoom.notifyChatList(messageData);
+                        if (Array.isArray(JSON.parse(event.data))) {
+                            const messageData = JSON.parse(event.data) as MessageData[];
+                            this.chatRoom.notifyChatListAll(new Adapter<MessageData>(messageData));
+                            onGetOld();
+                        } else {
+                            const messageData = JSON.parse(event.data) as MessageData;
+                            this.chatRoom.notifyChatList(messageData);
+                        }
                     });
                     this.socket.addEventListener('error', event => {
                         console.log('Error => ', event);
