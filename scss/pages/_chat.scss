@@ -197,6 +197,8 @@ $chat__borderLight: 1px solid $app__colorSecondaryLight;
       }
 
       &__content {
+        display: flex;
+        align-items: center;
         width: fit-content;
         position: relative;
         padding: $app__marginMedium;
@@ -204,6 +206,10 @@ $chat__borderLight: 1px solid $app__colorSecondaryLight;
         background: $app__colorSecondary;
         min-width: 15%;
         max-width: 40%;
+      }
+
+      &__text {
+        word-break: break-word;
       }
 
       .incoming {
@@ -222,7 +228,7 @@ $chat__borderLight: 1px solid $app__colorSecondaryLight;
         border-top-left-radius: $app__radiusBorder;
       }
 
-      &__timer {
+      &__label {
         position: absolute;
         bottom: $app__marginSmall;
         right: $app__marginSmall;
@@ -231,4 +237,11 @@ $chat__borderLight: 1px solid $app__colorSecondaryLight;
       }
     }
   }
+}
+
+.avatar_small {
+  margin-left: 0;
+  margin-right: $app__marginMedium;
+  width: 48px;
+  height: 48px;
 }

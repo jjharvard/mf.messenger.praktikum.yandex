@@ -25,4 +25,6 @@ export class UsersApi {
         });
 
     static findUser = (login: string) => HTTPTransport.getInstance().post('/user/search', {login});
+
+    static getUser = (id: number) => HTTPTransport.getInstance().get('/user/' + id);
 }

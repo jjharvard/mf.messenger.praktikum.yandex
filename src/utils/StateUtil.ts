@@ -1,9 +1,10 @@
-import {HistoryState, UserProfile} from '../content/StorageTypes';
+import {HistoryState, UserData, UserProfile} from '../content/StorageTypes';
 
 export class StateUtil {
     static ROUTER_STATE = 'router_state';
     static IS_AUTHENTICATED = 'is_authenticated';
     static USER_PROFILE = 'user_profile';
+    static CURRENT_CHAT_USERS = 'current_chat_users';
 
     static setRouterState(state: HistoryState) {
         localStorage.setItem(this.ROUTER_STATE, JSON.stringify(state));
@@ -34,5 +35,19 @@ export class StateUtil {
 
     static getUserProfile(): UserProfile {
         return JSON.parse(localStorage.getItem(this.USER_PROFILE) ?? '{}') as UserProfile;
+    }
+
+    static setCurrentChatUsers(users: UserData[]) {
+        localStorage.setItem(this.CURRENT_CHAT_USERS, JSON.stringify(users));
+    }
+
+    static updateCurrentChatUsers(user: UserData) {
+        const currentUsers = JSON.parse(localStorage.getItem(this.CURRENT_CHAT_USERS) ?? '[]') as UserData[];
+        currentUsers.push(user);
+        localStorage.setItem(this.CURRENT_CHAT_USERS, JSON.stringify(currentUsers));
+    }
+
+    static getCurrentChatUsers(): UserData[] {
+        return JSON.parse(localStorage.getItem(this.CURRENT_CHAT_USERS) ?? '[]') as UserData[];
     }
 }

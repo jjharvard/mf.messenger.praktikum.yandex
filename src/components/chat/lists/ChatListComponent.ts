@@ -14,8 +14,9 @@ export class ChatListComponent extends ComponentGroup {
         this.adapter = adapter;
         this.removeAllChildren();
         const userId = StateUtil.getUserProfile().id;
+        const chatUsers = StateUtil.getCurrentChatUsers();
         this.addViews(this.adapter.getItems().map(item => {
-            return new ChatItemComponent(item, userId);
+            return new ChatItemComponent(item, chatUsers, userId);
         }));
         this.getDOMView()!.outerHTML = this.render();
         this.getChildren().forEach(c => c.onViewCreated());

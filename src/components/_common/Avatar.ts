@@ -1,5 +1,6 @@
 import {Component} from '../../content/Component';
 import {API_HOST} from '../../content/HTTPTransport';
+import {Consts} from '../../utils/Consts';
 
 export class Avatar extends Component {
     constructor(private paragraphDisplay: string, private avatarUrl: string) {
@@ -9,7 +10,7 @@ export class Avatar extends Component {
     getKeys(): Keys {
         return {
             'display': this.paragraphDisplay,
-            'avatar': this.avatarUrl
+            'avatar': this.avatarUrl ? this.avatarUrl : Consts.DEFAULT_AVATAR
         };
     }
 

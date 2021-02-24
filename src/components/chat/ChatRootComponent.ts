@@ -13,6 +13,7 @@ import {EventBus} from '../../utils/EventBus';
 import {UsersModal} from './lists/users/UsersModal';
 import {StateUtil} from '../../utils/StateUtil';
 import {Button} from '../_common/Button';
+import {UsersApi} from '../../api/UsersApi';
 
 export class ChatRootComponent extends ComponentGroup {
     modalChatAdd: Modal;
@@ -96,9 +97,20 @@ export class ChatRootComponent extends ComponentGroup {
                     this.socket.addEventListener('open', onOpened);
                     this.socket.addEventListener('message', e => {
                         const event = JSON.parse(e.data);
-                        if (!Array.isArray(event) && event['type'] === 'message') {
-                            const messageData = {...event, user_id: event['userId']} as MessageData;
-                            this.chatRoom.notifyChatList(messageData);
+                        if (!Array.isArray(event)) {
+                            if (event['type'] === 'message') {
+                                const messageData = {...event, user_id: event['userId']} as MessageData;
+                                this.chatRoom.notifyChatList(messageData);
+                            } else if (event['type'] === 'user connected') {
+                                const userId = event['content'];
+                                UsersApi.getUser(userId)
+                                    .then(response => {
+                                        if (response.ok) {
+                                            const userData = JSON.parse(response.data) as UserData;
+                                            StateUtil.updateCurrentChatUsers(userData);
+                                        }
+                                    });
+                            }
                         }
                     });
                     this.socket.addEventListener('error', event => {
@@ -145,10 +157,18 @@ export class ChatRootComponent extends ComponentGroup {
         if (this.socket) {
             this.socket.close();
         }
-        const chatData = payload['chatData'] as ChatData;
-        this.openWebSocket(chatData, () => this.getHistory(0).then(messageData => {
-            this.chatRoom.notifyChatListAll(new Adapter<MessageData>(messageData));
-        }));
+
+        ChatsApi.getUsers(this.sidebarListComponent.currentItem.chatData.id)
+            .then(response => {
+                if (response.ok) {
+                    const usersData = JSON.parse(response.data) as UserData[];
+                    StateUtil.setCurrentChatUsers(usersData);
+                    const chatData = payload['chatData'] as ChatData;
+                    this.openWebSocket(chatData, () => this.getHistory(0).then(messageData => {
+                        this.chatRoom.notifyChatListAll(new Adapter<MessageData>(messageData));
+                    }));
+                }
+            });
     }
 
     onChatAction(payload: Payload = {}) {
