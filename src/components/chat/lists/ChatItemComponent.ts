@@ -26,10 +26,9 @@ export class ChatItemComponent extends ComponentGroup {
             messageContent.classList.add('incoming');
             if (messageUserData && messageUserData.avatar) {
                 icon.src = API_HOST + messageUserData.avatar;
-                label.textContent = messageUserData?.login + ' / ' + Utils.getTimeNow(date);
-            } else {
-                label.textContent = 'Removed from chat' + ' / ' + Utils.getTimeNow(date);
             }
+            const userLogin = messageUserData ? Utils.ellipsize(messageUserData.login) : 'Removed from chat';
+            label.textContent = userLogin + ' / ' + Utils.getTimeNow(date);
         } else {
             icon.style.display = 'none';
             messageContent.classList.add('outgoing');

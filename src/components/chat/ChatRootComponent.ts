@@ -107,7 +107,7 @@ export class ChatRootComponent extends ComponentGroup {
                                     .then(response => {
                                         if (response.ok) {
                                             const userData = JSON.parse(response.data) as UserData;
-                                            StateUtil.updateCurrentChatUsers(userData);
+                                            StateUtil.updateCurrentChatUsers([userData]);
                                         }
                                     });
                             }
@@ -196,6 +196,7 @@ export class ChatRootComponent extends ComponentGroup {
                         ChatsApi.addUsers(usersData.map(item => item.id), this.sidebarListComponent.currentItem.chatData.id)
                             .then(response => {
                                 if (response.ok) {
+                                    StateUtil.updateCurrentChatUsers(usersData);
                                     this.modalAddUsers.hide();
                                 }
                             });

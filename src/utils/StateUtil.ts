@@ -41,9 +41,13 @@ export class StateUtil {
         localStorage.setItem(this.CURRENT_CHAT_USERS, JSON.stringify(users));
     }
 
-    static updateCurrentChatUsers(user: UserData) {
-        const currentUsers = JSON.parse(localStorage.getItem(this.CURRENT_CHAT_USERS) ?? '[]') as UserData[];
-        currentUsers.push(user);
+    static updateCurrentChatUsers(users: UserData[]) {
+        let currentUsers = JSON.parse(localStorage.getItem(this.CURRENT_CHAT_USERS) ?? '[]') as UserData[];
+        currentUsers = [...currentUsers, ...users];
+        currentUsers = currentUsers.filter((user, index) => {
+            const curr = currentUsers.find(u => user.id === u.id)!;
+            return currentUsers.indexOf(curr) === index;
+        });
         localStorage.setItem(this.CURRENT_CHAT_USERS, JSON.stringify(currentUsers));
     }
 

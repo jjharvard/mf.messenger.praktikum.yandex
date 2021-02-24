@@ -8,6 +8,6 @@ RUN yarn install
 
 COPY . .
 
-RUN yarn dev
+RUN yarn build
 
 CMD ["node", "server.js"]
