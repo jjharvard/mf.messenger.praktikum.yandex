@@ -202,6 +202,7 @@ $chat__borderLight: 1px solid $app__colorSecondaryLight;
         padding: $app__marginMedium;
         padding-bottom: $app__marginMiniLarge;
         background: $app__colorSecondary;
+        min-width: 15%;
         max-width: 40%;
       }
 
