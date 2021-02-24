@@ -1,15 +1,17 @@
 Учебный проект. I спринт Yandex Практикума.
 
-[https://angry-darwin-d47765.netlify.app](https://angry-darwin-d47765.netlify.app)
+[https://yandex-praktikum-messenger.herokuapp.com](https://yandex-praktikum-messenger.herokuapp.com)
 
 <br/>
-Для компиляции проекта выполните команду:
-<br/>
-yarn install
+Команда для компиляции проекта:
 <br/>
 yarn build
 <br/>
-Для запуска локального сервера выполните команды:
+Команда для запуска локальных тестов:
+<br/>
+yarn test
+<br/>
+Команда для запуска локального сервера:
 <br/>
 yarn serve
 <br/>
