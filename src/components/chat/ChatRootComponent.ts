@@ -94,9 +94,10 @@ export class ChatRootComponent extends ComponentGroup {
                     const token = JSON.parse(response.data)['token'];
                     this.socket = new WebSocket('wss://ya-praktikum.tech/ws/chats/' + userProfile.id + '/' + chatData.id + '/' + token);
                     this.socket.addEventListener('open', onOpened);
-                    this.socket.addEventListener('message', event => {
-                        if (!Array.isArray(JSON.parse(event.data))) {
-                            const messageData = JSON.parse(event.data) as MessageData;
+                    this.socket.addEventListener('message', e => {
+                        const event = JSON.parse(e.data);
+                        if (!Array.isArray(event) && event['type'] === 'message') {
+                            const messageData = {...event, user_id: event['userId']} as MessageData;
                             this.chatRoom.notifyChatList(messageData);
                         }
                     });

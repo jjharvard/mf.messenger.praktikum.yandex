@@ -195,40 +195,33 @@ $chat__borderLight: 1px solid $app__colorSecondaryLight;
       &__img {
         max-width: 100%;
       }
-      &__incoming {
+
+      &__content {
         width: fit-content;
         position: relative;
         padding: $app__marginMedium;
         padding-bottom: $app__marginMiniLarge;
         background: $app__colorSecondary;
         max-width: 40%;
+      }
+
+      .incoming {
         margin-left: 2%;
         margin-right: auto;
         border-bottom-left-radius: $app__radiusBorder;
         border-bottom-right-radius: $app__radiusBorder;
         border-top-right-radius: $app__radiusBorder;
       }
-      .timer__incoming {
-        position: absolute;
-        bottom: $app__marginSmall;
-        right: $app__marginSmall;
-        font-style: italic;
-        font-size: 0.8rem;
-      }
-      &__outgoing {
-        width: fit-content;
-        position: relative;
-        padding: $app__marginMedium;
-        background: $app__colorSecondary;
-        padding-bottom: $app__marginMiniLarge;
-        max-width: 40%;
+
+      .outgoing {
         margin-left: auto;
         margin-right: 2%;
         border-top-right-radius: $app__radiusBorder;
         border-bottom-left-radius: $app__radiusBorder;
         border-top-left-radius: $app__radiusBorder;
       }
-      .timer__outgoing {
+
+      &__timer {
         position: absolute;
         bottom: $app__marginSmall;
         right: $app__marginSmall;

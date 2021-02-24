@@ -35,8 +35,9 @@ export interface UserData {
 }
 
 export interface MessageData {
-    userId: number,
-    chatId: number,
+    id: number,
+    user_id: number,
+    chat_id: number,
     content: string,
     time: string
 }
