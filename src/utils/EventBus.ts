@@ -14,7 +14,7 @@ export class EventBus {
 
     emit(event: EVENT, payload: Payload = {}) {
         for (const listener of this.listeners[event]) {
-            if (listener[event] && listener['isRendered']()) {
+            if (listener[event] && listener.isRendered()) {
                 listener[event](payload);
             }
         }
